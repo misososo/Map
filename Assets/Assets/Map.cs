@@ -141,14 +141,14 @@ public class Map : MonoBehaviour
         {
             pos = rooms[i].transform.position;
 
-            if(Physics2D.Raycast(new Vector3(pos.x + 1, pos.y, 0),         Vector3.right,    0.1f) &&
-               Physics2D.Raycast(new Vector3(pos.x - 1, pos.y, 0),         Vector3.left,     0.1f) &&
-               Physics2D.Raycast(new Vector3(pos.x, pos.y + 1, 0),         Vector3.up,       0.1f) &&
-               Physics2D.Raycast(new Vector3(pos.x, pos.y - 1, 0),         Vector3.down,     0.1f) &&
-               Physics2D.Raycast(new Vector3(pos.x + 1, pos.y + 1, 0), new Vector3(1, 1, 0), 0.1f) &&
-               Physics2D.Raycast(new Vector3(pos.x + 1, pos.y - 1, 0), new Vector3(1, 1, 0), 0.1f) &&
-               Physics2D.Raycast(new Vector3(pos.x - 1, pos.y + 1, 0), new Vector3(1, 1, 0), 0.1f) &&
-               Physics2D.Raycast(new Vector3(pos.x - 1, pos.y - 1, 0), new Vector3(1, 1, 0), 0.1f))
+            if(Physics2D.Raycast(new Vector3(pos.x + 10, pos.y, 0),         Vector3.right,    0.1f) &&
+               Physics2D.Raycast(new Vector3(pos.x - 10, pos.y, 0),         Vector3.left,     0.1f) &&
+               Physics2D.Raycast(new Vector3(pos.x, pos.y + 10, 0),         Vector3.up,       0.1f) &&
+               Physics2D.Raycast(new Vector3(pos.x, pos.y - 10, 0),         Vector3.down,     0.1f) &&
+               Physics2D.Raycast(new Vector3(pos.x + 10, pos.y + 0, 0), new Vector3(1, 1, 0), 0.1f) &&
+               Physics2D.Raycast(new Vector3(pos.x + 10, pos.y - 10, 0), new Vector3(1, 1, 0), 0.1f) &&
+               Physics2D.Raycast(new Vector3(pos.x - 10, pos.y + 10, 0), new Vector3(1, 1, 0), 0.1f) &&
+               Physics2D.Raycast(new Vector3(pos.x - 10, pos.y - 10, 0), new Vector3(1, 1, 0), 0.1f))
             {
                 Debug.Log("AAA");
                 removeRooms.Add(rooms[i]);           
