@@ -7,22 +7,23 @@ public class Map : MonoBehaviour
     [SerializeField] int mapHoriLength;
     [SerializeField] int mapVerLength;
 
-    [SerializeField] GameObject roomCreatePoints;
-    GameObject[,] roomCreatePoint;
+    [SerializeField] GameObject mapEreasParent;
+    GameObject[,] mapEreas;
 
     [SerializeField] GameObject roomPrefab;
-    List<GameObject> rooms = new List<GameObject>();   
     [SerializeField] GameObject startRoomPrefab;
     [SerializeField] GameObject goalRoomPrefab;
-    [SerializeField] GameObject wall;
-    [SerializeField] GameObject outerWall;
+    [SerializeField] GameObject insideWall;
+    [SerializeField] GameObject outsideWall;
 
     [SerializeField] int roomNum = 5;
+
+    GameObject removeObj;
     
     // Start is called before the first frame update
     void Start()
     {
-        roomCreatePoint = new GameObject[mapVerLength, mapHoriLength];
+        mapEreas = new GameObject[mapVerLength, mapHoriLength];
 
         int childIndex = 0;
 
@@ -30,7 +31,7 @@ public class Map : MonoBehaviour
         {
             for(int j = 0; j < mapHoriLength; ++j)
             {
-                roomCreatePoint[j, i] = roomCreatePoints.transform.GetChild(childIndex).gameObject;
+                mapEreas[j, i] = mapEreasParent.transform.GetChild(childIndex).gameObject;
                 childIndex++;
             }          
         }
@@ -49,34 +50,22 @@ public class Map : MonoBehaviour
         int randomX = Random.Range(0, mapHoriLength);
         int randomY = Random.Range(0, mapVerLength);
 
-        for (int i = 0; i < mapVerLength; ++i)
-        {
-            for(int j = 0; j < mapHoriLength; ++j)
-            {
-                if (i == randomY && j == randomX)
-                {               
-                    CreateRoom(j, i);
-                    break;
-                }
-            }           
-        }
-
-        RemoveRoom();
+        CreateRoom(randomX, randomY);            
+        CreateWall();
         SettingStartAndGoal();
-        outerWall.SetActive(true);
+        
     }
 
     void CreateRoom(int posX, int posY)
     {
         if(roomNum <= 0)return;
-        if(!roomCreatePoint[posX, posY])return;
+        if(!mapEreas[posX, posY].CompareTag("Wall"))return;
 
         roomNum--;
-        GameObject room = Instantiate(roomPrefab, roomCreatePoint[posX, posY].transform.position, Quaternion.identity);
-        rooms.Add(room);
-
-        Destroy(roomCreatePoint[posX, posY]);
-        roomCreatePoint[posX, posY] = null;
+        GameObject room = Instantiate(roomPrefab, mapEreas[posX, posY].transform.position, Quaternion.identity);
+        //removeObj = mapEreas[posX, posY];
+        Destroy(mapEreas[posX, posY]);
+        mapEreas[posX, posY] = room;
 
         List<int> createDirX = new List<int>();
         List<int> createDirY = new List<int>();
@@ -132,52 +121,88 @@ public class Map : MonoBehaviour
         return true;
     }
 
-    void RemoveRoom()
+    bool CheckCreateWall(int posX, int posY)
     {
-        List<GameObject> removeRooms = new List<GameObject>();
-        Vector3 pos;
-
-        for(int i = 0; i < rooms.Count; ++i)
+        if (mapEreas[posX + 1, posY    ].CompareTag("Room") &&
+            mapEreas[posX - 1, posY    ].CompareTag("Room") &&
+            mapEreas[posX,     posY + 1].CompareTag("Room") &&
+            mapEreas[posX,     posY - 1].CompareTag("Room") &&
+            mapEreas[posX + 1, posY + 1].CompareTag("Room") &&
+            mapEreas[posX + 1, posY - 1].CompareTag("Room") &&
+            mapEreas[posX - 1, posY + 1].CompareTag("Room") &&
+            mapEreas[posX - 1, posY - 1].CompareTag("Room"))
         {
-            pos = rooms[i].transform.position;
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 
-            if(Physics2D.Raycast(new Vector3(pos.x + 10, pos.y, 0),         Vector3.right,    0.1f) &&
-               Physics2D.Raycast(new Vector3(pos.x - 10, pos.y, 0),         Vector3.left,     0.1f) &&
-               Physics2D.Raycast(new Vector3(pos.x, pos.y + 10, 0),         Vector3.up,       0.1f) &&
-               Physics2D.Raycast(new Vector3(pos.x, pos.y - 10, 0),         Vector3.down,     0.1f) &&
-               Physics2D.Raycast(new Vector3(pos.x + 10, pos.y + 0, 0), new Vector3(1, 1, 0), 0.1f) &&
-               Physics2D.Raycast(new Vector3(pos.x + 10, pos.y - 10, 0), new Vector3(1, 1, 0), 0.1f) &&
-               Physics2D.Raycast(new Vector3(pos.x - 10, pos.y + 10, 0), new Vector3(1, 1, 0), 0.1f) &&
-               Physics2D.Raycast(new Vector3(pos.x - 10, pos.y - 10, 0), new Vector3(1, 1, 0), 0.1f))
+    void CreateWall()
+    {
+        //List<GameObject> createWalls = new List<GameObject>();
+        List<int> posX = new List<int>();
+        List<int> posY = new List<int>();
+
+        GameObject wall;
+
+        for (int i = 1; i < mapVerLength - 1; ++i)
+        {
+            for (int j = 1; j < mapHoriLength - 1; ++j)
             {
-                Debug.Log("AAA");
-                removeRooms.Add(rooms[i]);           
-                rooms.RemoveAt(i);
-                i--;
+                if (!mapEreas[j, i].CompareTag("Room")) continue;
+                
+                if(CheckCreateWall(j, i))
+                {
+                    posX.Add(j);
+                    posY.Add(i);
+                }
             }
-            
+        }
+        
+        for(int i = 0; i < posX.Count; ++i)
+        {
+            wall = Instantiate(insideWall, mapEreas[posX[i], posY[i]].transform.position, Quaternion.identity);
+            //removeObj = mapEreas[posX[i], posY[i]];
+            Destroy(mapEreas[posX[i], posY[i]]);
+            mapEreas[posX[i], posY[i]] = wall;
         }
 
-        for(int i = 0; i < removeRooms.Count; ++i)
-        {
-            Destroy(removeRooms[i]);
-            removeRooms[i] = Instantiate(wall, removeRooms[i].transform.position, Quaternion.identity);
-        }
+        //outsideWall.SetActive(true);
     }
 
     void SettingStartAndGoal()
     {
-        List<GameObject> roomsCopy = new List<GameObject>(rooms);
-        int random = Random.Range(0, roomsCopy.Count);
+        List<GameObject> rooms = new List<GameObject>();
+        GameObject room;
 
-        Destroy(roomsCopy[random]);
-        roomsCopy[random] = Instantiate(startRoomPrefab, roomsCopy[random].transform.position, Quaternion.identity);
-        roomsCopy.RemoveAt(random);
+        for (int i = 0; i < mapVerLength; ++i)
+        {
+            for (int j = 0; j < mapHoriLength; ++j)
+            {
+                Debug.Log(mapEreas[j, i]);
+                if (mapEreas[j, i].CompareTag("Room"))
+                {
+                    rooms.Add(mapEreas[j, i]);
+                }
+            }
+        }
 
-        random = Random.Range(0, roomsCopy.Count);
+        int random = Random.Range(0, rooms.Count);
 
-        Destroy(roomsCopy[random]);
-        roomsCopy[random] = Instantiate(goalRoomPrefab, roomsCopy[random].transform.position, Quaternion.identity);
-        roomsCopy.RemoveAt(random);
+        room = Instantiate(startRoomPrefab, rooms[random].transform.position, Quaternion.identity);
+        removeObj = rooms[random];
+        Destroy(removeObj);
+        rooms[random] = room;
+        rooms.RemoveAt(random);
+
+        random = Random.Range(0, rooms.Count);
+
+        room = Instantiate(goalRoomPrefab, rooms[random].transform.position, Quaternion.identity);
+        removeObj = rooms[random];
+        Destroy(removeObj);
+        rooms[random] = room;
     }
 }
