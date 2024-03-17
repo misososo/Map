@@ -1,9 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class Map : MonoBehaviour
 {
+    [SerializeField] Tilemap wallTileMap;
+    [SerializeField] Tile wall;
+
+    [SerializeField] Tilemap roomTileMap;
+    [SerializeField] Tile room;
+    [SerializeField] Tile startRoom;
+    [SerializeField] Tile goalRoom;
+
     [SerializeField] int mapHoriLength;
     [SerializeField] int mapVerLength;
 
@@ -18,21 +27,23 @@ public class Map : MonoBehaviour
 
     [SerializeField] int roomNum = 5;
 
-    GameObject removeObj;
-    
+    [SerializeField] Player2 player;
+    Vector3 playerStartPos;
+
     // Start is called before the first frame update
     void Start()
     {
-        mapEreas = new GameObject[mapVerLength, mapHoriLength];
+        //mapEreas = new GameObject[mapVerLength, mapHoriLength];
 
-        int childIndex = 0;
+        //int childIndex = 0;
 
         for(int i = 0; i < mapVerLength; ++i)
         {
             for(int j = 0; j < mapHoriLength; ++j)
             {
-                mapEreas[j, i] = mapEreasParent.transform.GetChild(childIndex).gameObject;
-                childIndex++;
+                wallTileMap.SetTile(new Vector3Int(j, i, 0), wall);
+                //mapEreas[j, i] = mapEreasParent.transform.GetChild(childIndex).gameObject;
+                //childIndex++;
             }          
         }
 
@@ -53,19 +64,22 @@ public class Map : MonoBehaviour
         CreateRoom(randomX, randomY);            
         CreateWall();
         SettingStartAndGoal();
-        
+        player.transform.position = playerStartPos;
     }
 
     void CreateRoom(int posX, int posY)
     {
         if(roomNum <= 0)return;
-        if(!mapEreas[posX, posY].CompareTag("Wall"))return;
+        if(!roomTileMap.HasTile(new Vector3Int(posX, posY, 0)))
+        {
+            roomNum--;
+            //GameObject room = Instantiate(roomPrefab, mapEreas[posX, posY].transform.position, Quaternion.identity);
+            //Destroy(mapEreas[posX, posY]);
+            //mapEreas[posX, posY] = room;
 
-        roomNum--;
-        GameObject room = Instantiate(roomPrefab, mapEreas[posX, posY].transform.position, Quaternion.identity);
-        //removeObj = mapEreas[posX, posY];
-        Destroy(mapEreas[posX, posY]);
-        mapEreas[posX, posY] = room;
+            wallTileMap.SetTile(new Vector3Int(posX, posY, 0), null);
+            roomTileMap.SetTile(new Vector3Int(posX, posY, 0), room);
+        }
 
         List<int> createDirX = new List<int>();
         List<int> createDirY = new List<int>();
@@ -94,43 +108,31 @@ public class Map : MonoBehaviour
             createDirY.Add(posY - 1);
         }
 
-        while(createDirX.Count > 0)
-        {
-            int random = Random.Range(0, createDirX.Count);
-            
-            for(int i = 0; i < createDirX.Count; ++i)
-            {
-                if(i == random)
-                {
-                    CreateRoom(createDirX[i], createDirY[i]);
-                    createDirX.RemoveAt(i);
-                    createDirY.RemoveAt(i);
-                    break;
-                }
-            }
-        }
+        int random = Random.Range(0, createDirX.Count);
+        CreateRoom(createDirX[random], createDirY[random]);
+
         
     }
 
     bool CheckCreateRoom(int posX, int posY)
     {
         if(posX >= mapHoriLength || posX < 0)return false;
-        if(posY >= mapVerLength || posY < 0)return false;
-        
+        if(posY >= mapVerLength || posY < 0)return false;        
 
         return true;
     }
 
     bool CheckCreateWall(int posX, int posY)
     {
-        if (mapEreas[posX + 1, posY    ].CompareTag("Room") &&
-            mapEreas[posX - 1, posY    ].CompareTag("Room") &&
-            mapEreas[posX,     posY + 1].CompareTag("Room") &&
-            mapEreas[posX,     posY - 1].CompareTag("Room") &&
-            mapEreas[posX + 1, posY + 1].CompareTag("Room") &&
-            mapEreas[posX + 1, posY - 1].CompareTag("Room") &&
-            mapEreas[posX - 1, posY + 1].CompareTag("Room") &&
-            mapEreas[posX - 1, posY - 1].CompareTag("Room"))
+        if (roomTileMap.HasTile(new Vector3Int(posX + 1, posY,     0)) &&
+            roomTileMap.HasTile(new Vector3Int(posX - 1, posY,     0)) &&
+            roomTileMap.HasTile(new Vector3Int(posX,     posY + 1, 0)) &&
+            roomTileMap.HasTile(new Vector3Int(posX,     posY - 1, 0)) &&
+            roomTileMap.HasTile(new Vector3Int(posX + 1, posY + 1, 0)) &&
+            roomTileMap.HasTile(new Vector3Int(posX + 1, posY - 1, 0)) &&
+            roomTileMap.HasTile(new Vector3Int(posX - 1, posY + 1, 0)) &&
+            roomTileMap.HasTile(new Vector3Int(posX - 1, posY - 1, 0)) &&
+            roomTileMap.HasTile(new Vector3Int(posX,     posY,     0)))
         {
             return true;
         }
@@ -142,18 +144,15 @@ public class Map : MonoBehaviour
 
     void CreateWall()
     {
-        //List<GameObject> createWalls = new List<GameObject>();
         List<int> posX = new List<int>();
         List<int> posY = new List<int>();
 
-        GameObject wall;
+        //GameObject wall;
 
         for (int i = 1; i < mapVerLength - 1; ++i)
         {
             for (int j = 1; j < mapHoriLength - 1; ++j)
             {
-                if (!mapEreas[j, i].CompareTag("Room")) continue;
-                
                 if(CheckCreateWall(j, i))
                 {
                     posX.Add(j);
@@ -164,10 +163,11 @@ public class Map : MonoBehaviour
         
         for(int i = 0; i < posX.Count; ++i)
         {
-            wall = Instantiate(insideWall, mapEreas[posX[i], posY[i]].transform.position, Quaternion.identity);
-            //removeObj = mapEreas[posX[i], posY[i]];
-            Destroy(mapEreas[posX[i], posY[i]]);
-            mapEreas[posX[i], posY[i]] = wall;
+            //wall = Instantiate(insideWall, mapEreas[posX[i], posY[i]].transform.position, Quaternion.identity);
+            //Destroy(mapEreas[posX[i], posY[i]]);
+            //mapEreas[posX[i], posY[i]] = wall;
+            roomTileMap.SetTile(new Vector3Int(posX[i], posY[i], 0), null);
+            wallTileMap.SetTile(new Vector3Int(posX[i], posY[i], 0), wall);
         }
 
         //outsideWall.SetActive(true);
@@ -175,34 +175,50 @@ public class Map : MonoBehaviour
 
     void SettingStartAndGoal()
     {
-        List<GameObject> rooms = new List<GameObject>();
-        GameObject room;
+        //List<GameObject> rooms = new List<GameObject>();
+        //GameObject room;
+
+        List<int> posX = new List<int>();
+        List<int> posY = new List<int>();
 
         for (int i = 0; i < mapVerLength; ++i)
         {
             for (int j = 0; j < mapHoriLength; ++j)
             {
-                Debug.Log(mapEreas[j, i]);
-                if (mapEreas[j, i].CompareTag("Room"))
+                //Debug.Log(mapEreas[j, i]);
+                if (roomTileMap.HasTile(new Vector3Int(j, i, 0)))
                 {
-                    rooms.Add(mapEreas[j, i]);
+                    posX.Add(j);
+                    posY.Add(i);
                 }
             }
         }
+        Debug.Log(posX.Count);
+        int random = Random.Range(0, posX.Count);
+        
+        //room = Instantiate(startRoomPrefab, rooms[random].transform.position, Quaternion.identity);
+        //removeObj = rooms[random];
+        //Destroy(rooms[random]);
+        //rooms[random] = room;
+        //playerStartPos = rooms[random].transform.position;
+        //rooms.RemoveAt(random);
+        roomTileMap.SetTile(new Vector3Int(posX[random], posY[random], 0), startRoom);
 
-        int random = Random.Range(0, rooms.Count);
+        playerStartPos = roomTileMap.GetCellCenterWorld(new Vector3Int(posX[random], posY[random], 0));
 
-        room = Instantiate(startRoomPrefab, rooms[random].transform.position, Quaternion.identity);
-        removeObj = rooms[random];
-        Destroy(removeObj);
-        rooms[random] = room;
-        rooms.RemoveAt(random);
+        posX.RemoveAt(random);
+        posY.RemoveAt(random);
 
-        random = Random.Range(0, rooms.Count);
 
-        room = Instantiate(goalRoomPrefab, rooms[random].transform.position, Quaternion.identity);
-        removeObj = rooms[random];
-        Destroy(removeObj);
-        rooms[random] = room;
+        //random = Random.Range(0, rooms.Count);
+
+        //room = Instantiate(goalRoomPrefab, rooms[random].transform.position, Quaternion.identity);
+        //removeObj = rooms[random];
+        //Destroy(rooms[random]);
+        //rooms[random] = room;
+
+        random = Random.Range(0, posX.Count);
+        
+        roomTileMap.SetTile(new Vector3Int(posX[random], posY[random], 0), goalRoom);
     }
 }
