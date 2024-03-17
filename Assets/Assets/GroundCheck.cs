@@ -15,7 +15,7 @@ public class GroundCheck : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(IsGround);
+       // Debug.Log(IsGround);
     }
 
     private void OnTriggerStay2D(Collider2D collision)

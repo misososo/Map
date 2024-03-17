@@ -14,6 +14,8 @@ public class Player : MonoBehaviour
 
     Vector3 dir;
 
+    [SerializeField] PlayerCamera pc;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -42,6 +44,14 @@ public class Player : MonoBehaviour
             transform.rotation = Quaternion.LookRotation(Vector3.forward, dir);
         }
         
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.CompareTag("CameraPoint"))
+        {
+            pc.SetTarget(collision.gameObject);
+        }
     }
 
     public void CheckInputLeftStick(InputAction.CallbackContext context)

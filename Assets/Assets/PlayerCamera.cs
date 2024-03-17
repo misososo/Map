@@ -21,4 +21,9 @@ public class PlayerCamera : MonoBehaviour
         pos.z = -10;
         transform.position = pos;
     }
+
+    public void SetTarget(GameObject obj)
+    {
+        target = obj;
+    }
 }

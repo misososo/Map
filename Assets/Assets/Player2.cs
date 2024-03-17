@@ -44,6 +44,7 @@ public class Player2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Debug.Log(jumpNum);
         anim.SetFloat("MoveSpeed", Mathf.Abs(move.x));
 
         if (rb.velocity.y < -0.1f)
@@ -61,6 +62,8 @@ public class Player2 : MonoBehaviour
         
         if (gc.IsGround)
         {
+            jumpNum = 2;
+            
             if (input == Vector3.zero)
             {
                 anim.Play("Idle");
@@ -72,7 +75,13 @@ public class Player2 : MonoBehaviour
                 anim.Play("Move");
             }
         }
-
+        else
+        {
+            if(jumpNum == 2)
+            {
+                jumpNum = 1;
+            }
+        }
     }
 
     public void CheckInputLeftStick(InputAction.CallbackContext context)
@@ -104,11 +113,8 @@ public class Player2 : MonoBehaviour
 
     public void Jump(InputAction.CallbackContext context)
     {
-        if (gc.IsGround)
-        {
-            jumpNum = 2;
-        }
-
+        
+        
         if (context.performed && jumpNum > 0)
         {
             gc.SetIsGroung(false);
