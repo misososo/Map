@@ -13,6 +13,8 @@ public class Map : MonoBehaviour
     [SerializeField] Tile startRoom;
     [SerializeField] Tile goalRoom;
 
+    [SerializeField] Tilemap miniMapTileMap;
+
     [SerializeField] int roomNum = 5;
     [SerializeField] int mapHoriLength;
     [SerializeField] int mapVerLength;
@@ -81,6 +83,7 @@ public class Map : MonoBehaviour
             moveDis--;
             wallTileMap.SetTile(new Vector3Int(posX, posY, 0), null);
             roomTileMap.SetTile(new Vector3Int(posX, posY, 0), room);
+            miniMapTileMap.SetTile(new Vector3Int(posX, posY, 0), room);
             Instantiate(cameraPoint, roomTileMap.GetCellCenterWorld(new Vector3Int(posX, posY, 0)), Quaternion.identity);
         }
         else if(roomTileMap.HasTile(new Vector3Int(posX, posY, 0)))
@@ -229,6 +232,7 @@ public class Map : MonoBehaviour
         //playerStartPos = rooms[random].transform.position;
         //rooms.RemoveAt(random);
         roomTileMap.SetTile(new Vector3Int(posX[random], posY[random], 0), startRoom);
+        miniMapTileMap.SetTile(new Vector3Int(posX[random], posY[random], 0), startRoom);
 
         playerStartPos = roomTileMap.GetCellCenterWorld(new Vector3Int(posX[random], posY[random], 0));
 
@@ -246,5 +250,6 @@ public class Map : MonoBehaviour
         random = Random.Range(0, posX.Count);
         
         roomTileMap.SetTile(new Vector3Int(posX[random], posY[random], 0), goalRoom);
+        miniMapTileMap.SetTile(new Vector3Int(posX[random], posY[random], 0), goalRoom);
     }
 }
