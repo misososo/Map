@@ -1,37 +1,52 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class Map : MonoBehaviour
 {
+    [SerializeField] Tilemap wallTileMap;
+    [SerializeField] Tile wall;
+
+    [SerializeField] Tilemap roomTileMap;
+    [SerializeField] Tile room;
+    [SerializeField] Tile startRoom;
+    [SerializeField] Tile goalRoom;
+
+    [SerializeField] int roomNum = 5;
     [SerializeField] int mapHoriLength;
     [SerializeField] int mapVerLength;
 
-    [SerializeField] GameObject roomCreatePoints;
-    GameObject[,] roomCreatePoint;
+    [SerializeField] GameObject cameraPoint;
+
+    [SerializeField] GameObject mapEreasParent;
+    GameObject[,] mapEreas;
 
     [SerializeField] GameObject roomPrefab;
-    List<GameObject> rooms = new List<GameObject>();   
     [SerializeField] GameObject startRoomPrefab;
     [SerializeField] GameObject goalRoomPrefab;
-    [SerializeField] GameObject wall;
-    [SerializeField] GameObject outerWall;
+    [SerializeField] GameObject insideWall;
+    [SerializeField] GameObject outsideWall;
 
-    [SerializeField] int roomNum = 5;
     
+
+    [SerializeField] GameObject player;
+    Vector3 playerStartPos;
+
     // Start is called before the first frame update
     void Start()
     {
-        roomCreatePoint = new GameObject[mapVerLength, mapHoriLength];
+        //mapEreas = new GameObject[mapVerLength, mapHoriLength];
 
-        int childIndex = 0;
+        //int childIndex = 0;
 
         for(int i = 0; i < mapVerLength; ++i)
         {
             for(int j = 0; j < mapHoriLength; ++j)
             {
-                roomCreatePoint[j, i] = roomCreatePoints.transform.GetChild(childIndex).gameObject;
-                childIndex++;
+                wallTileMap.SetTile(new Vector3Int(j, i, 0), wall);
+                //mapEreas[j, i] = mapEreasParent.transform.GetChild(childIndex).gameObject;
+                //childIndex++;
             }          
         }
 
@@ -49,135 +64,187 @@ public class Map : MonoBehaviour
         int randomX = Random.Range(0, mapHoriLength);
         int randomY = Random.Range(0, mapVerLength);
 
-        for (int i = 0; i < mapVerLength; ++i)
-        {
-            for(int j = 0; j < mapHoriLength; ++j)
-            {
-                if (i == randomY && j == randomX)
-                {               
-                    CreateRoom(j, i);
-                    break;
-                }
-            }           
-        }
-
-        RemoveRoom();
+        CreateRoom(randomX, randomY);            
+        CreateWall();
         SettingStartAndGoal();
-        outerWall.SetActive(true);
+        player.transform.position = playerStartPos;
     }
 
-    void CreateRoom(int posX, int posY)
+    void CreateRoom(int posX, int posY, int dirX = 0, int dirY = 0, int moveDis = 1)
     {
         if(roomNum <= 0)return;
-        if(!roomCreatePoint[posX, posY])return;
 
-        roomNum--;
-        GameObject room = Instantiate(roomPrefab, roomCreatePoint[posX, posY].transform.position, Quaternion.identity);
-        rooms.Add(room);
-
-        Destroy(roomCreatePoint[posX, posY]);
-        roomCreatePoint[posX, posY] = null;
-
-        List<int> createDirX = new List<int>();
-        List<int> createDirY = new List<int>();
-
-        if(CheckCreateRoom(posX + 1, posY))
+        //roomNum--;
+        if (wallTileMap.HasTile(new Vector3Int(posX, posY, 0)))
         {
-            createDirX.Add(posX + 1);
-            createDirY.Add(posY);
+            roomNum--;
+            moveDis--;
+            wallTileMap.SetTile(new Vector3Int(posX, posY, 0), null);
+            roomTileMap.SetTile(new Vector3Int(posX, posY, 0), room);
+            Instantiate(cameraPoint, roomTileMap.GetCellCenterWorld(new Vector3Int(posX, posY, 0)), Quaternion.identity);
+        }
+        else if(roomTileMap.HasTile(new Vector3Int(posX, posY, 0)))
+        {
+            moveDis--;            
+        }
+        else
+        {
+            moveDis = 0;
         }
 
-        if(CheckCreateRoom(posX - 1, posY))
-        {
-            createDirX.Add(posX - 1);
-            createDirY.Add(posY);
-        }
-
-        if(CheckCreateRoom(posX, posY + 1))
-        {
-            createDirX.Add(posX);
-            createDirY.Add(posY + 1);
-        }
-
-        if(CheckCreateRoom(posX, posY - 1))
-        {
-            createDirX.Add(posX);
-            createDirY.Add(posY - 1);
-        }
-
-        while(createDirX.Count > 0)
-        {
-            int random = Random.Range(0, createDirX.Count);
-            
-            for(int i = 0; i < createDirX.Count; ++i)
-            {
-                if(i == random)
-                {
-                    CreateRoom(createDirX[i], createDirY[i]);
-                    createDirX.RemoveAt(i);
-                    createDirY.RemoveAt(i);
-                    break;
-                }
-            }
-        }
         
+
+        if(moveDis <= 0 ||
+            !roomTileMap.HasTile(new Vector3Int(posX + dirX, posY + dirY, 0)) &&
+            !wallTileMap.HasTile(new Vector3Int(posX + dirX, posY + dirY, 0)))
+        {
+            int[] createDirX = { 1, -1, 0, 0 };
+            int[] createDirY = { 0, 0, 1, -1 };
+            List<Vector2Int> createDir = new List<Vector2Int>();
+
+            moveDis = Random.Range(1, 6);
+
+            for(int i = 0; i < createDirX.Length; ++i)
+            {
+                if (!roomTileMap.HasTile(new Vector3Int(posX + createDirX[i], posY + createDirY[i], 0)) &&
+                    !wallTileMap.HasTile(new Vector3Int(posX + createDirX[i], posY + createDirY[i], 0)) ||
+                    dirX == createDirX[i] && dirY == createDirY[i])
+                {
+                    continue;
+                }
+                    
+                
+                createDir.Add(new Vector2Int(createDirX[i], createDirY[i]));
+                
+            }
+
+            int random = Random.Range(0, createDir.Count);
+            Debug.Log(createDir.Count);
+            Debug.Log(random);
+            dirX = createDir[random].x;
+            dirY = createDir[random].y;
+        }
+
+        CreateRoom(posX + dirX, posY + dirY, dirX, dirY, moveDis);       
     }
 
     bool CheckCreateRoom(int posX, int posY)
     {
         if(posX >= mapHoriLength || posX < 0)return false;
-        if(posY >= mapVerLength || posY < 0)return false;
-        
+        if(posY >= mapVerLength || posY < 0)return false;        
 
         return true;
     }
 
-    void RemoveRoom()
+    bool CheckCreateWall(int posX, int posY)
     {
-        List<GameObject> removeRooms = new List<GameObject>();
-        Vector3 pos;
-
-        for(int i = 0; i < rooms.Count; ++i)
+        if (roomTileMap.HasTile(new Vector3Int(posX + 1, posY,     0)) &&
+            roomTileMap.HasTile(new Vector3Int(posX - 1, posY,     0)) &&
+            roomTileMap.HasTile(new Vector3Int(posX,     posY + 1, 0)) &&
+            roomTileMap.HasTile(new Vector3Int(posX,     posY - 1, 0)) &&
+            roomTileMap.HasTile(new Vector3Int(posX + 1, posY + 1, 0)) &&
+            roomTileMap.HasTile(new Vector3Int(posX + 1, posY - 1, 0)) &&
+            roomTileMap.HasTile(new Vector3Int(posX - 1, posY + 1, 0)) &&
+            roomTileMap.HasTile(new Vector3Int(posX - 1, posY - 1, 0)) &&
+            roomTileMap.HasTile(new Vector3Int(posX,     posY,     0)))
         {
-            pos = rooms[i].transform.position;
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 
-            if(Physics2D.Raycast(new Vector3(pos.x + 10, pos.y, 0),         Vector3.right,    0.1f) &&
-               Physics2D.Raycast(new Vector3(pos.x - 10, pos.y, 0),         Vector3.left,     0.1f) &&
-               Physics2D.Raycast(new Vector3(pos.x, pos.y + 10, 0),         Vector3.up,       0.1f) &&
-               Physics2D.Raycast(new Vector3(pos.x, pos.y - 10, 0),         Vector3.down,     0.1f) &&
-               Physics2D.Raycast(new Vector3(pos.x + 10, pos.y + 0, 0), new Vector3(1, 1, 0), 0.1f) &&
-               Physics2D.Raycast(new Vector3(pos.x + 10, pos.y - 10, 0), new Vector3(1, 1, 0), 0.1f) &&
-               Physics2D.Raycast(new Vector3(pos.x - 10, pos.y + 10, 0), new Vector3(1, 1, 0), 0.1f) &&
-               Physics2D.Raycast(new Vector3(pos.x - 10, pos.y - 10, 0), new Vector3(1, 1, 0), 0.1f))
+    void CreateWall()
+    {
+        //List<int> posX = new List<int>();
+        //List<int> posY = new List<int>();
+
+        //GameObject wall;
+
+        /*for (int i = 1; i < mapVerLength - 1; ++i)
+        {
+            for (int j = 1; j < mapHoriLength - 1; ++j)
             {
-                Debug.Log("AAA");
-                removeRooms.Add(rooms[i]);           
-                rooms.RemoveAt(i);
-                i--;
+                if(CheckCreateWall(j, i))
+                {
+                    posX.Add(j);
+                    posY.Add(i);
+                }
             }
-            
+        }*/
+
+        /*for(int i = 0; i < posX.Count; ++i)
+        {
+            //wall = Instantiate(insideWall, mapEreas[posX[i], posY[i]].transform.position, Quaternion.identity);
+            //Destroy(mapEreas[posX[i], posY[i]]);
+            //mapEreas[posX[i], posY[i]] = wall;
+            roomTileMap.SetTile(new Vector3Int(posX[i], posY[i], 0), null);
+            wallTileMap.SetTile(new Vector3Int(posX[i], posY[i], 0), wall);
+        }*/
+
+        for (int i = -1; i < mapHoriLength + 1; ++i)
+        {
+            wallTileMap.SetTile(new Vector3Int(i, -1, 0), wall);
+            wallTileMap.SetTile(new Vector3Int(i, mapHoriLength, 0), wall);
         }
 
-        for(int i = 0; i < removeRooms.Count; ++i)
+        for (int i = -1; i < mapVerLength + 1; ++i)
         {
-            Destroy(removeRooms[i]);
-            removeRooms[i] = Instantiate(wall, removeRooms[i].transform.position, Quaternion.identity);
+            wallTileMap.SetTile(new Vector3Int(-1, i, 0), wall);
+            wallTileMap.SetTile(new Vector3Int(mapVerLength, i, 0), wall);
         }
+
+        //outsideWall.SetActive(true);
     }
 
     void SettingStartAndGoal()
     {
-        List<GameObject> roomsCopy = new List<GameObject>(rooms);
-        int random = Random.Range(0, roomsCopy.Count);
+        //List<GameObject> rooms = new List<GameObject>();
+        //GameObject room;
 
-        Destroy(roomsCopy[random]);
-        roomsCopy[random] = Instantiate(startRoomPrefab, roomsCopy[random].transform.position, Quaternion.identity);
-        roomsCopy.RemoveAt(random);
+        List<int> posX = new List<int>();
+        List<int> posY = new List<int>();
 
-        random = Random.Range(0, roomsCopy.Count);
+        for (int i = 0; i < mapVerLength; ++i)
+        {
+            for (int j = 0; j < mapHoriLength; ++j)
+            {
+                //Debug.Log(mapEreas[j, i]);
+                if (roomTileMap.HasTile(new Vector3Int(j, i, 0)))
+                {
+                    posX.Add(j);
+                    posY.Add(i);
+                }
+            }
+        }
+        Debug.Log(posX.Count);
+        int random = Random.Range(0, posX.Count);
+        
+        //room = Instantiate(startRoomPrefab, rooms[random].transform.position, Quaternion.identity);
+        //removeObj = rooms[random];
+        //Destroy(rooms[random]);
+        //rooms[random] = room;
+        //playerStartPos = rooms[random].transform.position;
+        //rooms.RemoveAt(random);
+        roomTileMap.SetTile(new Vector3Int(posX[random], posY[random], 0), startRoom);
 
-        Destroy(roomsCopy[random]);
-        roomsCopy[random] = Instantiate(goalRoomPrefab, roomsCopy[random].transform.position, Quaternion.identity);
-        roomsCopy.RemoveAt(random);
+        playerStartPos = roomTileMap.GetCellCenterWorld(new Vector3Int(posX[random], posY[random], 0));
+
+        posX.RemoveAt(random);
+        posY.RemoveAt(random);
+
+
+        //random = Random.Range(0, rooms.Count);
+
+        //room = Instantiate(goalRoomPrefab, rooms[random].transform.position, Quaternion.identity);
+        //removeObj = rooms[random];
+        //Destroy(rooms[random]);
+        //rooms[random] = room;
+
+        random = Random.Range(0, posX.Count);
+        
+        roomTileMap.SetTile(new Vector3Int(posX[random], posY[random], 0), goalRoom);
     }
 }
