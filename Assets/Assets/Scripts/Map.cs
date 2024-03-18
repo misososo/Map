@@ -105,7 +105,7 @@ public class Map : MonoBehaviour
             int[] createDirY = { 0, 0, 1, -1 };
             List<Vector2Int> createDir = new List<Vector2Int>();
 
-            moveDis = Random.Range(1, 6);
+            moveDis = Random.Range(1, 5);
 
             for(int i = 0; i < createDirX.Length; ++i)
             {

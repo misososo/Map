@@ -39,10 +39,8 @@ public class Bullet : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("aaaa");
         if(collision.gameObject.CompareTag("Wall"))
         {
-            Debug.Log("aaaa");
             Destroy(gameObject);
         }
     }
