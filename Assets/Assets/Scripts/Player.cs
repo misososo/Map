@@ -23,11 +23,20 @@ public class Player : MonoBehaviour
     [SerializeField] float shotSpan;
     float firstShotSpan;
 
+    //[SerializeField] SkillDatas skillDatas;
+    //[SerializeField] List<Skill> allSkillData;
+    //[SerializeField] List<Skill> allSkill;
+    [SerializeField] SkillSlot SkillSlot;
+    
+    
+    
+
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         firstShotSpan = shotSpan;
+        
     }
 
     private void FixedUpdate()
@@ -74,20 +83,37 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.CompareTag("CameraPoint"))
+        GameObject hitObj = collision.gameObject;
+
+        if(hitObj.CompareTag("CameraPoint"))
         {
-            pc.SetTarget(collision.gameObject);
+            pc.SetTarget(hitObj);
 
-            SpriteRenderer sr = collision.gameObject.GetComponent<SpriteRenderer>();
+            SpriteRenderer sr = hitObj.GetComponent<SpriteRenderer>();
 
-            if(sr)
-            {
-                sr.sprite = null;
-                //collision.gameObject.GetComponent<SpriteRenderer>().sprite = sr.sprite;
-            }
+            if(!sr)return;
             
+            sr.sprite = null;
+        }
+        else if(hitObj.CompareTag("Skill"))
+        {
+            Skill skill = hitObj.GetComponent<Skill>();
+
+            if(!skill)return;
+
+            for(int i = 0; i < GameManager.I.GetSkillNum(); ++i)
+            {
+                if(skill.GetId() == GameManager.I.GetSkill(i).GetId())
+                {
+                    SkillSlot.SetHaveSkill(GameManager.I.GetSkill(i));
+                    GameManager.I.GetSkill(i).GrantSkill(ref bullet);
+                }
+
+                
+            }        
         }
     }
+
 
     public void CheckInputLeftStick(InputAction.CallbackContext context)
     {
