@@ -122,8 +122,7 @@ public class Map : MonoBehaviour
             }
 
             int random = Random.Range(0, createDir.Count);
-            Debug.Log(createDir.Count);
-            Debug.Log(random);
+          
             dirX = createDir[random].x;
             dirY = createDir[random].y;
         }
@@ -222,7 +221,7 @@ public class Map : MonoBehaviour
                 }
             }
         }
-        Debug.Log(posX.Count);
+        
         int random = Random.Range(0, posX.Count);
         
         //room = Instantiate(startRoomPrefab, rooms[random].transform.position, Quaternion.identity);

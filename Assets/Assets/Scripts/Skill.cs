@@ -22,9 +22,14 @@ public class Skill : MonoBehaviour
         
     }
 
-    public void GrantSkill(ref Bullet bullet)
+    public void EnableSkill(ref Bullet bullet)
     {
         Debug.Log(id);
+    }
+
+    public void DisableSkill(ref Bullet bullet)
+    {
+        Debug.Log(-id);
     }
 
     public void SetStatus()
@@ -38,5 +43,10 @@ public class Skill : MonoBehaviour
     public int GetId()
     {
         return id;
+    }
+
+    public Sprite GetSprite()
+    {
+        return sprite;
     }
 }

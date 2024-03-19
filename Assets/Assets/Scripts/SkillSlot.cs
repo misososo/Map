@@ -6,12 +6,17 @@ using UnityEngine.Windows;
 
 public class SkillSlot : MonoBehaviour
 {
-    GameObject[] slot = new GameObject[8];
+    SpriteRenderer[] slot = new SpriteRenderer[8];
+    [SerializeField] int slotMaxNum;
+    [SerializeField] Sprite emptySlot;
     Skill[] haveSkill;
-    [SerializeField] int maxHaveSkill;
-    int selectingNow = 0;
+    
+    int selectSlotNow = 0;
+    
     Vector3 rot;
-    [SerializeField] Vector3 rotationAmount;
+    [SerializeField] float rotationAmount;
+    [SerializeField] int rotationFlame;
+    bool isRoll = false;
 
     // Start is called before the first frame update
     void Start()
@@ -20,62 +25,89 @@ public class SkillSlot : MonoBehaviour
 
         for(int i = 0; i < transform.childCount; ++i)
         {
-            slot[i] = transform.GetChild(childIndex).gameObject;
+            slot[i] = transform.GetChild(childIndex).GetComponent<SpriteRenderer>();
+            childIndex++;
         }
 
-        haveSkill = new Skill[maxHaveSkill];
+        haveSkill = new Skill[slotMaxNum];
+        rot.z = rotationAmount;
     }
 
     // Update is called once per frame
     void Update()
     {
-        //rot = transform.eulerAngles;
-        //rot += rotationAmount;
-        //transform.eulerAngles = Vector3.Lerp(rot, rot + rotationAmount, 0.1f);
+        
     }
 
-    public Skill GetHaveSkill(int index)
+    IEnumerator RollSkillSlot(float dir = 1)
     {
-        return haveSkill[index];
+        isRoll = true;
+
+        for(int i = 0; i < rotationFlame; ++i)
+        {
+            transform.Rotate(dir * rot);
+            yield return null;
+        }
+
+        isRoll = false;
     }
 
-    public void SetHaveSkill(Skill skill)
+    public Skill GetHaveSkill()
     {
-        haveSkill[selectingNow] = skill;
+        return haveSkill[selectSlotNow];
+    }
+
+    public void EntryHaveSkill(Skill skill)
+    {
+        haveSkill[selectSlotNow] = skill;
+        slot[selectSlotNow].sprite = skill.GetSprite();
+    }
+
+    public void RemoveHaveSkill(ref Bullet bullet)
+    {
+        if (!haveSkill[selectSlotNow]) return;
+
+        haveSkill[selectSlotNow].DisableSkill(ref bullet);
+        haveSkill[selectSlotNow] = null;
+        slot[selectSlotNow].sprite = emptySlot;
     }
 
     public void CheckInputLeftBUtton(InputAction.CallbackContext context)
     {
         
-        if(context.performed)
+        if(context.performed && !isRoll)
         {
-            selectingNow++;
+            //rot = transform.eulerAngles + rotationAmount;
 
-            if(selectingNow >= maxHaveSkill)
+            selectSlotNow++;
+
+            if(selectSlotNow >= slotMaxNum)
             {
-                selectingNow = 0;
+                selectSlotNow = 0;
             }
 
-            Debug.Log(selectingNow);
+            StartCoroutine(RollSkillSlot());
+            //Debug.Log(selectingNow);
         }
     }
 
     public void CheckInputRightBUtton(InputAction.CallbackContext context)
     {
-        if(context.performed)
+        if(context.performed && !isRoll)
         {
-            rot = transform.eulerAngles;
+            //rot = transform.eulerAngles;
             //rot -= rotationAmount;
-            transform.eulerAngles = Vector3.Lerp(rot, rot - rotationAmount, 0.1f);
+            //transform.eulerAngles = Vector3.Lerp(rot, rot - rotationAmount, 0.1f);
 
-            selectingNow--;
+            selectSlotNow--;
 
-            if(selectingNow < 0)
+            if(selectSlotNow < 0)
             {
-                selectingNow = maxHaveSkill - 1;
+                selectSlotNow = slotMaxNum - 1;
             }
 
-            Debug.Log(selectingNow);
+            StartCoroutine(RollSkillSlot(-1));
+            //Debug.Log(selectingNow);
         }
     }
 
@@ -83,7 +115,7 @@ public class SkillSlot : MonoBehaviour
     {
         if(context.performed)
         {
-            Debug.Log("TRASH");
+            //Debug.Log("TRASH");
         }
     }
 }
