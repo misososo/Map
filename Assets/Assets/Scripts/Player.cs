@@ -78,6 +78,8 @@ public class Player : MonoBehaviour
         else
         {
             shotSpan = 0;
+
+            gun.transform.rotation = Quaternion.LookRotation(Vector3.forward, transform.up);
         }
 
         
