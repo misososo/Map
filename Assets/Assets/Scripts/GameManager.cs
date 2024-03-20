@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     public static GameManager I = null;
 
     [SerializeField] List<Skill> allSkill;
+    [SerializeField] List<Enemy> allEnemy;
 
     private void Awake()
     {
@@ -39,5 +40,15 @@ public class GameManager : MonoBehaviour
     public int GetSkillNum()
     {
         return allSkill.Count;
+    }
+
+    public Enemy GetEnemy(int index)
+    {
+        return allEnemy[index];
+    }
+
+    public int GetEnemyNum()
+    {
+        return allEnemy.Count;
     }
 }
