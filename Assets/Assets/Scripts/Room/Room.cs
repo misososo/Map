@@ -7,7 +7,7 @@ public class Room : MonoBehaviour
     [SerializeField] SpriteRenderer sr;
     bool isArrangement = false;
 
-    List<Skill> dropSkills = new List<Skill>();
+    protected List<Skill> dropSkills = new List<Skill>();
     int dropSkillsId = 0;
     //protected List<Skill> DropSkills = new List<Skill>();
 
@@ -77,6 +77,7 @@ public class Room : MonoBehaviour
 
     void RemoveDropSkill(int index)
     {
+        Debug.Log("SSSSS");
         for(int i = 0; i < dropSkills.Count; ++i)
         {
             if(index == dropSkills[i].GetId())

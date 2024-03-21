@@ -49,9 +49,14 @@ public class EnemyRoom : Room
     {
         int num = roomEnemys.Count;
 
-        for (int i = 0; i < num; ++i)
+        for (int i = 0; i < roomEnemys.Count; ++i)
         {
             roomEnemys[i].gameObject.SetActive(true);
+        }
+
+        for(int i = 0; i < dropSkills.Count; ++i)
+        {
+            dropSkills[i].gameObject.SetActive(true);
         }
     }
 
@@ -59,10 +64,16 @@ public class EnemyRoom : Room
     {
         int num = roomEnemys.Count;
 
-        for(int i = 0; i < num; ++i)
-        {
-            
+        for(int i = 0; i < roomEnemys.Count; ++i)
+        {           
             roomEnemys[i].gameObject.SetActive(false);
+        }
+
+        num = dropSkills.Count;
+
+        for(int i = 0; i < dropSkills.Count; ++i)
+        {
+            dropSkills[i].gameObject.SetActive(false);
         }
     }
 
