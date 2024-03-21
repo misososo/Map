@@ -34,7 +34,7 @@ public class EnemyRoom : Room
             appearEnemyIndex = Random.Range(0, enemys.Count);
 
             roomEnemys.Add(Instantiate(enemys[appearEnemyIndex], enemyAppearPoint[appearPointIndex].position, Quaternion.identity));
-
+            
             enemyAppearPoint.RemoveAt(appearPointIndex);
         }
 
@@ -47,7 +47,9 @@ public class EnemyRoom : Room
 
     public override void EnebleObject()
     {
-        for (int i = 0; i < roomEnemys.Count; ++i)
+        int num = roomEnemys.Count;
+
+        for (int i = 0; i < num; ++i)
         {
             roomEnemys[i].gameObject.SetActive(true);
         }
@@ -55,14 +57,23 @@ public class EnemyRoom : Room
 
     public override void DisableObject()
     {
-        for(int i = 0; i < roomEnemys.Count; ++i)
+        int num = roomEnemys.Count;
+
+        for(int i = 0; i < num; ++i)
         {
+            
             roomEnemys[i].gameObject.SetActive(false);
         }
     }
 
-    void RemoveRoomEnemys(int i)
+    void RemoveRoomEnemys(int index)
     {
-        roomEnemys.RemoveAt(i);
+        for(int i = 0; i < roomEnemys.Count; ++i)
+        {
+            if(index == roomEnemys[i].GetId())
+            {
+                roomEnemys.RemoveAt(i);
+            }
+        }        
     }
 }

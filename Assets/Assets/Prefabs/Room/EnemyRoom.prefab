@@ -393,4 +393,4 @@ MonoBehaviour:
   minAppearNum: 2
   maxAppearNum: 6
   enemys:
-  - {fileID: 6604559734607624827, guid: 338342570b07f2d4896051b76dc55d55, type: 3}
+  - {fileID: -977440009405069298, guid: 338342570b07f2d4896051b76dc55d55, type: 3}

@@ -98,9 +98,11 @@ public class Player : MonoBehaviour
 
             if(!room)
                 return;
-
+            Debug.Log(GameManager.I.GetNowRoomId());
+            Debug.Log(room.GetId());
             room.RemoveSprite();
             GameManager.I.SetRoomId(room.GetId());
+            
         }
     }
 

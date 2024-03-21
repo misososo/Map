@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6841474599314863389}
   - component: {fileID: 6841474599314863388}
   - component: {fileID: 6841474599314863391}
-  - component: {fileID: 6604559734607624827}
+  - component: {fileID: -977440009405069298}
   m_Layer: 0
   m_Name: TestEnemy
   m_TagString: Skill
@@ -102,7 +102,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &6604559734607624827
+--- !u!114 &-977440009405069298
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -111,6 +111,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 6841474599314863390}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54ba9b60aeed5f74f8b2938934e53610, type: 3}
+  m_Script: {fileID: 11500000, guid: dd37aaad8b9996844a1b33657e23850b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyData: {fileID: 11400000, guid: 3b64a1c66b30f31419a16a4ea0375572, type: 2}
+  player: {fileID: 0}
+  moveSpeed: 5

@@ -8,6 +8,7 @@ public class Room : MonoBehaviour
     bool isArrangement = false;
 
     List<Skill> dropSkills = new List<Skill>();
+    int dropSkillsId = 0;
     //protected List<Skill> DropSkills = new List<Skill>();
 
     int id;
@@ -18,6 +19,7 @@ public class Room : MonoBehaviour
     {
         if(id != GameManager.I.GetNowRoomId() && isEnable)
         {
+            Debug.Log("AAA");
             isEnable = false;
             DisableObject();
         }      
@@ -48,9 +50,10 @@ public class Room : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Player"))
         {
+            isEnable = true;
+
             if(isArrangement)
             {
-                isEnable = true;
                 EnebleObject();
             }
             else
@@ -64,14 +67,22 @@ public class Room : MonoBehaviour
             Skill skill = collision.GetComponent<Skill>();
 
             dropSkills.Add(skill);
+            dropSkills[dropSkills.Count - 1].SetId(dropSkillsId);
+            dropSkillsId++;
             dropSkills[dropSkills.Count - 1].RemoveDropSkillsCallBack(RemoveDropSkill);
 
             Debug.Log(dropSkills.Count);
         }
     }
 
-    void RemoveDropSkill(int i)
+    void RemoveDropSkill(int index)
     {
-        dropSkills.RemoveAt(i);
+        for(int i = 0; i < dropSkills.Count; ++i)
+        {
+            if(index == dropSkills[i].GetId())
+            {
+                dropSkills.RemoveAt(i);
+            }
+        }
     }
 }

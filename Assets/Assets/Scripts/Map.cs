@@ -130,6 +130,9 @@ public class Map : MonoBehaviour
 
     void SettingRoomType()
     {
+        Room room;
+        int roomId = 0;
+
         List<int> posX = new List<int>();
         List<int> posY = new List<int>();
 
@@ -146,8 +149,11 @@ public class Map : MonoBehaviour
         }
         
         int random = Random.Range(0, posX.Count);
-        
-        Instantiate(startRoom, roomTileMap.GetCellCenterWorld(new Vector3Int(posX[random], posY[random], 0)), Quaternion.identity);
+
+        room = Instantiate(startRoom, roomTileMap.GetCellCenterWorld(new Vector3Int(posX[random], posY[random], 0)), Quaternion.identity);
+        room.SetId(roomId);
+        roomId++;
+
         playerStartPos = roomTileMap.GetCellCenterWorld(new Vector3Int(posX[random], posY[random], 0));
 
         posX.RemoveAt(random);
@@ -155,7 +161,9 @@ public class Map : MonoBehaviour
 
         random = Random.Range(0, posX.Count);
 
-        Instantiate(goalRoom, roomTileMap.GetCellCenterWorld(new Vector3Int(posX[random], posY[random], 0)), Quaternion.identity);
+        room = Instantiate(goalRoom, roomTileMap.GetCellCenterWorld(new Vector3Int(posX[random], posY[random], 0)), Quaternion.identity);
+        room.SetId(roomId);
+        roomId++;
 
         posX.RemoveAt(random);
         posY.RemoveAt(random);
@@ -164,7 +172,10 @@ public class Map : MonoBehaviour
         {
             random = Random.Range(0, posX.Count);
 
-            Instantiate(enemyRoom, roomTileMap.GetCellCenterWorld(new Vector3Int(posX[random], posY[random], 0)), Quaternion.identity);
+            room = Instantiate(enemyRoom, roomTileMap.GetCellCenterWorld(new Vector3Int(posX[random], posY[random], 0)), Quaternion.identity);
+            room.SetId(roomId);
+            roomId++;
+            //Debug.Log(room.GetId());
 
             posX.RemoveAt(random);
             posY.RemoveAt(random);

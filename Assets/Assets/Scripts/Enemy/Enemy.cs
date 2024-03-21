@@ -5,8 +5,13 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] EnemyData enemyData;
+    new string name;   
+    int hp;
+    protected float moveSpeed;
 
     protected int id;
+
+    protected Vector3 move;
 
     // Start is called before the first frame update
     void Start()
@@ -20,9 +25,16 @@ public class Enemy : MonoBehaviour
         
     }
 
-    public void SetStatus()
+    protected void SetStatus()
     {
+        name = enemyData.GetName();
+        hp = enemyData.GetHp();
+        moveSpeed = enemyData.GetMoveSpeed();
+    }
 
+    public int GetId()
+    {
+        return id;
     }
 
     public void SetId(int i)
@@ -32,7 +44,7 @@ public class Enemy : MonoBehaviour
 
     private void OnDestroy()
     {
-        //removeRoomEnemys(id);
+        removeRoomEnemys(id);
     }
 
     //コールバック関数

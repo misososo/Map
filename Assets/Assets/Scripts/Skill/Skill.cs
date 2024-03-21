@@ -46,6 +46,11 @@ public class Skill : MonoBehaviour
         return sprite;
     }
 
+    public int GetId()
+    {
+        return id;
+    }
+
     public void SetId(int i)
     {
         id = i;
