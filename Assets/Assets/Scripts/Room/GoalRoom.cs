@@ -10,38 +10,8 @@ public class GoalRoom : Room
         
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public override void ArrangementObject()
     {
         Debug.Log("Goal");
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            if (isArrangement)
-            {
-                //EnebleObject();
-            }
-            else
-            {
-                isArrangement = true;
-                ArrangementObject();
-            }
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            //DisableObject();
-        }
     }
 }

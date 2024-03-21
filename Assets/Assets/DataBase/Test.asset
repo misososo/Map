@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dbf2edd0a3c7d248837c03285e3ef37, type: 3}
   m_Name: Test
   m_EditorClassIdentifier: 
-  id: 21
+  name: Test
   sprite: {fileID: -5177388603050735206, guid: 8884154dfe85442a3a3578be807dbcdf, type: 3}

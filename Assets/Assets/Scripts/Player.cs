@@ -94,11 +94,13 @@ public class Player : MonoBehaviour
         {
             pc.SetTarget(hitObj);
 
-            SpriteRenderer sr = hitObj.GetComponent<SpriteRenderer>();
+            Room room = hitObj.GetComponent<Room>();
 
-            if(!sr)return;
-            
-            sr.sprite = null;
+            if(!room)
+                return;
+
+            room.RemoveSprite();
+            GameManager.I.SetRoomId(room.GetId());
         }
     }
 
@@ -157,7 +159,7 @@ public class Player : MonoBehaviour
     {
         for (int i = 0; i < GameManager.I.GetSkillNum(); ++i)
         {
-            if (skill.GetId() == GameManager.I.GetSkill(i).GetId())
+            if (skill.GetName() == GameManager.I.GetSkill(i).GetName())
             {
                 SkillSlot.EntryHaveSkill(GameManager.I.GetSkill(i));
                 SkillSlot.GetHaveSkill().EnableSkill(ref bullet);
@@ -171,7 +173,7 @@ public class Player : MonoBehaviour
     {
         for (int i = 0; i < GameManager.I.GetSkillNum(); ++i)
         {
-            if (SkillSlot.GetHaveSkill() && SkillSlot.GetHaveSkill().GetId() == GameManager.I.GetSkill(i).GetId())
+            if (SkillSlot.GetHaveSkill() && SkillSlot.GetHaveSkill().GetName() == GameManager.I.GetSkill(i).GetName())
             {
                 Instantiate(GameManager.I.GetSkill(i), transform.position, Quaternion.identity);
                 SkillSlot.RemoveHaveSkill(ref bullet);

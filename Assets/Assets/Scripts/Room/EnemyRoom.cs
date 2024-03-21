@@ -9,16 +9,11 @@ public class EnemyRoom : Room
     [SerializeField] int minAppearNum;
     [SerializeField] int maxAppearNum;
 
+    [SerializeField] List<Enemy> enemys;
     List<Enemy> roomEnemys = new List<Enemy>();
 
     // Start is called before the first frame update
     void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
     {
         
     }
@@ -36,11 +31,17 @@ public class EnemyRoom : Room
         for (int i = 0; i < appearNum; ++i)
         {
             appearPointIndex = Random.Range(0, enemyAppearPoint.Count);
-            appearEnemyIndex = Random.Range(0, GameManager.I.GetEnemyNum());
+            appearEnemyIndex = Random.Range(0, enemys.Count);
 
-            roomEnemys.Add(Instantiate(GameManager.I.GetEnemy(appearEnemyIndex), enemyAppearPoint[appearPointIndex].position, Quaternion.identity));
+            roomEnemys.Add(Instantiate(enemys[appearEnemyIndex], enemyAppearPoint[appearPointIndex].position, Quaternion.identity));
 
             enemyAppearPoint.RemoveAt(appearPointIndex);
+        }
+
+        for(int i = 0; i < roomEnemys.Count; ++i)
+        {
+            roomEnemys[i].SetId(i);
+            roomEnemys[i].RemoveEnemyListCallBack(RemoveRoomEnemys);
         }
     }
 
@@ -60,27 +61,8 @@ public class EnemyRoom : Room
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    void RemoveRoomEnemys(int i)
     {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            if (isArrangement)
-            {
-                EnebleObject();
-            }
-            else
-            {
-                isArrangement = true;
-                ArrangementObject();
-            }
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            DisableObject();
-        }
+        roomEnemys.RemoveAt(i);
     }
 }

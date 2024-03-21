@@ -20,9 +20,9 @@ public class Map : MonoBehaviour
     [SerializeField] int mapVerLength;
     [SerializeField] int enemyRoomNum;
 
-    [SerializeField] GameObject startRoom;
-    [SerializeField] GameObject goalRoom;
-    [SerializeField] GameObject enemyRoom;
+    [SerializeField] Room startRoom;
+    [SerializeField] Room goalRoom;
+    [SerializeField] Room enemyRoom;
 
     [SerializeField] GameObject player;
     Vector3 playerStartPos;

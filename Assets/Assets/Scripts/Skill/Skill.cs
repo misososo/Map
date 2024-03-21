@@ -6,13 +6,15 @@ public class Skill : MonoBehaviour
 {
     [SerializeField] SkillData skillData;
     SpriteRenderer sr;
-    int id;
+    new string name;
     Sprite sprite;
+
+    int id;
 
     // Start is called before the first frame update
     void Start()
     {
-        SetStatus();
+        
         
     }
 
@@ -22,31 +24,45 @@ public class Skill : MonoBehaviour
         
     }
 
-    public void EnableSkill(ref Bullet bullet)
-    {
-        Debug.Log(id);
-    }
+    public virtual void EnableSkill(ref Bullet bullet){} 
 
-    public void DisableSkill(ref Bullet bullet)
-    {
-        Debug.Log(-id);
-    }
+    public virtual void DisableSkill(ref Bullet bullet){}
 
     public void SetStatus()
     {
         sr = GetComponent<SpriteRenderer>();
-        id = skillData.GetId();
+        name = skillData.GetName();
         sprite = skillData.GetSprite();
         sr.sprite = sprite;
     }
 
-    public int GetId()
+    public string GetName()
     {
-        return id;
+        return name;
     }
 
     public Sprite GetSprite()
     {
         return sprite;
+    }
+
+    public void SetId(int i)
+    {
+        id = i;
+    }
+
+    private void OnDestroy()
+    {
+        removeDropSkills(id);
+    }
+
+    //コールバック関数
+    public delegate void CallBack(int i);
+
+    CallBack removeDropSkills;
+
+    public void RemoveDropSkillsCallBack(CallBack callBack)
+    {
+        removeDropSkills = callBack;
     }
 }

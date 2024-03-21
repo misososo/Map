@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] List<Skill> allSkill;
     [SerializeField] List<Enemy> allEnemy;
 
+    int nowRoomId;//Œ»İƒvƒŒƒCƒ„[‚ª‚¢‚é•”‰®‚ÌID
+
     private void Awake()
     {
         I = this;
@@ -50,5 +52,15 @@ public class GameManager : MonoBehaviour
     public int GetEnemyNum()
     {
         return allEnemy.Count;
+    }
+
+    public int GetNowRoomId()
+    {
+        return nowRoomId;
+    }
+
+    public void SetRoomId(int i)
+    {
+        nowRoomId = i;
     }
 }

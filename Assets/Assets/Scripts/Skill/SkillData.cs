@@ -5,12 +5,12 @@ using UnityEngine;
 [CreateAssetMenu]
 public class SkillData : ScriptableObject
 {
-    [SerializeField] int id;
+    [SerializeField] new string name;
     [SerializeField] Sprite sprite;
 
-    public int GetId()
+    public string GetName()
     {
-        return id;
+        return name;
     }
 
     public Sprite GetSprite()
