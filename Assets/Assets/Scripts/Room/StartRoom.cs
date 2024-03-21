@@ -4,14 +4,37 @@ using UnityEngine;
 
 public class StartRoom : Room
 {
+    [SerializeField] GameObject startObjPrefab;
+    GameObject startObj;
+
     // Start is called before the first frame update
     void Start()
     {
-        ArrangementObject();
+        
     }
 
     public override void ArrangementObject()
     {
-        //Debug.Log("Start");
+        startObj = Instantiate(startObjPrefab, transform.position, Quaternion.identity);
+    }
+
+    public override void EnebleObject()
+    {
+        startObj.SetActive(true);
+
+        for (int i = 0; i < dropSkills.Count; ++i)
+        {
+            dropSkills[i].gameObject.SetActive(true);
+        }
+    }
+
+    public override void DisableObject()
+    {
+        startObj.SetActive(false);
+
+        for (int i = 0; i < dropSkills.Count; ++i)
+        {
+            dropSkills[i].gameObject.SetActive(false);
+        }
     }
 }

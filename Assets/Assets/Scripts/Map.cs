@@ -14,6 +14,7 @@ public class Map : MonoBehaviour
     //[SerializeField] Tile goalRoom;
 
     [SerializeField] Tilemap miniMapTileMap;
+    [SerializeField] Tile miniMapRoom;
 
     [SerializeField] int roomNum;
     [SerializeField] int mapHoriLength;
@@ -69,7 +70,7 @@ public class Map : MonoBehaviour
 
             wallTileMap.SetTile(new Vector3Int(posX, posY, 0), null);
             roomTileMap.SetTile(new Vector3Int(posX, posY, 0), room);
-            miniMapTileMap.SetTile(new Vector3Int(posX, posY, 0), room);
+            miniMapTileMap.SetTile(new Vector3Int(posX, posY, 0), miniMapRoom);
 
             //Instantiate(cameraPoint, roomTileMap.GetCellCenterWorld(new Vector3Int(posX, posY, 0)), Quaternion.identity);
         }

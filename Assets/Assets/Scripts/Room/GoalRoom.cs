@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class GoalRoom : Room
 {
+    [SerializeField] GameObject goalObjPrefab;
+    GameObject goalObj;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -12,6 +15,26 @@ public class GoalRoom : Room
 
     public override void ArrangementObject()
     {
-        Debug.Log("Goal");
+        goalObj = Instantiate(goalObjPrefab, transform.position, Quaternion.identity);
+    }
+
+    public override void EnebleObject()
+    {
+        goalObj.SetActive(true);
+
+        for (int i = 0; i < dropSkills.Count; ++i)
+        {
+            dropSkills[i].gameObject.SetActive(true);
+        }
+    }
+
+    public override void DisableObject()
+    {
+        goalObj.SetActive(false);
+
+        for (int i = 0; i < dropSkills.Count; ++i)
+        {
+            dropSkills[i].gameObject.SetActive(false);
+        }
     }
 }

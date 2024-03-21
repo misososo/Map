@@ -6,7 +6,7 @@ public class Bullet : MonoBehaviour
 {
     Rigidbody2D rb;
     [SerializeField] GameObject gun;
-    Vector3 pos;
+    Vector3 dir;
     [SerializeField] float moveSpeed;
     [SerializeField] float lifeTime;
     [SerializeField] PlayerCamera pc;
@@ -16,7 +16,7 @@ public class Bullet : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        pos = gun.transform.up;
+        dir = gun.transform.up;
         pcOldPos = pc.transform.position;
 
         Destroy(gameObject, lifeTime);
@@ -24,13 +24,15 @@ public class Bullet : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.velocity = pos * moveSpeed;
+        rb.velocity = dir * moveSpeed;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(pcOldPos != pc.transform.position)
+        transform.rotation = Quaternion.LookRotation(Vector3.forward, dir);
+
+        if (pcOldPos != pc.transform.position)
         {
             pcOldPos = pc.transform.position;
 
