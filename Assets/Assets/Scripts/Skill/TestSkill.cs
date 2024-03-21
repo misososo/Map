@@ -18,11 +18,11 @@ public class TestSkill : Skill
 
     public override void EnableSkill(ref Bullet bullet)
     {
-        Debug.Log(name);
+        //Debug.Log(name);
     }
 
     public override void DisableSkill(ref Bullet bullet)
     {
-        Debug.Log(0);
+        //Debug.Log(0);
     }
 }

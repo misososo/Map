@@ -9,7 +9,7 @@ public class Skill : MonoBehaviour
     new string name;
     Sprite sprite;
 
-    int id;
+    int id = -1;
 
     // Start is called before the first frame update
     void Start()

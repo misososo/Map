@@ -98,8 +98,7 @@ public class Player : MonoBehaviour
 
             if(!room)
                 return;
-            Debug.Log(GameManager.I.GetNowRoomId());
-            Debug.Log(room.GetId());
+       
             room.RemoveSprite();
             GameManager.I.SetRoomId(room.GetId());
             
@@ -117,6 +116,7 @@ public class Player : MonoBehaviour
 
             if (!skill) return;
 
+            skill.SetId(-1);
             EquipmentSkill(skill);
 
             

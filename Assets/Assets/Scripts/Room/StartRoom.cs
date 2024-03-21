@@ -12,6 +12,6 @@ public class StartRoom : Room
 
     public override void ArrangementObject()
     {
-        Debug.Log("Start");
+        //Debug.Log("Start");
     }
 }

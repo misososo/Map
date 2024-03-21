@@ -20,7 +20,6 @@ public class EnemyRoom : Room
 
     public override void ArrangementObject()
     {
-        Debug.Log("Enemy");
         //敵出現数
         int appearNum = Random.Range(minAppearNum, maxAppearNum + 1);
         //出現ポイントを決める番号
