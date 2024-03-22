@@ -115,6 +115,7 @@ public class Player : MonoBehaviour
             Skill skill = hitObj.GetComponent<Skill>();
 
             if (!skill) return;
+            if(SkillSlot.GetHaveSkill())return;
 
             skill.SetId(-1);
             EquipmentSkill(skill);
@@ -186,9 +187,6 @@ public class Player : MonoBehaviour
     private void SettingMoveAmount()
     {
         if (inputL.x == 0) return;
-
-        
-        //Look((input + transform.position) - transform.position);
 
         move = inputL * moveSpeed;
     }

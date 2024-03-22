@@ -19,7 +19,7 @@ public class Room : MonoBehaviour
 
     bool isEnable = false;
 
-    private void Update()
+    protected virtual void Update()
     {
         if(id != GameManager.I.GetNowRoomId() && isEnable)
         {

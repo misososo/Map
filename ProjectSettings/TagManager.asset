@@ -8,6 +8,8 @@ TagManager:
   - Wall
   - CameraPoint
   - Skill
+  - Enemy
+  - Bullet
   layers:
   - Default
   - TransparentFX

@@ -11,6 +11,12 @@ public class Enemy01 : Enemy
     {
         SetStatus();
         player = GameObject.Find("Player");
+        rb = GetComponent<Rigidbody2D>();
+    }
+
+    private void FixedUpdate()
+    {
+        rb.velocity = move;
     }
 
     // Update is called once per frame
@@ -20,9 +26,15 @@ public class Enemy01 : Enemy
         //move += (player.transform.position - transform.position).normalized * moveSpeed;
         //transform.position = move;
 
+        if(hp <= 0)
+        {
+            Debug.Log("dead");
+            Destroy(gameObject);
+        }
+
         move = transform.position;
-        move += (player.transform.position - transform.position).normalized * moveSpeed * Time.deltaTime;
-        transform.position = move;
+        move = (player.transform.position - transform.position).normalized * moveSpeed;
+        //transform.position = move;
     }
 
 

@@ -1,28 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
     [SerializeField] EnemyData enemyData;
-    new string name;   
-    int hp;
+    new string name;
+    protected int hp;
     protected float moveSpeed;
 
     protected int id;
 
     protected Vector3 move;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    protected Rigidbody2D rb;
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        
+        if(collision.gameObject.CompareTag("Bullet"))
+        {
+            
+            hp--;
+            //Debug.Log(hp);
+        }
     }
 
     protected void SetStatus()
@@ -44,15 +45,16 @@ public class Enemy : MonoBehaviour
 
     private void OnDestroy()
     {
+        Debug.Log("dead");
         removeRoomEnemys(id);
     }
 
     //コールバック関数
-    public delegate void CallBack(int i);
+    public delegate void CallBackVoid(int i);
 
-    CallBack removeRoomEnemys;
+    CallBackVoid removeRoomEnemys;
 
-    public void RemoveEnemyListCallBack(CallBack callBack)
+    public void RemoveEnemyListCallBack(CallBackVoid callBack)
     {
         removeRoomEnemys = callBack;
     }

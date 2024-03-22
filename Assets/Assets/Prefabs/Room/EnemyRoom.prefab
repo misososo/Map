@@ -397,3 +397,5 @@ MonoBehaviour:
   maxAppearNum: 6
   enemys:
   - {fileID: -977440009405069298, guid: 338342570b07f2d4896051b76dc55d55, type: 3}
+  tileMap: {fileID: 0}
+  wall: {fileID: 11400000, guid: d3eba0123b5e3c848912ab71ae2a2308, type: 2}

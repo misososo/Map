@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Enemy;
 
 public class Skill : MonoBehaviour
 {
@@ -58,16 +59,27 @@ public class Skill : MonoBehaviour
 
     private void OnDestroy()
     {
+        
         removeDropSkills(id);
+          
     }
 
     //コールバック関数
-    public delegate void CallBack(int i);
+    public delegate void CallBackInt(int i);
 
-    CallBack removeDropSkills;
+    CallBackInt removeDropSkills;
 
-    public void RemoveDropSkillsCallBack(CallBack callBack)
+    public void RemoveDropSkillsCallBack(CallBackInt callBack)
     {
         removeDropSkills = callBack;
+    }
+
+    public delegate void CallBackVoid();
+
+    CallBackVoid removeRoomSkills;
+
+    public void RemoveRoomSkillsCallBack(CallBackVoid callBack)
+    {
+        removeRoomSkills = callBack;
     }
 }
