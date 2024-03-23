@@ -12,6 +12,9 @@ public class Bullet : MonoBehaviour
     [SerializeField] PlayerCamera pc;
     Vector3 pcOldPos;
 
+    Vector3 reflect;
+    [SerializeField] int reflectNum;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,17 +23,20 @@ public class Bullet : MonoBehaviour
         pcOldPos = pc.transform.position;
 
         Destroy(gameObject, lifeTime);
+
+        rb.velocity = dir * moveSpeed;
+        transform.rotation = Quaternion.LookRotation(Vector3.forward, dir);
     }
 
     private void FixedUpdate()
     {
-        rb.velocity = dir * moveSpeed;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.rotation = Quaternion.LookRotation(Vector3.forward, dir);
+        
 
         if (pcOldPos != pc.transform.position)
         {
@@ -39,11 +45,54 @@ public class Bullet : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        //Debug.Log(reflectNum);
+
+        if (collision.gameObject.CompareTag("Wall"))
+        {
+            if (reflectNum <= 0)
+            {
+                Destroy(gameObject);
+            }
+
+            //Debug.Log(rb.velocity);
+            reflectNum--;
+            //Vector3 hitPos = collision.ClosestPoint(transform.position);
+            reflect = Vector3.Reflect(transform.up, collision.contacts[0].normal).normalized;
+
+            transform.rotation = Quaternion.LookRotation(Vector3.forward, reflect);
+            rb.velocity = transform.up * moveSpeed;
+            
+
+
+            //Debug.Log(reflect);
+        }
+         
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.CompareTag("Wall") || collision.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag("Enemy"))
         {
+            Debug.Log("AAAA");
             Destroy(gameObject);
         }
+    }
+
+    public void PlusReflectNum()
+    {
+        reflectNum++;
+    }
+
+    public void MinusReflectNum()
+    {
+        reflectNum--;
+    }
+
+    public int GetReflect()
+    {
+        return reflectNum;
     }
 }

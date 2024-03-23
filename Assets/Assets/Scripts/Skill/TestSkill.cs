@@ -18,11 +18,13 @@ public class TestSkill : Skill
 
     public override void EnableSkill(ref Bullet bullet)
     {
-        //Debug.Log(name);
+        
+        bullet.PlusReflectNum();
+        Debug.Log(bullet.GetReflect());
     }
 
     public override void DisableSkill(ref Bullet bullet)
     {
-        //Debug.Log(0);
+        bullet.MinusReflectNum();
     }
 }

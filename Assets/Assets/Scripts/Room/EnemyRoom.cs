@@ -13,16 +13,6 @@ public class EnemyRoom : Room
     [SerializeField] List<Enemy> enemys;
     List<Enemy> roomEnemys = new List<Enemy>();
 
-    Tilemap tileMap;
-    [SerializeField] Tile wall;
-    Vector3Int[] setWallPos = { new Vector3Int(1, 2, 0), new Vector3Int(1, -4, 0), new Vector3Int(-2, -1, 0), new Vector3Int(4, -1, 0) };
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        tileMap = GameObject.Find("ScreenTilemap").GetComponent<Tilemap>();
-    }
-
     public override void ArrangementObject()
     {
         //ìGèoåªêî
@@ -50,7 +40,7 @@ public class EnemyRoom : Room
 
         for(int i = 0; i < setWallPos.Length; ++i)
         {
-            tileMap.SetTile(setWallPos[i], wall);
+            screenTileMap.SetTile(setWallPos[i], wall);
         }
     }
 
@@ -88,14 +78,13 @@ public class EnemyRoom : Room
             {
                 roomEnemys.RemoveAt(i);
             }
-        }    
-        
+        }
+
         if(roomEnemys.Count == 0)
         {
-            for(int i = 0; i < setWallPos.Length; ++i)
-            {
-                tileMap.SetTile(setWallPos[i], null);
-            }
+            CheckNextRoom();
         }
+
+        
     }
 }

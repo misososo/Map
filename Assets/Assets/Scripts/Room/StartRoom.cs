@@ -7,12 +7,6 @@ public class StartRoom : Room
     [SerializeField] GameObject startObjPrefab;
     GameObject startObj;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     public override void ArrangementObject()
     {
         startObj = Instantiate(startObjPrefab, transform.position, Quaternion.identity);

@@ -158,6 +158,7 @@ public class Map : MonoBehaviour
         int random = Random.Range(0, posX.Count);
 
         room = Instantiate(startRoom, roomTileMap.GetCellCenterWorld(new Vector3Int(posX[random], posY[random], 0)), Quaternion.identity);
+        room.SetRoomPos(posX[random], posY[random]);
         room.SetId(roomId);
         roomId++;
 
@@ -170,6 +171,7 @@ public class Map : MonoBehaviour
         random = Random.Range(0, posX.Count);
 
         room = Instantiate(goalRoom, roomTileMap.GetCellCenterWorld(new Vector3Int(posX[random], posY[random], 0)), Quaternion.identity);
+        room.SetRoomPos(posX[random], posY[random]);
         room.SetId(roomId);
         roomId++;
 
@@ -183,6 +185,7 @@ public class Map : MonoBehaviour
             random = Random.Range(0, posX.Count);
 
             room = Instantiate(enemyRoom, roomTileMap.GetCellCenterWorld(new Vector3Int(posX[random], posY[random], 0)), Quaternion.identity);
+            room.SetRoomPos(posX[random], posY[random]);
             room.SetId(roomId);
             roomId++;
             //Debug.Log(room.GetId());
@@ -196,6 +199,7 @@ public class Map : MonoBehaviour
             random = Random.Range(0, posX.Count);
 
             room = Instantiate(skillRoom, roomTileMap.GetCellCenterWorld(new Vector3Int(posX[random], posY[random], 0)), Quaternion.identity);
+            room.SetRoomPos(posX[random], posY[random]);
             room.SetId(roomId);
             roomId++;
             //Debug.Log(room.GetId());
@@ -209,6 +213,7 @@ public class Map : MonoBehaviour
             random = Random.Range(0, posX.Count);
 
             room = Instantiate(emptyRoom, roomTileMap.GetCellCenterWorld(new Vector3Int(posX[random], posY[random], 0)), Quaternion.identity);
+            room.SetRoomPos(posX[random], posY[random]);
             room.SetId(roomId);
             roomId++;
             //Debug.Log(room.GetId());

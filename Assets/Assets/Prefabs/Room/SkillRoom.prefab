@@ -224,8 +224,4 @@ MonoBehaviour:
   roomCollider: {fileID: 932430971349250887}
   colliderSizeInPlayer: {x: 1, y: 1, z: 0}
   colliderSizeOutPlayer: {x: 0.8, y: 0.8, z: 0}
-  skillAppearPoint:
-  - {fileID: 7333579539738305010}
-  - {fileID: 3145641493252553195}
-  - {fileID: 6300665683141539305}
-  appearNum: 3
+  wall: {fileID: 11400000, guid: d3eba0123b5e3c848912ab71ae2a2308, type: 2}

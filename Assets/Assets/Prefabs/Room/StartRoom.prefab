@@ -128,4 +128,5 @@ MonoBehaviour:
   roomCollider: {fileID: 932430971349250887}
   colliderSizeInPlayer: {x: 1, y: 1, z: 0}
   colliderSizeOutPlayer: {x: 0.8, y: 0.8, z: 0}
+  wall: {fileID: 11400000, guid: d3eba0123b5e3c848912ab71ae2a2308, type: 2}
   startObjPrefab: {fileID: 1803382882627068752, guid: 6fa4c296ea1a1494480be6061c68b47e, type: 3}

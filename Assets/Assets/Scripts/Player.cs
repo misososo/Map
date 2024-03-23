@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 public class Player : MonoBehaviour
 {
     Rigidbody2D rb;
+    [SerializeField] Collider2D playerCollider;
 
     private Vector3 inputL;
     private Vector3 inputR;
@@ -36,7 +37,8 @@ public class Player : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         firstShotSpan = shotSpan;
-        
+
+        StartCoroutine(EnableCollider());
     }
 
     private void FixedUpdate()
@@ -166,6 +168,7 @@ public class Player : MonoBehaviour
             {
                 SkillSlot.EntryHaveSkill(GameManager.I.GetSkill(i));
                 SkillSlot.GetHaveSkill().EnableSkill(ref bullet);
+                Debug.Log(bullet.GetReflect());
 
                 Destroy(skill.gameObject);
             }
@@ -194,5 +197,12 @@ public class Player : MonoBehaviour
     private void Move()
     {
         rb.velocity = new Vector3(move.x, move.y, 0);
+    }
+
+    IEnumerator EnableCollider()
+    {
+        yield return null;
+
+        playerCollider.enabled = true;
     }
 }

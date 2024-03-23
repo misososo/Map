@@ -61,6 +61,7 @@ public class SkillSlot : MonoBehaviour
     {
         haveSkill[selectSlotNow] = skill;
         slot[selectSlotNow].sprite = skill.GetSprite();
+        Debug.Log(haveSkill[selectSlotNow].name);
     }
 
     public void RemoveHaveSkill(ref Bullet bullet)

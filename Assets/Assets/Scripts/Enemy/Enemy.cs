@@ -16,11 +16,15 @@ public class Enemy : MonoBehaviour
 
     protected Rigidbody2D rb;
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.CompareTag("Bullet"))
+        if (collision.gameObject.CompareTag("Bullet"))
         {
-            
+
             hp--;
             //Debug.Log(hp);
         }

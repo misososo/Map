@@ -10,11 +10,7 @@ public class SkillRoom : Room
     //List<Skill> roomSkills = new List<Skill>();
     //int roomSkillsNum;
     // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
+    
     //protected override void Update()
     //{
     //    base.Update();
