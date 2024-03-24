@@ -148,7 +148,7 @@ public class Room : MonoBehaviour
 
     void RemoveDropSkill(int index)
     {
-        Debug.Log(dropSkills.Count);
+        //Debug.Log(dropSkills.Count);
 
         for (int i = 0; i < dropSkills.Count; ++i)
         {

@@ -13,6 +13,10 @@ public class Bullet : MonoBehaviour
     Vector3 reflect;
     [SerializeField] int reflectNum;
 
+    [SerializeField] int penetrationNum;
+
+    [SerializeField] int productScale = 1;
+
     [SerializeField] string target;
 
     int oldRoomId;
@@ -21,6 +25,7 @@ public class Bullet : MonoBehaviour
     void Start()
     {     
         oldRoomId = GameManager.I.GetNowRoomId();
+        transform.localScale *= productScale;
         Destroy(gameObject, lifeTime);        
     }
 
@@ -71,7 +76,12 @@ public class Bullet : MonoBehaviour
     {
         if (collision.gameObject.CompareTag(target))
         {
-            Destroy(gameObject);
+            if (penetrationNum <= 0)
+            {
+                Destroy(gameObject);
+            }
+
+            penetrationNum--;
         }
     }
 
@@ -83,6 +93,26 @@ public class Bullet : MonoBehaviour
     public void MinusReflectNum()
     {
         reflectNum--;
+    }
+
+    public void PlusPenetrationNum()
+    {
+        penetrationNum++;
+    }
+
+    public void MinusPenetrationNum()
+    {
+        penetrationNum--;
+    }
+
+    public void PlusProductScale()
+    {
+        productScale++;
+    }
+
+    public void MinusProductScale()
+    {
+        productScale--;
     }
 
     public int GetReflect()

@@ -177,7 +177,7 @@ public class Player : MonoBehaviour
             {
                 SkillSlot.EntryHaveSkill(GameManager.I.GetSkill(i));
                 SkillSlot.GetHaveSkill().EnableSkill(ref bulletPrefab);
-                Debug.Log(bulletPrefab.GetReflect());
+                //Debug.Log(bulletPrefab.GetReflect());
 
                 Destroy(skill.gameObject);
             }

@@ -138,5 +138,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 20
   lifeTime: 10
-  reflectNum: 0
+  reflectNum: 1
+  penetrationNum: 1
   target: Enemy

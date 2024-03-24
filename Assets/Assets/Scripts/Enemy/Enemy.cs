@@ -30,7 +30,7 @@ public class Enemy : MonoBehaviour
         {
 
             hp--;
-            Debug.Log(hp);
+            //Debug.Log(hp);
         }
     }
 
@@ -53,7 +53,7 @@ public class Enemy : MonoBehaviour
 
     private void OnDestroy()
     {
-        Debug.Log("dead");
+        //Debug.Log("dead");
         removeRoomEnemys(id);
     }
 
