@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] List<Skill> allSkill;
     [SerializeField] List<Enemy> allEnemy;
 
+    [SerializeField] string nextScene;
     [SerializeField] Image blackScreen;
 
     int nowRoomId;//Œ»İƒvƒŒƒCƒ„[‚ª‚¢‚é•”‰®‚ÌID
@@ -73,6 +74,11 @@ public class GameManager : MonoBehaviour
         }
 
         SceneManager.LoadScene(sceneName);
+    }
+
+    public string GetNextScene()
+    {
+        return nextScene;
     }
 
     public Skill GetSkill(int index)

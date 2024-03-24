@@ -127,6 +127,12 @@ public class Player : MonoBehaviour
 
             
         }
+        else if(hitObj.CompareTag("Goal") && isGet)
+        {
+            Debug.Log("Goal");
+            isGet = false;
+            StartCoroutine(GameManager.I.ChangeScene(GameManager.I.GetNextScene()));
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
