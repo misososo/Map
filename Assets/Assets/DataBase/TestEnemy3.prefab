@@ -1,5 +1,67 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2434155756096923471
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6169752102675095031}
+  - component: {fileID: 1775153532724280486}
+  - component: {fileID: 7283758201033242847}
+  m_Layer: 11
+  m_Name: ColliderCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6169752102675095031
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2434155756096923471}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6841474599314863389}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &1775153532724280486
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2434155756096923471}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.4
+--- !u!114 &7283758201033242847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2434155756096923471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fc9fe5243427a84fab1087131881bb3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy: {fileID: 3649270845309556667}
 --- !u!1 &6841474599314863390
 GameObject:
   m_ObjectHideFlags: 0
@@ -10,11 +72,11 @@ GameObject:
   m_Component:
   - component: {fileID: 6841474599314863389}
   - component: {fileID: 6841474599314863388}
-  - component: {fileID: -977440009405069298}
+  - component: {fileID: 3649270845309556667}
   - component: {fileID: -8030342636259712010}
-  - component: {fileID: 477582960390808077}
+  - component: {fileID: 4385244656866349867}
   m_Layer: 8
-  m_Name: TestEnemy
+  m_Name: TestEnemy3
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31,7 +93,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 6169752102675095031}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -77,7 +140,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 84a092187f08abd4b9b7b461a4a16684, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.049433902, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -87,7 +150,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &-977440009405069298
+--- !u!114 &3649270845309556667
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -96,10 +159,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 6841474599314863390}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd37aaad8b9996844a1b33657e23850b, type: 3}
+  m_Script: {fileID: 11500000, guid: 5822d9f338a83be47abe968e67db59f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyData: {fileID: 11400000, guid: 3b64a1c66b30f31419a16a4ea0375572, type: 2}
+  enemyData: {fileID: 11400000, guid: f47838657e0f54d4ca5c15ec09cf9522, type: 2}
+  bulletPrefab: {fileID: 709491048296973579, guid: f5b7441798db3ff44921c466aae1e3f5, type: 3}
+  minShotSpan: 2
+  maxShotSpan: 4
 --- !u!50 &-8030342636259712010
 Rigidbody2D:
   serializedVersion: 4
@@ -121,8 +187,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!60 &477582960390808077
-PolygonCollider2D:
+--- !u!58 &4385244656866349867
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -135,22 +201,5 @@ PolygonCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 4, y: 4}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: -0.37104875, y: 0.5261242}
-      - {x: -0.6464262, y: 0.2162584}
-      - {x: -0.7306376, y: -0.3723658}
-      - {x: -0.3530034, y: -0.575562}
-      - {x: 0.29520142, y: -0.5936073}
-      - {x: 0.68895125, y: -0.33099124}
-      - {x: 0.4696393, y: 0.3041359}
-      - {x: 0.00441283, y: 0.6704866}
+  serializedVersion: 2
+  m_Radius: 0.8

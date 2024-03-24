@@ -20,7 +20,8 @@ public class Player : MonoBehaviour
 
     [SerializeField] GameObject gun;
     [SerializeField] GameObject bulletShot;
-    [SerializeField] Bullet bullet;
+    [SerializeField] Bullet bulletPrefab;
+    Bullet bullet;
     [SerializeField] float shotSpan;
     float firstShotSpan;
 
@@ -72,8 +73,10 @@ public class Player : MonoBehaviour
             if(shotSpan <= 0)
             {
                 shotSpan = firstShotSpan;
-              
-                Instantiate(bullet, bulletShot.transform.position, Quaternion.identity);
+
+                bullet = Instantiate(bulletPrefab, bulletShot.transform.position, Quaternion.identity);
+                bullet.SetDir(gun.transform.up);
+                //bullet = null;
             }
             
         }
@@ -167,8 +170,8 @@ public class Player : MonoBehaviour
             if (skill.GetName() == GameManager.I.GetSkill(i).GetName())
             {
                 SkillSlot.EntryHaveSkill(GameManager.I.GetSkill(i));
-                SkillSlot.GetHaveSkill().EnableSkill(ref bullet);
-                Debug.Log(bullet.GetReflect());
+                SkillSlot.GetHaveSkill().EnableSkill(ref bulletPrefab);
+                Debug.Log(bulletPrefab.GetReflect());
 
                 Destroy(skill.gameObject);
             }
@@ -182,7 +185,7 @@ public class Player : MonoBehaviour
             if (SkillSlot.GetHaveSkill() && SkillSlot.GetHaveSkill().GetName() == GameManager.I.GetSkill(i).GetName())
             {
                 Instantiate(GameManager.I.GetSkill(i), transform.position, Quaternion.identity);
-                SkillSlot.RemoveHaveSkill(ref bullet);
+                SkillSlot.RemoveHaveSkill(ref bulletPrefab);
             }
         }
     }

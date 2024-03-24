@@ -384,6 +384,7 @@ MonoBehaviour:
   roomCollider: {fileID: 932430971349250887}
   colliderSizeInPlayer: {x: 1, y: 1, z: 0}
   colliderSizeOutPlayer: {x: 0.8, y: 0.8, z: 0}
+  wall: {fileID: 11400000, guid: d3eba0123b5e3c848912ab71ae2a2308, type: 2}
   enemyAppearPoint:
   - {fileID: 1701291514493957186}
   - {fileID: 1701291514944776012}
@@ -394,8 +395,8 @@ MonoBehaviour:
   - {fileID: 1701291513149354049}
   - {fileID: 1701291513717704753}
   minAppearNum: 2
-  maxAppearNum: 6
+  maxAppearNum: 5
   enemys:
   - {fileID: -977440009405069298, guid: 338342570b07f2d4896051b76dc55d55, type: 3}
-  tileMap: {fileID: 0}
-  wall: {fileID: 11400000, guid: d3eba0123b5e3c848912ab71ae2a2308, type: 2}
+  - {fileID: -287195110074461191, guid: af6f83e36dd51204db365981deafa831, type: 3}
+  - {fileID: 3649270845309556667, guid: 891cbf1d3c38d54438d1995ecf9b401f, type: 3}

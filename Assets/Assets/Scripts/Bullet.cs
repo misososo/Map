@@ -5,45 +5,41 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     Rigidbody2D rb;
-    [SerializeField] GameObject gun;
+    
     Vector3 dir;
     [SerializeField] float moveSpeed;
     [SerializeField] float lifeTime;
-    [SerializeField] PlayerCamera pc;
-    Vector3 pcOldPos;
-
+    
     Vector3 reflect;
     [SerializeField] int reflectNum;
 
+    [SerializeField] string target;
+
+    int oldRoomId;
+
     // Start is called before the first frame update
     void Start()
-    {
-        rb = GetComponent<Rigidbody2D>();
-        dir = gun.transform.up;
-        pcOldPos = pc.transform.position;
-
-        Destroy(gameObject, lifeTime);
-
-        rb.velocity = dir * moveSpeed;
-        transform.rotation = Quaternion.LookRotation(Vector3.forward, dir);
-    }
-
-    private void FixedUpdate()
-    {
-        
+    {     
+        oldRoomId = GameManager.I.GetNowRoomId();
+        Destroy(gameObject, lifeTime);        
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-
-        if (pcOldPos != pc.transform.position)
+        if (oldRoomId != GameManager.I.GetNowRoomId())
         {
-            pcOldPos = pc.transform.position;
-
             Destroy(gameObject);
         }
+    }
+
+    public void SetDir(Vector3 v)
+    {
+        rb = GetComponent<Rigidbody2D>();
+        dir = v;
+
+        rb.velocity = dir * moveSpeed;
+        transform.rotation = Quaternion.LookRotation(Vector3.forward, dir);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -69,14 +65,12 @@ public class Bullet : MonoBehaviour
 
             //Debug.Log(reflect);
         }
-         
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag(target))
         {
-            Debug.Log("AAAA");
             Destroy(gameObject);
         }
     }

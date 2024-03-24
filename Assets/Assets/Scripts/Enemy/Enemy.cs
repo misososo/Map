@@ -16,17 +16,21 @@ public class Enemy : MonoBehaviour
 
     protected Rigidbody2D rb;
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    protected virtual void Update()
     {
-        
+        if (hp <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Bullet"))
         {
 
             hp--;
-            //Debug.Log(hp);
+            Debug.Log(hp);
         }
     }
 

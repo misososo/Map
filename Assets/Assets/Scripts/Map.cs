@@ -17,6 +17,7 @@ public class Map : MonoBehaviour
     [SerializeField] Tile miniMapRoom;
     [SerializeField] Tile miniMapStartRoom;
     [SerializeField] Tile miniMapGoalRoom;
+    [SerializeField] Tile miniMapSkillRoom;
 
     [SerializeField] int roomNum;
     [SerializeField] int mapHoriLength;
@@ -203,6 +204,7 @@ public class Map : MonoBehaviour
             room.SetId(roomId);
             roomId++;
             //Debug.Log(room.GetId());
+            miniMapTileMap.SetTile(new Vector3Int(posX[random], posY[random], 0), miniMapSkillRoom);
 
             posX.RemoveAt(random);
             posY.RemoveAt(random);

@@ -20,17 +20,13 @@ public class Enemy01 : Enemy
     }
 
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
         //move = transform.position;
         //move += (player.transform.position - transform.position).normalized * moveSpeed;
         //transform.position = move;
 
-        if(hp <= 0)
-        {
-            Debug.Log("dead");
-            Destroy(gameObject);
-        }
+        base.Update();
 
         move = transform.position;
         move = (player.transform.position - transform.position).normalized * moveSpeed;
