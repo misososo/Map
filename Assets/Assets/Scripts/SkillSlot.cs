@@ -6,10 +6,10 @@ using UnityEngine.Windows;
 
 public class SkillSlot : MonoBehaviour
 {
-    SpriteRenderer[] slot = new SpriteRenderer[8];
+    [SerializeField] SpriteRenderer[] slot = new SpriteRenderer[8];
     [SerializeField] int slotMaxNum;
     [SerializeField] Sprite emptySlot;
-    Skill[] haveSkill;
+    [SerializeField] Skill[] haveSkill = new Skill[8];
     
     int selectSlotNow = 0;
     
@@ -21,19 +21,14 @@ public class SkillSlot : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        int childIndex = 0;
-
-        for(int i = 0; i < transform.childCount; ++i)
+        for(int i = 0; i < slotMaxNum; ++i)
         {
-            slot[i] = transform.GetChild(childIndex).GetComponent<SpriteRenderer>();
-            childIndex++;
+            if(haveSkill[i])
+            {
+                slot[i].sprite = haveSkill[i].GetSprite();
+            }
         }
 
-        if(haveSkill.Length <= 0)
-        {
-            haveSkill = new Skill[slotMaxNum];
-        }
-        
         rot.z = rotationAmount;
     }
 
@@ -59,14 +54,6 @@ public class SkillSlot : MonoBehaviour
     public Skill GetHaveSkill()
     {
         return haveSkill[selectSlotNow];
-    }
-
-    public void SetSprite(SpriteRenderer[] s)
-    {
-        for(int i = 0; i < slot.Length; ++i)
-        {
-            slot[i].sprite = s[i].sprite;
-        }
     }
 
     public void EntryHaveSkill(Skill skill)
@@ -114,16 +101,6 @@ public class SkillSlot : MonoBehaviour
 
             StartCoroutine(RollSkillSlot(-1));
         }
-    }
-
-    public SpriteRenderer[] GetSlot()
-    {
-        return slot;
-    }
-
-    public void SetSlot(SpriteRenderer[] s)
-    {
-        slot = s;
     }
 
     public Skill[] GetHaveSkills()

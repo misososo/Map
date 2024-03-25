@@ -2858,9 +2858,9 @@ MonoBehaviour:
   roomNum: 30
   mapHoriLength: 10
   mapVerLength: 10
-  enemyRoomNum: 18
-  skillRoomNum: 3
-  emptyRoomNum: 7
+  enemyRoomNum: 0
+  skillRoomNum: 28
+  emptyRoomNum: 0
   startRoom: {fileID: -977859095670625238, guid: f1dbcccbfbaa6bf4bbe9b107a53f269a, type: 3}
   goalRoom: {fileID: -5101518868103409251, guid: d2c361fd9893a0d47b4f8af93eff4f64, type: 3}
   enemyRoom: {fileID: 1701291514622770542, guid: 163af53962ac28b4d9e27b28a7c4703d, type: 3}
@@ -3445,6 +3445,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba503e3b4689daf48936c5b5cde47ad8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  slot:
+  - {fileID: 1003938636}
+  - {fileID: 1075990733}
+  - {fileID: 1058576678}
+  - {fileID: 495767878}
+  - {fileID: 778747059}
+  - {fileID: 316515097}
+  - {fileID: 1524567358}
+  - {fileID: 1543312647}
   slotMaxNum: 8
   emptySlot: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   rotationAmount: 4.5

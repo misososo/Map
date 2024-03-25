@@ -43,9 +43,7 @@ public class BulletStatus : MonoBehaviour
         newBullet.SetIsDivision(bullet.GetIsDivision());
 
         newSkillSlot.SetHaveSkills(skillSlot.GetHaveSkills());
-        newSkillSlot.SetSlot(skillSlot.GetSlot());
-        newSkillSlot.SetSprite(newSkillSlot.GetSlot());
-
+        
         SceneManager.sceneLoaded -= SendDataForNextScene;
     }
 }
