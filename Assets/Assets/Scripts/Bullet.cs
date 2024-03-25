@@ -13,15 +13,13 @@ public class Bullet : MonoBehaviour
     
     Vector3 reflect;
     [SerializeField] int reflectNum;
-
+    
     [SerializeField] int penetrationNum;
-
+    
     [SerializeField] int productScale = 1;
 
     [SerializeField] int divisionNum;
     [SerializeField] bool isDivision;
-    [SerializeField] float divisionSpan;
-    float firstDivisionSpan;
     Bullet divisionBullet;
     Vector3 divisionDir;
 
@@ -36,29 +34,26 @@ public class Bullet : MonoBehaviour
 
         oldRoomId = GameManager.I.GetNowRoomId();
         transform.localScale *= productScale;
-        firstDivisionSpan = divisionSpan;
+        
+        if (isDivision)
+        {
+           
+            divisionBullet = Instantiate(this, transform.position, Quaternion.identity);
+            divisionDir.x = Random.Range(-1.0f, 1.0f);
+            divisionDir.y = Random.Range(-1.0f, 1.0f);
+            divisionBullet.SetProductScale(1);
+            divisionBullet.SetIsDivision(false);
+            divisionBullet.SetDir(divisionDir.normalized);
+            divisionBullet = null;
+            
+        }
+
         Destroy(gameObject, lifeTime);        
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(isDivision)
-        {
-            divisionSpan -= Time.deltaTime;
-
-            if(divisionSpan <= 0)
-            {
-                divisionSpan = firstDivisionSpan;
-                divisionBullet = Instantiate(this, transform.position, Quaternion.identity);
-                divisionDir.x = Random.Range(-1.0f, 1.0f);
-                divisionDir.y = Random.Range(-1.0f, 1.0f);
-                divisionBullet.SetProductScale(1);
-                divisionBullet.SetIsDivision(false);
-                divisionBullet.SetDir(divisionDir.normalized);
-            }
-        }
-        
         if (oldRoomId != GameManager.I.GetNowRoomId())
         {
             Destroy(gameObject);

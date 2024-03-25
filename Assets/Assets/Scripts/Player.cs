@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
@@ -33,11 +34,17 @@ public class Player : MonoBehaviour
     bool isGet = false;
     bool isTouthObj = false;
 
+    [SerializeField] Text touchObjName;
+    [SerializeField] Text touchObjInfo;
+
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         firstShotSpan = shotSpan;
+
+        touchObjName.text = "";
+        touchObjInfo.text = "";
 
         StartCoroutine(EnableCollider());
     }
@@ -76,7 +83,7 @@ public class Player : MonoBehaviour
 
                 bullet = Instantiate(bulletPrefab, bulletShot.transform.position, Quaternion.identity);
                 bullet.SetDir(gun.transform.up);
-                //bullet = null;
+                bullet = null;
             }
             
         }
@@ -108,6 +115,16 @@ public class Player : MonoBehaviour
             GameManager.I.SetRoomId(room.GetId());
             
         }
+
+        if (hitObj.CompareTag("Skill"))
+        {
+            Skill skill = hitObj.GetComponent<Skill>();
+
+            if (!skill) return;
+
+            touchObjName.text = skill.GetName();
+            touchObjInfo.text = skill.GetInfo();
+        }
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -116,16 +133,16 @@ public class Player : MonoBehaviour
        
         if (hitObj.CompareTag("Skill") && isGet)
         {
-            isGet = false;
             Skill skill = hitObj.GetComponent<Skill>();
 
             if (!skill) return;
-            if(SkillSlot.GetHaveSkill())return;
+
+            isGet = false;
+
+            if (SkillSlot.GetHaveSkill()) return;
 
             skill.SetId(-1);
             EquipmentSkill(skill);
-
-            
         }
         else if(hitObj.CompareTag("Goal") && isGet)
         {
@@ -138,6 +155,9 @@ public class Player : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         isTouthObj = false;
+
+        touchObjName.text = "";
+        touchObjInfo.text = "";
     }
 
     public void CheckInputLeftStick(InputAction.CallbackContext context)

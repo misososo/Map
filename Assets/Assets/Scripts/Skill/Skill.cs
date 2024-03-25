@@ -9,6 +9,7 @@ public class Skill : MonoBehaviour
     SpriteRenderer sr;
     new string name;
     Sprite sprite;
+    string info;
 
     int id = -1;
 
@@ -35,6 +36,7 @@ public class Skill : MonoBehaviour
         name = skillData.GetName();
         sprite = skillData.GetSprite();
         sr.sprite = sprite;
+        info = skillData.GetInfo();
     }
 
     public string GetName()
@@ -50,6 +52,11 @@ public class Skill : MonoBehaviour
     public int GetId()
     {
         return id;
+    }
+
+    public string GetInfo()
+    {
+        return info;
     }
 
     public void SetId(int i)
