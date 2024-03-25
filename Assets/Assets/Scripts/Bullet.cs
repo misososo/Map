@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Bullet : MonoBehaviour
 {
     Rigidbody2D rb;
@@ -17,21 +18,47 @@ public class Bullet : MonoBehaviour
 
     [SerializeField] int productScale = 1;
 
+    [SerializeField] int divisionNum;
+    [SerializeField] bool isDivision;
+    [SerializeField] float divisionSpan;
+    float firstDivisionSpan;
+    Bullet divisionBullet;
+    Vector3 divisionDir;
+
     [SerializeField] string target;
 
     int oldRoomId;
 
     // Start is called before the first frame update
     void Start()
-    {     
+    {
+        
+
         oldRoomId = GameManager.I.GetNowRoomId();
         transform.localScale *= productScale;
+        firstDivisionSpan = divisionSpan;
         Destroy(gameObject, lifeTime);        
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(isDivision)
+        {
+            divisionSpan -= Time.deltaTime;
+
+            if(divisionSpan <= 0)
+            {
+                divisionSpan = firstDivisionSpan;
+                divisionBullet = Instantiate(this, transform.position, Quaternion.identity);
+                divisionDir.x = Random.Range(-1.0f, 1.0f);
+                divisionDir.y = Random.Range(-1.0f, 1.0f);
+                divisionBullet.SetProductScale(1);
+                divisionBullet.SetIsDivision(false);
+                divisionBullet.SetDir(divisionDir.normalized);
+            }
+        }
+        
         if (oldRoomId != GameManager.I.GetNowRoomId())
         {
             Destroy(gameObject);
@@ -115,8 +142,73 @@ public class Bullet : MonoBehaviour
         productScale--;
     }
 
-    public int GetReflect()
+    public void PlusDivisionNum()
+    {
+        divisionNum++;
+
+        if(divisionNum > 0)
+        {
+            isDivision = true;
+        }
+    }
+
+    public void MinusDivisionNum()
+    {
+        divisionNum--;
+
+        if(divisionNum <= 0)
+        {
+            isDivision = false;
+        }
+    }
+
+    public void SetReflectNum(int data)
+    {
+        reflectNum = data;
+    }
+
+    public void SetPenetrationNum(int data)
+    {
+        penetrationNum = data;
+    }
+
+    public void SetProductScale(int data)
+    {
+        productScale = data;
+    }
+
+    public void SetDivisionNum(int data)
+    {
+        divisionNum = data;
+    }
+
+    public void SetIsDivision(bool b)
+    {
+        isDivision = b;
+    }
+
+    public int GetReflectNum()
     {
         return reflectNum;
+    }
+
+    public int GetPenetrationNum()
+    {
+        return penetrationNum;
+    }
+
+    public int GetProductScale()
+    {
+        return productScale;
+    }
+
+    public int GetDivisionNum()
+    {
+        return divisionNum;
+    }
+
+    public bool GetIsDivision()
+    {
+        return isDivision;
     }
 }

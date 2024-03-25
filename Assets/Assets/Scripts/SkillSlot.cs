@@ -29,7 +29,11 @@ public class SkillSlot : MonoBehaviour
             childIndex++;
         }
 
-        haveSkill = new Skill[slotMaxNum];
+        if(haveSkill.Length <= 0)
+        {
+            haveSkill = new Skill[slotMaxNum];
+        }
+        
         rot.z = rotationAmount;
     }
 
@@ -57,6 +61,14 @@ public class SkillSlot : MonoBehaviour
         return haveSkill[selectSlotNow];
     }
 
+    public void SetSprite(SpriteRenderer[] s)
+    {
+        for(int i = 0; i < slot.Length; ++i)
+        {
+            slot[i].sprite = s[i].sprite;
+        }
+    }
+
     public void EntryHaveSkill(Skill skill)
     {
         haveSkill[selectSlotNow] = skill;
@@ -78,8 +90,6 @@ public class SkillSlot : MonoBehaviour
         
         if(context.performed && !isRoll)
         {
-            //rot = transform.eulerAngles + rotationAmount;
-
             selectSlotNow++;
 
             if(selectSlotNow >= slotMaxNum)
@@ -88,7 +98,6 @@ public class SkillSlot : MonoBehaviour
             }
 
             StartCoroutine(RollSkillSlot());
-            //Debug.Log(selectingNow);
         }
     }
 
@@ -96,10 +105,6 @@ public class SkillSlot : MonoBehaviour
     {
         if(context.performed && !isRoll)
         {
-            //rot = transform.eulerAngles;
-            //rot -= rotationAmount;
-            //transform.eulerAngles = Vector3.Lerp(rot, rot - rotationAmount, 0.1f);
-
             selectSlotNow--;
 
             if(selectSlotNow < 0)
@@ -108,15 +113,26 @@ public class SkillSlot : MonoBehaviour
             }
 
             StartCoroutine(RollSkillSlot(-1));
-            //Debug.Log(selectingNow);
         }
     }
 
-    public void CheckInputDownBUtton(InputAction.CallbackContext context)
+    public SpriteRenderer[] GetSlot()
     {
-        if(context.performed)
-        {
-            //Debug.Log("TRASH");
-        }
+        return slot;
+    }
+
+    public void SetSlot(SpriteRenderer[] s)
+    {
+        slot = s;
+    }
+
+    public Skill[] GetHaveSkills()
+    {
+        return haveSkill;
+    }
+
+    public void SetHaveSkills(Skill[] s)
+    {
+        haveSkill = s;
     }
 }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestSkill : Skill
+public class DivisionSkill : Skill
 {
     // Start is called before the first frame update
     void Start()
@@ -18,13 +18,12 @@ public class TestSkill : Skill
 
     public override void EnableSkill(ref Bullet bullet)
     {
-        
-        bullet.PlusReflectNum();
-        Debug.Log(bullet.GetReflectNum());
+        bullet.PlusDivisionNum();
+        Debug.Log("Division");
     }
 
     public override void DisableSkill(ref Bullet bullet)
     {
-        bullet.MinusReflectNum();
+        bullet.MinusDivisionNum();
     }
 }

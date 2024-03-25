@@ -11,6 +11,7 @@ TagManager:
   - Enemy
   - Bullet
   - Goal
+  - ScreenCollider
   layers:
   - Default
   - TransparentFX
