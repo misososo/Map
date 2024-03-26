@@ -14,6 +14,10 @@ public class Player : MonoBehaviour
 
     private Vector3 move;
     [SerializeField] float moveSpeed;
+    [SerializeField] int maxHp;
+    [SerializeField] int hp;
+    [SerializeField] GameObject[] lifeBowls = new GameObject[6];
+    [SerializeField] GameObject[] lifes = new GameObject[6];
 
     Vector3 dir;
 
@@ -45,6 +49,16 @@ public class Player : MonoBehaviour
 
         touchObjName.text = "";
         touchObjInfo.text = "";
+
+        for(int i = 0; i < maxHp; ++i)
+        {
+            lifeBowls[i].SetActive(true);
+        }
+
+        for(int i = 0; i < hp; ++i)
+        {
+            lifes[i].SetActive(true);
+        }
 
         StartCoroutine(EnableCollider());
     }
@@ -124,6 +138,17 @@ public class Player : MonoBehaviour
 
             touchObjName.text = skill.GetName();
             touchObjInfo.text = skill.GetInfo();
+        }
+
+        if(hitObj.CompareTag("EnemyBullet"))
+        {
+            hp--;
+            lifes[hp].SetActive(false);
+
+            if(hp == 0)
+            {
+                Die();
+            }
         }
     }
 
@@ -233,5 +258,31 @@ public class Player : MonoBehaviour
         yield return null;
 
         playerCollider.enabled = true;
+    }
+
+    void Die()
+    {
+        StartCoroutine(GameManager.I.GameOver());
+        //StartCoroutine(GameManager.I.ChangeScene("Title"));
+    }
+
+    public int GetHp()
+    {
+        return hp;
+    }
+
+    public int GetMaxHp()
+    {
+        return maxHp;
+    }
+
+    public void SetHp(int i)
+    {
+        hp = i;
+    }
+
+    public void SetMaxHp(int i)
+    {
+        maxHp = i;
     }
 }

@@ -28,8 +28,7 @@ public class Enemy : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Bullet"))
         {
-
-            hp--;
+            hp -= collision.GetComponent<Bullet>().GetAtk();
             //Debug.Log(hp);
         }
     }

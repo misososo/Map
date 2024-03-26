@@ -10,6 +10,7 @@ public class Bullet : MonoBehaviour
     Vector3 dir;
     [SerializeField] float moveSpeed;
     [SerializeField] float lifeTime;
+    [SerializeField] int atk;
     
     Vector3 reflect;
     [SerializeField] int reflectNum;
@@ -67,6 +68,11 @@ public class Bullet : MonoBehaviour
 
         rb.velocity = dir * moveSpeed;
         transform.rotation = Quaternion.LookRotation(Vector3.forward, dir);
+    }
+
+    public int GetAtk()
+    {
+        return atk;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

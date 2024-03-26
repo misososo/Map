@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Enemy03Data
   m_EditorClassIdentifier: 
   name: 03
-  hp: 20
+  hp: 60
   moveSpeed: 5

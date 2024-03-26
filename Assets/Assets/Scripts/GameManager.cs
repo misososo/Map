@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] string nextScene;
     [SerializeField] Image blackScreen;
+    [SerializeField] Image gameOverScreen;
+    [SerializeField] float displayTime;
 
     int nowRoomId;//現在プレイヤーがいる部屋のID
 
@@ -74,6 +76,24 @@ public class GameManager : MonoBehaviour
         }
 
         SceneManager.LoadScene(sceneName);
+    }
+
+    public IEnumerator GameOver()
+    {
+        gameOverScreen.gameObject.SetActive(true);
+
+        var color = gameOverScreen.color;
+
+        //徐々に画面を映す
+        while(color.a <= 1)
+        {
+            color.a += 0.1f;
+            gameOverScreen.color = color;
+
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(displayTime);
     }
 
     public string GetNextScene()

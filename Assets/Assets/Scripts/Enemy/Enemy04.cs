@@ -31,16 +31,6 @@ public class Enemy04 : Enemy
     protected override void Update()
     {
         base.Update();
-
-        turnSpan -= Time.deltaTime;
-        
-        if(turnSpan <= 0)
-        {
-            turnSpan = Random.Range(minTurnSpan, maxTurnSpan);
-            
-            move = (player.transform.position - transform.position).normalized * moveSpeed;
-            rb.velocity = move;
-        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -48,6 +38,18 @@ public class Enemy04 : Enemy
         if(collision.gameObject.CompareTag("ScreenCollider"))
         {
             rb.velocity = Vector2.zero;
+
+            StartCoroutine(Turn());
         }
+    }
+
+    IEnumerator Turn()
+    {
+        yield return new WaitForSeconds(turnSpan);
+
+        turnSpan = Random.Range(minTurnSpan, maxTurnSpan);
+
+        move = (player.transform.position - transform.position).normalized * moveSpeed;
+        rb.velocity = move;
     }
 }

@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class BulletStatus : MonoBehaviour
+public class SendData : MonoBehaviour
 {
     [SerializeField] Bullet bullet;
     [SerializeField] SkillSlot skillSlot;
+    [SerializeField] Player player;
 
     // Start is called before the first frame update
     void Start()
@@ -30,11 +31,17 @@ public class BulletStatus : MonoBehaviour
         return skillSlot;
     }
 
+    public Player GetPlayer()
+    {
+        return player;
+    }
+
     public void SendDataForNextScene(Scene next, LoadSceneMode mode)
     {
-        BulletStatus bulletStatus = GameObject.Find("BulletData").GetComponent<BulletStatus>();
+        SendData bulletStatus = GameObject.Find("BulletData").GetComponent<SendData>();
         Bullet newBullet = bulletStatus.GetBullet();
         SkillSlot newSkillSlot = bulletStatus.GetSkillSlot();
+        Player newPlayer = bulletStatus.GetPlayer();
 
         newBullet.SetReflectNum(bullet.GetReflectNum());
         newBullet.SetPenetrationNum(bullet.GetPenetrationNum());
@@ -43,6 +50,9 @@ public class BulletStatus : MonoBehaviour
         newBullet.SetIsDivision(bullet.GetIsDivision());
 
         newSkillSlot.SetHaveSkills(skillSlot.GetHaveSkills());
+
+        newPlayer.SetMaxHp(player.GetMaxHp());
+        newPlayer.SetHp(player.GetHp());
         
         SceneManager.sceneLoaded -= SendDataForNextScene;
     }

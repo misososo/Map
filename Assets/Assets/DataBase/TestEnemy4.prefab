@@ -75,7 +75,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 454582309
   m_SortingLayer: 2
-  m_SortingOrder: 5
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 84a092187f08abd4b9b7b461a4a16684, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -101,8 +101,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyData: {fileID: 11400000, guid: ec817c2da624a5949a389d4abe30508a, type: 2}
   firstTurnSpan: 4
-  maxTurnSpan: 12
-  minTurnSpan: 8
+  maxTurnSpan: 2
+  minTurnSpan: 0
 --- !u!50 &-8030342636259712010
 Rigidbody2D:
   serializedVersion: 4

@@ -83,6 +83,9 @@ public class EnemyRoom : Room
         if(roomEnemys.Count == 0)
         {
             CheckNextRoom();
+
+            int appearSkill = Random.Range(0, GameManager.I.GetSkillNum());
+            Instantiate(GameManager.I.GetSkill(appearSkill), transform.position, Quaternion.identity);
         }
 
         

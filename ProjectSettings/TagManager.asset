@@ -12,6 +12,7 @@ TagManager:
   - Bullet
   - Goal
   - ScreenCollider
+  - EnemyBullet
   layers:
   - Default
   - TransparentFX
