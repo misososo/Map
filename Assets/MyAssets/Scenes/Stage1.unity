@@ -5262,7 +5262,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8879175332587571610, guid: ec2b5414d15b0f448b5114327dae035b, type: 3}
       propertyPath: bomNum
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8879175332587571610, guid: ec2b5414d15b0f448b5114327dae035b, type: 3}
       propertyPath: bullet
