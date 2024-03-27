@@ -91,8 +91,8 @@ public class EnemyRoom : Room
 
             if(appearReward <= skillRewardProb)
             {
-                int appearSkill = Random.Range(0, GameManager.I.GetSkillNum());
-                Instantiate(GameManager.I.GetSkill(appearSkill), transform.position, Quaternion.identity);
+                //int appearSkill = Random.Range(0, GameManager.I.GetSkillNum());
+                //Instantiate(GameManager.I.GetSkill(appearSkill), transform.position, Quaternion.identity);
             }
             else if(skillRewardProb < appearReward && appearReward <= itemRewardProb)
             {

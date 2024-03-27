@@ -24,8 +24,8 @@ public class GimmickRoom : Room
         }
         else if (skillRewardProb < appearReward && appearReward <= itemRewardProb)
         {
-            int appearItem = Random.Range(0, GameManager.I.GetItemNum());
-            Instantiate(GameManager.I.GetItem(appearItem), transform.position, Quaternion.identity);
+            //int appearItem = Random.Range(0, GameManager.I.GetItemNum());
+            //Instantiate(GameManager.I.GetItem(appearItem), transform.position, Quaternion.identity);
         }
     }
 

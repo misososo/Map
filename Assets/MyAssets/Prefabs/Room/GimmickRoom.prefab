@@ -388,5 +388,5 @@ MonoBehaviour:
   gimmickObjPrefab:
   - {fileID: 8794762354293328017, guid: f9dc428feedc1224196b006893f2f9ed, type: 3}
   - {fileID: 7251732006867683945, guid: 195532c371fe3c54089986e817f82766, type: 3}
-  skillRewardProb: 0.5
-  itemRewardProb: 1
+  skillRewardProb: 1
+  itemRewardProb: 0
