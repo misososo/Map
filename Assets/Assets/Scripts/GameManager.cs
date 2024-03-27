@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public static GameManager I = null;
 
     [SerializeField] List<Skill> allSkill;
+    [SerializeField] List<GameObject> allItem;
     [SerializeField] List<Enemy> allEnemy;
 
     [SerializeField] string nextScene;
@@ -109,6 +110,16 @@ public class GameManager : MonoBehaviour
     public int GetSkillNum()
     {
         return allSkill.Count;
+    }
+
+    public GameObject GetItem(int index)
+    {
+        return allItem[index];
+    }
+
+    public int GetItemNum()
+    {
+        return allItem.Count;
     }
 
     public Enemy GetEnemy(int index)

@@ -10,8 +10,7 @@ public class Room : MonoBehaviour
 
     protected List<Skill> dropSkills = new List<Skill>();
     int dropSkillsId = 0;
-    //protected List<Skill> DropSkills = new List<Skill>();
-
+    
     [SerializeField] BoxCollider2D roomCollider;
     [SerializeField] Vector3 colliderSizeInPlayer;
     [SerializeField] Vector3 colliderSizeOutPlayer;

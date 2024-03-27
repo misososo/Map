@@ -29,7 +29,11 @@ public class Enemy : MonoBehaviour
         if (collision.gameObject.CompareTag("Bullet"))
         {
             hp -= collision.GetComponent<Bullet>().GetAtk();
-            //Debug.Log(hp);
+        }
+
+        if(collision.gameObject.CompareTag("Explosion"))
+        {
+            hp -= collision.GetComponent<Bom>().GetAtk();
         }
     }
 

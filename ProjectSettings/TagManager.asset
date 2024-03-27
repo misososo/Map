@@ -13,6 +13,10 @@ TagManager:
   - Goal
   - ScreenCollider
   - EnemyBullet
+  - Life
+  - EnemyAttack
+  - Bom
+  - Explosion
   layers:
   - Default
   - TransparentFX

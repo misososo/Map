@@ -13,6 +13,9 @@ public class EnemyRoom : Room
     [SerializeField] List<Enemy> enemys;
     List<Enemy> roomEnemys = new List<Enemy>();
 
+    [SerializeField, Range(0.0f, 1.0f)] float skillRewardProb;
+    [SerializeField, Range(0.0f, 1.0f)] float itemRewardProb;
+    
     public override void ArrangementObject()
     {
         //ìGèoåªêî
@@ -84,8 +87,19 @@ public class EnemyRoom : Room
         {
             CheckNextRoom();
 
-            int appearSkill = Random.Range(0, GameManager.I.GetSkillNum());
-            Instantiate(GameManager.I.GetSkill(appearSkill), transform.position, Quaternion.identity);
+            float appearReward = Random.value;
+
+            if(appearReward <= skillRewardProb)
+            {
+                int appearSkill = Random.Range(0, GameManager.I.GetSkillNum());
+                Instantiate(GameManager.I.GetSkill(appearSkill), transform.position, Quaternion.identity);
+            }
+            else if(skillRewardProb < appearReward && appearReward <= itemRewardProb)
+            {
+                int appearItem = Random.Range(0, GameManager.I.GetItemNum());
+                Instantiate(GameManager.I.GetItem(appearItem), transform.position, Quaternion.identity);
+            }
+            
         }
 
         

@@ -19,6 +19,9 @@ public class Player : MonoBehaviour
     [SerializeField] GameObject[] lifeBowls = new GameObject[6];
     [SerializeField] GameObject[] lifes = new GameObject[6];
 
+    [SerializeField] GameObject bom;
+    [SerializeField] int bomNum;
+
     Vector3 dir;
 
     [SerializeField] PlayerCamera pc;
@@ -140,7 +143,7 @@ public class Player : MonoBehaviour
             touchObjInfo.text = skill.GetInfo();
         }
 
-        if(hitObj.CompareTag("EnemyBullet"))
+        if(hitObj.CompareTag("EnemyBullet") || hitObj.CompareTag("EnemyAttack") || hitObj.CompareTag("Explosion"))
         {
             hp--;
             lifes[hp].SetActive(false);
@@ -149,6 +152,24 @@ public class Player : MonoBehaviour
             {
                 Die();
             }
+        }
+
+        if(hitObj.CompareTag("Life"))
+        {
+            if(hp == maxHp)return;
+
+            lifes[hp].SetActive(true);
+
+            hp++;
+
+            Destroy(hitObj);
+        }
+
+        if(hitObj.CompareTag("Bom"))
+        {
+            bomNum++;
+
+            Destroy(hitObj);
         }
     }
 
@@ -225,6 +246,8 @@ public class Player : MonoBehaviour
                 //Debug.Log(bulletPrefab.GetReflect());
 
                 Destroy(skill.gameObject);
+
+                break;
             }
         }
     }
@@ -241,17 +264,19 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void SettingMoveAmount()
+    void SettingMoveAmount()
     {
         if (inputL.x == 0) return;
 
         move = inputL * moveSpeed;
     }
 
-    private void Move()
+    void Move()
     {
         rb.velocity = new Vector3(move.x, move.y, 0);
     }
+
+
 
     IEnumerator EnableCollider()
     {
@@ -264,6 +289,15 @@ public class Player : MonoBehaviour
     {
         StartCoroutine(GameManager.I.GameOver());
         //StartCoroutine(GameManager.I.ChangeScene("Title"));
+    }
+
+    void PutBom()
+    {
+        if(bomNum <= 0) return;
+
+        bomNum--;
+
+        Instantiate(bom, transform.position, Quaternion.identity);
     }
 
     public int GetHp()
