@@ -402,4 +402,4 @@ MonoBehaviour:
   - {fileID: 3649270845309556667, guid: 891cbf1d3c38d54438d1995ecf9b401f, type: 3}
   - {fileID: -2194930329721954568, guid: c222158c5b39b4649b48016d1928831d, type: 3}
   skillRewardProb: 0.1
-  itemRewardProb: 0.4
+  itemRewardProb: 0.3

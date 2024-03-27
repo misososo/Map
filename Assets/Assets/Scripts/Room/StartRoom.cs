@@ -9,12 +9,12 @@ public class StartRoom : Room
 
     public override void ArrangementObject()
     {
-        startObj = Instantiate(startObjPrefab, transform.position, Quaternion.identity);
+        //startObj = Instantiate(startObjPrefab, transform.position, Quaternion.identity);
     }
 
     public override void EnebleObject()
     {
-        startObj.SetActive(true);
+        //startObj.SetActive(true);
 
         for (int i = 0; i < dropSkills.Count; ++i)
         {
@@ -24,7 +24,7 @@ public class StartRoom : Room
 
     public override void DisableObject()
     {
-        startObj.SetActive(false);
+        //startObj.SetActive(false);
 
         for (int i = 0; i < dropSkills.Count; ++i)
         {

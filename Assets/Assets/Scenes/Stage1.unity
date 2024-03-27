@@ -4116,7 +4116,6 @@ MonoBehaviour:
   allItem:
   - {fileID: 5236377363063890993, guid: 350e94060a27261488560092298a06e0, type: 3}
   - {fileID: 4416138002332513283, guid: 9510939bf72fca04f81060a2bcdc7932, type: 3}
-  - {fileID: 4416138002332513283, guid: 9510939bf72fca04f81060a2bcdc7932, type: 3}
   allEnemy:
   - {fileID: 0}
   nextScene: Stage2
@@ -5172,7 +5171,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8879175332587571610, guid: ec2b5414d15b0f448b5114327dae035b, type: 3}
       propertyPath: bomNum
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8879175332587571610, guid: ec2b5414d15b0f448b5114327dae035b, type: 3}
       propertyPath: bullet
@@ -5321,6 +5320,10 @@ PrefabInstance:
     - target: {fileID: 8879175332587571614, guid: ec2b5414d15b0f448b5114327dae035b, type: 3}
       propertyPath: m_Color.r
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8879175332587571614, guid: ec2b5414d15b0f448b5114327dae035b, type: 3}
+      propertyPath: m_SortingOrder
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8879175332587571615, guid: ec2b5414d15b0f448b5114327dae035b, type: 3}
       propertyPath: m_Name
