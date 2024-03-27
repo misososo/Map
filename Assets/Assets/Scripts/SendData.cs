@@ -53,6 +53,7 @@ public class SendData : MonoBehaviour
 
         newPlayer.SetMaxHp(player.GetMaxHp());
         newPlayer.SetHp(player.GetHp());
+        newPlayer.SetBomNum(player.GetBomNum());
         
         SceneManager.sceneLoaded -= SendDataForNextScene;
     }

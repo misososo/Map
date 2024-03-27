@@ -11,6 +11,8 @@ public class Enemy03 : Enemy
 
     [SerializeField] Bullet bulletPrefab;
     Bullet bullet;
+
+    [SerializeField] Collider2D enemyCollider;
     
     [SerializeField] float minShotSpan;
     [SerializeField] float maxShotSpan;
@@ -55,16 +57,22 @@ public class Enemy03 : Enemy
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        
-    }
-
     public void ReflectWall(Collision2D collision)
     {
         reflect = Vector3.Reflect(transform.up, collision.contacts[0].normal).normalized;
 
         transform.rotation = Quaternion.LookRotation(Vector3.forward, reflect);
         rb.velocity = transform.up * moveSpeed;
+
+        StartCoroutine(EnableCollider());
+    }
+
+    IEnumerator EnableCollider()
+    {
+        enemyCollider.enabled = false;
+
+        yield return null;
+
+        enemyCollider.enabled = true;
     }
 }

@@ -43,6 +43,7 @@ public class Player : MonoBehaviour
 
     [SerializeField] Text touchObjName;
     [SerializeField] Text touchObjInfo;
+    [SerializeField] Text bomNumText;
 
     // Start is called before the first frame update
     void Start()
@@ -52,8 +53,9 @@ public class Player : MonoBehaviour
 
         touchObjName.text = "";
         touchObjInfo.text = "";
+        bomNumText.text = "x" + bomNum;
 
-        for(int i = 0; i < maxHp; ++i)
+        for (int i = 0; i < maxHp; ++i)
         {
             lifeBowls[i].SetActive(true);
         }
@@ -145,6 +147,7 @@ public class Player : MonoBehaviour
 
         if(hitObj.CompareTag("EnemyBullet") || hitObj.CompareTag("EnemyAttack") || hitObj.CompareTag("Explosion"))
         {
+            Debug.Log("SSSS");
             hp--;
             lifes[hp].SetActive(false);
 
@@ -168,6 +171,7 @@ public class Player : MonoBehaviour
         if(hitObj.CompareTag("Bom"))
         {
             bomNum++;
+            bomNumText.text = "x" + bomNum;
 
             Destroy(hitObj);
         }
@@ -235,6 +239,14 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void CheckInputLB(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            PutBom();
+        }
+    }
+
     void EquipmentSkill(Skill skill)
     {
         for (int i = 0; i < GameManager.I.GetSkillNum(); ++i)
@@ -280,6 +292,8 @@ public class Player : MonoBehaviour
 
     IEnumerator EnableCollider()
     {
+        playerCollider.enabled = false;
+
         yield return null;
 
         playerCollider.enabled = true;
@@ -296,6 +310,7 @@ public class Player : MonoBehaviour
         if(bomNum <= 0) return;
 
         bomNum--;
+        bomNumText.text = "x" + bomNum;
 
         Instantiate(bom, transform.position, Quaternion.identity);
     }
@@ -318,5 +333,15 @@ public class Player : MonoBehaviour
     public void SetMaxHp(int i)
     {
         maxHp = i;
+    }
+
+    public int GetBomNum()
+    {
+        return bomNum;
+    }
+
+    public void SetBomNum(int i)
+    {
+        bomNum = i;
     }
 }

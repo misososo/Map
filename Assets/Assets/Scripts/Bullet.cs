@@ -28,6 +28,8 @@ public class Bullet : MonoBehaviour
 
     int oldRoomId;
 
+    [SerializeField] Collider2D bulletCollider;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -84,6 +86,7 @@ public class Bullet : MonoBehaviour
             if (reflectNum <= 0)
             {
                 Destroy(gameObject);
+                return;
             }
 
             //Debug.Log(rb.velocity);
@@ -93,8 +96,8 @@ public class Bullet : MonoBehaviour
 
             transform.rotation = Quaternion.LookRotation(Vector3.forward, reflect);
             rb.velocity = transform.up * moveSpeed;
-            
 
+            StartCoroutine(EnableCollider());
 
             //Debug.Log(reflect);
         }
@@ -111,6 +114,15 @@ public class Bullet : MonoBehaviour
 
             penetrationNum--;
         }
+    }
+
+    IEnumerator EnableCollider()
+    {
+        bulletCollider.enabled = false;
+
+        yield return null;
+
+        bulletCollider.enabled = true;
     }
 
     public void PlusReflectNum()

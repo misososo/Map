@@ -7,6 +7,7 @@ public class Bom : MonoBehaviour
     [SerializeField] float lifeTime;
     [SerializeField] int atk;
     [SerializeField] Collider2D exCollider;
+    [SerializeField] GameObject effect;
 
     // Start is called before the first frame update
     void Start()
@@ -34,5 +35,10 @@ public class Bom : MonoBehaviour
     public int GetAtk()
     {
         return atk;
+    }
+
+    private void OnDestroy()
+    {
+        Instantiate(effect, transform.position, Quaternion.identity);
     }
 }
