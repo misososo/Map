@@ -6,10 +6,13 @@ public class GoalRoom : Room
 {
     [SerializeField] GameObject goalObjPrefab;
     GameObject goalObj;
+    [SerializeField] float objPosZ;
 
     public override void ArrangementObject()
     {
-        goalObj = Instantiate(goalObjPrefab, transform.position, Quaternion.identity);
+        Vector3 pos = transform.position;
+        pos.z = objPosZ;
+        goalObj = Instantiate(goalObjPrefab, pos, Quaternion.identity);
     }
 
     public override void EnebleObject()
