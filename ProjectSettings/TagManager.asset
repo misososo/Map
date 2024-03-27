@@ -17,6 +17,7 @@ TagManager:
   - EnemyAttack
   - Bom
   - Explosion
+  - Gimmick
   layers:
   - Default
   - TransparentFX
@@ -31,7 +32,7 @@ TagManager:
   - EnemyBullet
   - ColliderCheck
   - Bom
-  - 
+  - Gimmick
   - 
   - 
   - 
