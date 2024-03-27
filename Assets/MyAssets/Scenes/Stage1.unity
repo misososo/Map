@@ -4030,9 +4030,9 @@ MonoBehaviour:
   roomNum: 10
   mapHoriLength: 10
   mapVerLength: 10
-  enemyRoomNum: 0
-  skillRoomNum: 0
-  gimmickRoomNum: 8
+  enemyRoomNum: 5
+  skillRoomNum: 1
+  gimmickRoomNum: 2
   emptyRoomNum: 0
   startRoom: {fileID: -977859095670625238, guid: f1dbcccbfbaa6bf4bbe9b107a53f269a, type: 3}
   goalRoom: {fileID: -5101518868103409251, guid: d2c361fd9893a0d47b4f8af93eff4f64, type: 3}
@@ -4557,7 +4557,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1875943348
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5175,6 +5175,14 @@ PrefabInstance:
     - target: {fileID: 8879175331748518382, guid: ec2b5414d15b0f448b5114327dae035b, type: 3}
       propertyPath: m_Color.r
       value: 0.18867922
+      objectReference: {fileID: 0}
+    - target: {fileID: 8879175332587571608, guid: ec2b5414d15b0f448b5114327dae035b, type: 3}
+      propertyPath: m_Size.x
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8879175332587571608, guid: ec2b5414d15b0f448b5114327dae035b, type: 3}
+      propertyPath: m_Size.y
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 8879175332587571608, guid: ec2b5414d15b0f448b5114327dae035b, type: 3}
       propertyPath: m_Enabled
