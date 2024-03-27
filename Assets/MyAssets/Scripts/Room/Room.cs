@@ -6,7 +6,7 @@ using UnityEngine.Tilemaps;
 public class Room : MonoBehaviour
 {
     [SerializeField] SpriteRenderer sr;
-    bool isArrangement = false;
+    protected bool isArrangement = false;
 
     protected List<Skill> dropSkills = new List<Skill>();
     int dropSkillsId = 0;
@@ -124,8 +124,9 @@ public class Room : MonoBehaviour
             {
                 
                 
-                isArrangement = true;
+                
                 ArrangementObject();
+                isArrangement = true;
             }
 
             

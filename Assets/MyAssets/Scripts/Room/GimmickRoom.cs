@@ -10,6 +10,25 @@ public class GimmickRoom : Room
     [SerializeField, Range(0.0f, 1.0f)] float skillRewardProb;
     [SerializeField, Range(0.0f, 1.0f)] float itemRewardProb;
 
+    bool isPutSkill = false;
+
+    protected override void Update()
+    {
+        base.Update();
+
+        if (dropSkills.Count > 0)
+        {
+            isPutSkill = true;
+        }
+
+        if (isPutSkill && dropSkills.Count <= 0 && gimmickObj)
+        {
+            Debug.Log("WWWW");
+            Destroy(gimmickObj);
+            gimmickObj = null;
+        }
+    }
+
     public override void ArrangementObject()
     {
         int select = Random.Range(0, gimmickObjPrefab.Length);
@@ -31,11 +50,15 @@ public class GimmickRoom : Room
 
     public override void EnebleObject()
     {
+        if (!gimmickObj) return;
+
         gimmickObj.SetActive(true);
     }
 
     public override void DisableObject()
     {
+        if (!gimmickObj) return;
+
         gimmickObj.SetActive(false);
     }
 }
