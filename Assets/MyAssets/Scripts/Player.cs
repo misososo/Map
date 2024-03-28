@@ -33,9 +33,6 @@ public class Player : MonoBehaviour
     [SerializeField] float shotSpan;
     float firstShotSpan;
 
-    //[SerializeField] SkillDatas skillDatas;
-    //[SerializeField] List<Skill> allSkillData;
-    //[SerializeField] List<Skill> allSkill;
     [SerializeField] SkillSlot SkillSlot;
 
     bool isGet = false;
@@ -47,7 +44,8 @@ public class Player : MonoBehaviour
 
     bool isDie = false;
 
-    int test;
+    [SerializeField] AudioPlayer shotAp;
+    [SerializeField] AudioPlayer damageAp;
 
     // Start is called before the first frame update
     void Start()
@@ -93,7 +91,6 @@ public class Player : MonoBehaviour
        
         if (isDie) return;
 
-        test++;
         if(inputL == Vector3.zero)
         {
             rb.velocity = Vector3.zero;
@@ -117,6 +114,7 @@ public class Player : MonoBehaviour
                 bullet = Instantiate(bulletPrefab, bulletShot.transform.position, Quaternion.identity);
                 bullet.SetDir(gun.transform.up);
                 bullet = null;
+                Instantiate(shotAp);
             }
             
         }
@@ -162,9 +160,10 @@ public class Player : MonoBehaviour
         if(hitObj.CompareTag("EnemyBullet") || hitObj.CompareTag("EnemyAttack") || hitObj.CompareTag("Explosion") || hitObj.CompareTag("Gimmick"))
         {
             if (hp <= 0) return;
-            Debug.Log(test);
+            
             hp--;
             lifes[hp].SetActive(false);
+            Instantiate(damageAp);
 
             if(hp == 0)
             {
@@ -320,6 +319,7 @@ public class Player : MonoBehaviour
     {
         isDie = true;
         rb.velocity = Vector2.zero;
+        Instantiate(shotAp);
         StartCoroutine(GameManager.I.GameOver());
         //StartCoroutine(GameManager.I.ChangeScene("Title"));
     }

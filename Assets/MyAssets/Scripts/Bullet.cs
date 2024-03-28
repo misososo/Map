@@ -34,6 +34,8 @@ public class Bullet : MonoBehaviour
     [SerializeField] GameObject hitEffectPrefab;
     GameObject hitEffect;
 
+    [SerializeField] AudioPlayer ap;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -89,6 +91,8 @@ public class Bullet : MonoBehaviour
         {
             if (reflectNum <= 0)
             {
+                Instantiate(hitEffectPrefab, transform.position, Quaternion.identity);
+                Instantiate(ap);
                 Destroy(gameObject);
                 return;
             }
@@ -111,13 +115,15 @@ public class Bullet : MonoBehaviour
     {
         if (collision.gameObject.CompareTag(target))
         {
+
             Instantiate(hitEffectPrefab, transform.position, Quaternion.identity);
+            Instantiate(ap);
 
             if (penetrationNum <= 0)
             {
                 Destroy(gameObject);
             }
-
+            
             penetrationNum--;
         }
     }

@@ -59,4 +59,11 @@ public class Enemy02 : Enemy
 
         transform.position = warpPos;
     }
+
+    protected override void OnDestroy()
+    {
+        base.OnDestroy();
+
+        Destroy(fake);
+    }
 }

@@ -18,6 +18,8 @@ public class EnemyRoom : Room
     
     public override void ArrangementObject()
     {
+        GameManager.I.AudioChange((int)GameManager.Audio.battle);
+
         //敵出現数
         int appearNum = Random.Range(minAppearNum, maxAppearNum + 1);
         //出現ポイントを決める番号
@@ -87,7 +89,7 @@ public class EnemyRoom : Room
         {
             CheckNextRoom();
 
-            Debug.Log("ZZZZZ");
+            GameManager.I.AudioChange((int)GameManager.Audio.normal);
 
             float appearReward = Random.value;
 

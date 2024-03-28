@@ -102,6 +102,7 @@ MonoBehaviour:
   atk: 30
   exCollider: {fileID: 7902216376751467134}
   effect: {fileID: 1967835574231978638, guid: 3e196c9e632c76841a71cb6e2dc6d010, type: 3}
+  ap: {fileID: 8607915693743860149, guid: 6389b63ec80e8db4689c214674d1fd7d, type: 3}
 --- !u!1 &395916533056837907
 GameObject:
   m_ObjectHideFlags: 0

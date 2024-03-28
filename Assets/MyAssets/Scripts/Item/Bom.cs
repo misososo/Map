@@ -9,6 +9,8 @@ public class Bom : MonoBehaviour
     [SerializeField] Collider2D exCollider;
     [SerializeField] GameObject effect;
 
+    [SerializeField] AudioPlayer ap;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -40,5 +42,6 @@ public class Bom : MonoBehaviour
     private void OnDestroy()
     {
         Instantiate(effect, transform.position, Quaternion.identity);
+        Instantiate(ap);
     }
 }

@@ -21,6 +21,15 @@ public class GameManager : MonoBehaviour
     [SerializeField] string stageName;
     [SerializeField] Text stageText;
 
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioClip[] clips;
+    public enum Audio
+    {
+        normal,
+        battle,
+        boss
+    }
+    
     bool isGameCrear = false;
 
     int nowRoomId = -1;//åªç›ÉvÉåÉCÉÑÅ[Ç™Ç¢ÇÈïîâÆÇÃID
@@ -122,6 +131,17 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(displayTime);
 
         StartCoroutine(ChangeScene("Title"));
+    }
+
+    public void AudioChange(int index)
+    {
+        audioSource.clip = clips[index];
+        audioSource.Play();
+    }
+
+    public void AudioStop()
+    {
+        audioSource.Stop();
     }
 
     public string GetNextScene()

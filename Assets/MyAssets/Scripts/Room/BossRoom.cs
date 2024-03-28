@@ -9,6 +9,7 @@ public class BossRoom : Room
 
     public override void ArrangementObject()
     {
+        GameManager.I.AudioChange((int)GameManager.Audio.boss);
         boss = Instantiate(bossPrefab, transform.position, Quaternion.identity);
         boss.RemoveEnemyListCallBack(RemoveRoomEnemys);
 
@@ -21,5 +22,6 @@ public class BossRoom : Room
     void RemoveRoomEnemys(int index)
     {      
         CheckNextRoom();
+        GameManager.I.AudioStop();
     }
 }
