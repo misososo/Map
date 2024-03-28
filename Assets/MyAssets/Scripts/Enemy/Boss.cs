@@ -192,7 +192,6 @@ public class Boss : Enemy
 
         if(collision.gameObject.CompareTag("Wall") && isAttackNow)
         {
-            Debug.Log("AAA");
             rb.velocity = Vector2.zero;
             EnableAttackCollider(false);
 
@@ -252,7 +251,7 @@ public class Boss : Enemy
     protected override void OnDestroy()
     {
         base.OnDestroy();
-
+        GameManager.I.SetIsGameCrear(true);
         Instantiate(hitEffectPrefab, transform.position, Quaternion.identity);
     }
 }

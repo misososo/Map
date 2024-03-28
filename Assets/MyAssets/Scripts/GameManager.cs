@@ -15,7 +15,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] string nextScene;
     [SerializeField] Image blackScreen;
     [SerializeField] Image gameOverScreen;
+    [SerializeField] Image gameCrearScreen;
     [SerializeField] float displayTime;
+
+    bool isGameCrear = false;
 
     int nowRoomId = -1;//現在プレイヤーがいる部屋のID
 
@@ -79,6 +82,24 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(sceneName);
     }
 
+    public IEnumerator GameCrear()
+    {
+        gameCrearScreen.gameObject.SetActive(true);
+
+        var color = gameCrearScreen.color;
+
+        //徐々に画面を映す
+        while (color.a <= 1)
+        {
+            color.a += 0.01f;
+            gameCrearScreen.color = color;
+
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(displayTime);
+    }
+
     public IEnumerator GameOver()
     {
         gameOverScreen.gameObject.SetActive(true);
@@ -88,13 +109,15 @@ public class GameManager : MonoBehaviour
         //徐々に画面を映す
         while(color.a <= 1)
         {
-            color.a += 0.1f;
+            color.a += 0.01f;
             gameOverScreen.color = color;
 
             yield return null;
         }
 
         yield return new WaitForSeconds(displayTime);
+
+        StartCoroutine(ChangeScene("Title"));
     }
 
     public string GetNextScene()
@@ -140,5 +163,15 @@ public class GameManager : MonoBehaviour
     public void SetRoomId(int i)
     {
         nowRoomId = i;
+    }
+
+    public bool GetIsGameCrear()
+    {
+        return isGameCrear;
+    }
+
+    public void SetIsGameCrear(bool b)
+    {
+        isGameCrear = b;
     }
 }

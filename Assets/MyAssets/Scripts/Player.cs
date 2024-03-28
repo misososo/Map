@@ -45,6 +45,10 @@ public class Player : MonoBehaviour
     [SerializeField] Text touchObjInfo;
     [SerializeField] Text bomNumText;
 
+    bool isDie = false;
+
+    int test;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -70,7 +74,7 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (inputL!= Vector3.zero)
+        if (inputL!= Vector3.zero && !isDie)
         {
             Move();
         }
@@ -79,6 +83,15 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (GameManager.I.GetIsGameCrear())
+        {
+            StartCoroutine(GameManager.I.GameCrear());
+            return;
+        }
+       
+        if (isDie) return;
+
+        test++;
         if(inputL == Vector3.zero)
         {
             rb.velocity = Vector3.zero;
@@ -147,7 +160,7 @@ public class Player : MonoBehaviour
         if(hitObj.CompareTag("EnemyBullet") || hitObj.CompareTag("EnemyAttack") || hitObj.CompareTag("Explosion") || hitObj.CompareTag("Gimmick"))
         {
             if (hp <= 0) return;
-
+            Debug.Log(test);
             hp--;
             lifes[hp].SetActive(false);
 
@@ -303,6 +316,8 @@ public class Player : MonoBehaviour
 
     void Die()
     {
+        isDie = true;
+        rb.velocity = Vector2.zero;
         StartCoroutine(GameManager.I.GameOver());
         //StartCoroutine(GameManager.I.ChangeScene("Title"));
     }

@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: BossData
   m_EditorClassIdentifier: 
   name: Boss
-  hp: 10
+  hp: 1500
   moveSpeed: 1

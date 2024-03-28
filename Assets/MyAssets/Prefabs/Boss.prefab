@@ -42,7 +42,7 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -86,7 +86,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1171934399279017063}
   - component: {fileID: 1171934399279017060}
-  - component: {fileID: 6537842505706465696}
   m_Layer: 8
   m_Name: "\u53F3\u624B"
   m_TagString: Enemy
@@ -161,22 +160,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!70 &6537842505706465696
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1171934399279017062}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1.5, y: 2.5}
-  m_Direction: 0
 --- !u!1 &1171934400045799023
 GameObject:
   m_ObjectHideFlags: 0
@@ -187,7 +170,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1171934400045799020}
   - component: {fileID: 1171934400045799021}
-  - component: {fileID: 6449604043207357768}
   m_Layer: 8
   m_Name: "\u5DE6\u624B"
   m_TagString: Enemy
@@ -262,22 +244,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!70 &6449604043207357768
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1171934400045799023}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1.5, y: 2.5}
-  m_Direction: 0
 --- !u!1 &1171934400252534681
 GameObject:
   m_ObjectHideFlags: 0
@@ -434,7 +400,7 @@ MonoBehaviour:
   preLaserPrefab: {fileID: 3900529688919295555, guid: aa3526bf866dec942bb2e0293c3c963b, type: 3}
   preTime: 1
   laserLifeTime: 6
-  awakenHp: 7
+  awakenHp: 1000
   goCenterTime: 1
   attackCollider:
   - {fileID: 3837645253188590496}
