@@ -390,3 +390,4 @@ MonoBehaviour:
   - {fileID: 7251732006867683945, guid: 195532c371fe3c54089986e817f82766, type: 3}
   skillRewardProb: 1
   itemRewardProb: 0
+  gupPrefab: {fileID: -2984872994577274279, guid: 65079591d009f494cb22102c15f009ca, type: 3}

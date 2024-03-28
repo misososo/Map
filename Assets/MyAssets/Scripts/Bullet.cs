@@ -111,7 +111,7 @@ public class Bullet : MonoBehaviour
     {
         if (collision.gameObject.CompareTag(target))
         {
-            hitEffect = Instantiate(hitEffectPrefab, transform.position, Quaternion.identity);
+            Instantiate(hitEffectPrefab, transform.position, Quaternion.identity);
 
             if (penetrationNum <= 0)
             {

@@ -16,11 +16,22 @@ public class Enemy : MonoBehaviour
 
     protected Rigidbody2D rb;
 
+    protected SpriteRenderer sr;
+
     protected virtual void Update()
     {
         if (hp <= 0)
         {
             Destroy(gameObject);
+        }
+
+        if (rb.velocity.x > 0)
+        {
+            sr.flipX = true;
+        }
+        else if (rb.velocity.x < 0)
+        {
+            sr.flipX = false;
         }
     }
 
@@ -42,6 +53,7 @@ public class Enemy : MonoBehaviour
         name = enemyData.GetName();
         hp = enemyData.GetHp();
         moveSpeed = enemyData.GetMoveSpeed();
+        sr = GetComponent<SpriteRenderer>();
     }
 
     public int GetId()
@@ -54,7 +66,7 @@ public class Enemy : MonoBehaviour
         id = i;
     }
 
-    private void OnDestroy()
+    protected virtual void OnDestroy()
     {
         //Debug.Log("dead");
         removeRoomEnemys(id);

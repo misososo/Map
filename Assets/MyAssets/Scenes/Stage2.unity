@@ -234,7 +234,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 821229516}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -947,7 +947,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 14327
+    m_Bits: 30711
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -1834,11 +1834,11 @@ RectTransform:
   m_Children:
   - {fileID: 1419271809}
   - {fileID: 848448049}
-  - {fileID: 1521428579}
   - {fileID: 998685259}
   - {fileID: 1794042042}
   - {fileID: 1738364740}
   - {fileID: 74048200}
+  - {fileID: 1521428579}
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1969,7 +1969,7 @@ RectTransform:
   m_Children:
   - {fileID: 68766482}
   m_Father: {fileID: 821229516}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2317,7 +2317,7 @@ GameObject:
   - component: {fileID: 1171746746}
   - component: {fileID: 1171746745}
   - component: {fileID: 1171746744}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: ScreenTilemap
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -3776,7 +3776,7 @@ RectTransform:
   m_Children:
   - {fileID: 1200647530}
   m_Father: {fileID: 821229516}
-  m_RootOrder: 2
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4027,19 +4027,23 @@ MonoBehaviour:
   miniMapStartRoom: {fileID: 11400000, guid: ddc31d1f5e35d14448a2accdfef410b6, type: 2}
   miniMapGoalRoom: {fileID: 11400000, guid: b4fb821fd7bc47447bb49898ea32dec4, type: 2}
   miniMapSkillRoom: {fileID: 11400000, guid: 6a5d1cd4da9a059449f49046d3485d1a, type: 2}
-  roomNum: 10
   mapHoriLength: 10
   mapVerLength: 10
-  enemyRoomNum: 5
+  roomNum: 15
+  startRoomNum: 1
+  goalRoomNum: 1
+  enemyRoomNum: 9
   skillRoomNum: 1
-  gimmickRoomNum: 2
-  emptyRoomNum: 0
+  gimmickRoomNum: 1
+  emptyRoomNum: 2
+  bossRoomNum: 0
   startRoom: {fileID: -977859095670625238, guid: f1dbcccbfbaa6bf4bbe9b107a53f269a, type: 3}
   goalRoom: {fileID: -5101518868103409251, guid: d2c361fd9893a0d47b4f8af93eff4f64, type: 3}
   enemyRoom: {fileID: 1701291514622770542, guid: 163af53962ac28b4d9e27b28a7c4703d, type: 3}
   skillRoom: {fileID: -9157262961680191949, guid: e8e1740909738464b9d8e4cac09c0648, type: 3}
   gimmickRoom: {fileID: 5678429667937776969, guid: 297653f608c05d34196f29d4a927fe5d, type: 3}
   emptyRoom: {fileID: 4264939006747378329, guid: 5345a74782ef59e4f8af785dde0dc164, type: 3}
+  bossRoom: {fileID: 1656582586179004286, guid: 8c95f3d6686406b4ba4adca129be8a6b, type: 3}
   player: {fileID: 5507730431378403259}
 --- !u!4 &1625206585
 Transform:
@@ -4092,7 +4096,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 821229516}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4200,8 +4204,9 @@ MonoBehaviour:
   - {fileID: 5236377363063890993, guid: 350e94060a27261488560092298a06e0, type: 3}
   - {fileID: 4416138002332513283, guid: 9510939bf72fca04f81060a2bcdc7932, type: 3}
   allEnemy:
-  - {fileID: 0}
-  nextScene: Stage2
+  - {fileID: -977440009405069298, guid: 338342570b07f2d4896051b76dc55d55, type: 3}
+  - {fileID: -2194930329721954568, guid: c222158c5b39b4649b48016d1928831d, type: 3}
+  nextScene: Stage3
   blackScreen: {fileID: 1748916822}
   gameOverScreen: {fileID: 1521428580}
   displayTime: 2
@@ -4443,7 +4448,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 821229516}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -5113,6 +5118,7 @@ MonoBehaviour:
   isDivision: 0
   target: Enemy
   bulletCollider: {fileID: 709491047974160036}
+  hitEffectPrefab: {fileID: 1967835574231978638, guid: 55e9b156fca4bcc49a6f242d39520218, type: 3}
 --- !u!58 &709491047974160036
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -5148,6 +5154,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 3987455123644888283, guid: ec2b5414d15b0f448b5114327dae035b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3987455123644888357, guid: ec2b5414d15b0f448b5114327dae035b, type: 3}
       propertyPath: m_Color.b
       value: 0
@@ -5159,6 +5169,10 @@ PrefabInstance:
     - target: {fileID: 3987455123644888357, guid: ec2b5414d15b0f448b5114327dae035b, type: 3}
       propertyPath: m_Color.r
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3987455123644888357, guid: ec2b5414d15b0f448b5114327dae035b, type: 3}
+      propertyPath: m_SortingOrder
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8879175331748518380, guid: ec2b5414d15b0f448b5114327dae035b, type: 3}
       propertyPath: m_Layer
@@ -5175,6 +5189,10 @@ PrefabInstance:
     - target: {fileID: 8879175331748518382, guid: ec2b5414d15b0f448b5114327dae035b, type: 3}
       propertyPath: m_Color.r
       value: 0.18867922
+      objectReference: {fileID: 0}
+    - target: {fileID: 8879175331748518382, guid: ec2b5414d15b0f448b5114327dae035b, type: 3}
+      propertyPath: m_SortingOrder
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8879175332587571608, guid: ec2b5414d15b0f448b5114327dae035b, type: 3}
       propertyPath: m_Size.x
@@ -5440,6 +5458,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 8879175332831756103, guid: ec2b5414d15b0f448b5114327dae035b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ec2b5414d15b0f448b5114327dae035b, type: 3}
 --- !u!1 &5507730431378403259 stripped
@@ -5478,6 +5500,10 @@ PrefabInstance:
     - target: {fileID: 8570393640064886600, guid: 3b4c035b8a9711c43aa1f0c03d560d0a, type: 3}
       propertyPath: m_Name
       value: InputSystem
+      objectReference: {fileID: 0}
+    - target: {fileID: 8570393640064886600, guid: 3b4c035b8a9711c43aa1f0c03d560d0a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8570393640064886602, guid: 3b4c035b8a9711c43aa1f0c03d560d0a, type: 3}
       propertyPath: m_RootOrder

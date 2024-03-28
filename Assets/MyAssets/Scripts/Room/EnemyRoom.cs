@@ -10,7 +10,7 @@ public class EnemyRoom : Room
     [SerializeField] int minAppearNum;
     [SerializeField] int maxAppearNum;
 
-    [SerializeField] List<Enemy> enemys;
+    //[SerializeField] List<Enemy> enemys;
     List<Enemy> roomEnemys = new List<Enemy>();
 
     [SerializeField, Range(0.0f, 1.0f)] float skillRewardProb;
@@ -28,9 +28,9 @@ public class EnemyRoom : Room
         for (int i = 0; i < appearNum; ++i)
         {
             appearPointIndex = Random.Range(0, enemyAppearPoint.Count);
-            appearEnemyIndex = Random.Range(0, enemys.Count);
+            appearEnemyIndex = Random.Range(0, GameManager.I.GetEnemyNum());
 
-            roomEnemys.Add(Instantiate(enemys[appearEnemyIndex], enemyAppearPoint[appearPointIndex].position, Quaternion.identity));
+            roomEnemys.Add(Instantiate(GameManager.I.GetEnemy(appearEnemyIndex), enemyAppearPoint[appearPointIndex].position, Quaternion.identity));
             
             enemyAppearPoint.RemoveAt(appearPointIndex);
         }

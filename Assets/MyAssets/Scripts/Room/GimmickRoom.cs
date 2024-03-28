@@ -10,18 +10,16 @@ public class GimmickRoom : Room
     [SerializeField, Range(0.0f, 1.0f)] float skillRewardProb;
     [SerializeField, Range(0.0f, 1.0f)] float itemRewardProb;
 
-    bool isPutSkill = false;
+    [SerializeField] GmmickUnlockPoint gupPrefab;
+    GmmickUnlockPoint gup;
 
     protected override void Update()
     {
         base.Update();
 
-        if (dropSkills.Count > 0)
-        {
-            isPutSkill = true;
-        }
+        if (!gup) return;
 
-        if (isPutSkill && dropSkills.Count <= 0 && gimmickObj)
+        if (gup.GetIsUnlock() && gimmickObj)
         {
             Debug.Log("WWWW");
             Destroy(gimmickObj);
@@ -31,6 +29,8 @@ public class GimmickRoom : Room
 
     public override void ArrangementObject()
     {
+        gup = Instantiate(gupPrefab, transform.position, Quaternion.identity);
+
         int select = Random.Range(0, gimmickObjPrefab.Length);
         gimmickObj = Instantiate(gimmickObjPrefab[select], transform.position, Quaternion.identity);
 
@@ -53,6 +53,7 @@ public class GimmickRoom : Room
         if (!gimmickObj) return;
 
         gimmickObj.SetActive(true);
+        //gup.gameObject.SetActive(true);
     }
 
     public override void DisableObject()
@@ -60,5 +61,6 @@ public class GimmickRoom : Room
         if (!gimmickObj) return;
 
         gimmickObj.SetActive(false);
+        //gup.gameObject.SetActive(false);
     }
 }

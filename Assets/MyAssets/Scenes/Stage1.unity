@@ -4027,13 +4027,16 @@ MonoBehaviour:
   miniMapStartRoom: {fileID: 11400000, guid: ddc31d1f5e35d14448a2accdfef410b6, type: 2}
   miniMapGoalRoom: {fileID: 11400000, guid: b4fb821fd7bc47447bb49898ea32dec4, type: 2}
   miniMapSkillRoom: {fileID: 11400000, guid: 6a5d1cd4da9a059449f49046d3485d1a, type: 2}
-  roomNum: 3
   mapHoriLength: 10
   mapVerLength: 10
-  enemyRoomNum: 0
-  skillRoomNum: 0
+  roomNum: 10
+  startRoomNum: 1
+  goalRoomNum: 1
+  enemyRoomNum: 5
+  skillRoomNum: 1
   gimmickRoomNum: 0
-  emptyRoomNum: 0
+  emptyRoomNum: 2
+  bossRoomNum: 0
   startRoom: {fileID: -977859095670625238, guid: f1dbcccbfbaa6bf4bbe9b107a53f269a, type: 3}
   goalRoom: {fileID: -5101518868103409251, guid: d2c361fd9893a0d47b4f8af93eff4f64, type: 3}
   enemyRoom: {fileID: 1701291514622770542, guid: 163af53962ac28b4d9e27b28a7c4703d, type: 3}
@@ -4201,7 +4204,7 @@ MonoBehaviour:
   - {fileID: 5236377363063890993, guid: 350e94060a27261488560092298a06e0, type: 3}
   - {fileID: 4416138002332513283, guid: 9510939bf72fca04f81060a2bcdc7932, type: 3}
   allEnemy:
-  - {fileID: 0}
+  - {fileID: -977440009405069298, guid: 338342570b07f2d4896051b76dc55d55, type: 3}
   nextScene: Stage2
   blackScreen: {fileID: 1748916822}
   gameOverScreen: {fileID: 1521428580}
@@ -4558,7 +4561,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1875943348
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5150,6 +5153,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 3987455123644888283, guid: ec2b5414d15b0f448b5114327dae035b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3987455123644888357, guid: ec2b5414d15b0f448b5114327dae035b, type: 3}
       propertyPath: m_Color.b
       value: 0
@@ -5450,6 +5457,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 8879175332831756103, guid: ec2b5414d15b0f448b5114327dae035b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ec2b5414d15b0f448b5114327dae035b, type: 3}
 --- !u!1 &5507730431378403259 stripped
@@ -5488,6 +5499,10 @@ PrefabInstance:
     - target: {fileID: 8570393640064886600, guid: 3b4c035b8a9711c43aa1f0c03d560d0a, type: 3}
       propertyPath: m_Name
       value: InputSystem
+      objectReference: {fileID: 0}
+    - target: {fileID: 8570393640064886600, guid: 3b4c035b8a9711c43aa1f0c03d560d0a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8570393640064886602, guid: 3b4c035b8a9711c43aa1f0c03d560d0a, type: 3}
       propertyPath: m_RootOrder

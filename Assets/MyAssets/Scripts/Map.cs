@@ -19,14 +19,18 @@ public class Map : MonoBehaviour
     [SerializeField] Tile miniMapGoalRoom;
     [SerializeField] Tile miniMapSkillRoom;
 
-    [SerializeField] int roomNum;
+    
     [SerializeField] int mapHoriLength;
     [SerializeField] int mapVerLength;
+
+    [SerializeField] int roomNum;
+    [SerializeField] int startRoomNum;
+    [SerializeField] int goalRoomNum;
     [SerializeField] int enemyRoomNum;
     [SerializeField] int skillRoomNum;
     [SerializeField] int gimmickRoomNum;
     [SerializeField] int emptyRoomNum;
-    //[SerializeField] int bossRoomNum;
+    [SerializeField] int bossRoomNum;
 
     [SerializeField] Room startRoom;
     [SerializeField] Room goalRoom;
@@ -159,31 +163,37 @@ public class Map : MonoBehaviour
                 }
             }
         }
-        
+
         int random = Random.Range(0, posX.Count);
 
-        room = Instantiate(startRoom, roomTileMap.GetCellCenterWorld(new Vector3Int(posX[random], posY[random], 0)), Quaternion.identity);
-        room.SetRoomPos(posX[random], posY[random]);
-        room.SetId(roomId);
-        roomId++;
+        for (int i = 0; i < startRoomNum; ++i)
+        {
+            room = Instantiate(startRoom, roomTileMap.GetCellCenterWorld(new Vector3Int(posX[random], posY[random], 0)), Quaternion.identity);
+            room.SetRoomPos(posX[random], posY[random]);
+            room.SetId(roomId);
+            roomId++;
 
-        miniMapTileMap.SetTile(new Vector3Int(posX[random], posY[random], 0), miniMapStartRoom);
-        playerStartPos = roomTileMap.GetCellCenterWorld(new Vector3Int(posX[random], posY[random], 0));
+            miniMapTileMap.SetTile(new Vector3Int(posX[random], posY[random], 0), miniMapStartRoom);
+            playerStartPos = roomTileMap.GetCellCenterWorld(new Vector3Int(posX[random], posY[random], 0));
 
-        posX.RemoveAt(random);
-        posY.RemoveAt(random);
+            posX.RemoveAt(random);
+            posY.RemoveAt(random);
+        }
 
-        random = Random.Range(0, posX.Count);
+        for (int i = 0; i < goalRoomNum; ++i)
+        {
+            random = Random.Range(0, posX.Count);
 
-        room = Instantiate(goalRoom, roomTileMap.GetCellCenterWorld(new Vector3Int(posX[random], posY[random], 0)), Quaternion.identity);
-        room.SetRoomPos(posX[random], posY[random]);
-        room.SetId(roomId);
-        roomId++;
+            room = Instantiate(goalRoom, roomTileMap.GetCellCenterWorld(new Vector3Int(posX[random], posY[random], 0)), Quaternion.identity);
+            room.SetRoomPos(posX[random], posY[random]);
+            room.SetId(roomId);
+            roomId++;
 
-        miniMapTileMap.SetTile(new Vector3Int(posX[random], posY[random], 0), miniMapGoalRoom);
+            miniMapTileMap.SetTile(new Vector3Int(posX[random], posY[random], 0), miniMapGoalRoom);
 
-        posX.RemoveAt(random);
-        posY.RemoveAt(random);
+            posX.RemoveAt(random);
+            posY.RemoveAt(random);
+        }     
 
         for(int i = 0; i < enemyRoomNum; ++i)
         {
@@ -241,14 +251,21 @@ public class Map : MonoBehaviour
             posY.RemoveAt(random);
         }
 
-        random = Random.Range(0, posX.Count);
+        for (int i = 0; i < bossRoomNum; ++i)
+        {
+            random = Random.Range(0, posX.Count);
 
-        room = Instantiate(bossRoom, roomTileMap.GetCellCenterWorld(new Vector3Int(posX[random], posY[random], 0)), Quaternion.identity);
-        room.SetRoomPos(posX[random], posY[random]);
-        room.SetId(roomId);
-        roomId++;
+            room = Instantiate(bossRoom, roomTileMap.GetCellCenterWorld(new Vector3Int(posX[random], posY[random], 0)), Quaternion.identity);
+            room.SetRoomPos(posX[random], posY[random]);
+            room.SetId(roomId);
+            roomId++;
 
-        posX.RemoveAt(random);
-        posY.RemoveAt(random);
+            posX.RemoveAt(random);
+            posY.RemoveAt(random);
+        }
+
+            
+
+        
     }
 }

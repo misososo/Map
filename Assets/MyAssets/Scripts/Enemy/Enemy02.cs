@@ -8,6 +8,10 @@ public class Enemy02 : Enemy
     [SerializeField] float maxWarpSpan;
     [SerializeField] float minWarpSpan;
     float warpSpan;
+    [SerializeField] float stealthTime;
+    [SerializeField] Collider2D enemyCollider;
+    Vector3 warpPos;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,12 +31,22 @@ public class Enemy02 : Enemy
         if(warpSpan <= 0)
         {
             warpSpan = Random.Range(minWarpSpan, maxWarpSpan);
-            transform.position = player.transform.position;
+            StartCoroutine(Warp());
         }
     }
 
-    void Warp()
+    IEnumerator Warp()
     {
-        
+        enemyCollider.enabled = false;
+        sr.enabled = false;
+
+        warpPos = player.transform.position;
+
+        yield return new WaitForSeconds(stealthTime);
+
+        enemyCollider.enabled = true;
+        sr.enabled = true;
+
+        transform.position = warpPos;
     }
 }

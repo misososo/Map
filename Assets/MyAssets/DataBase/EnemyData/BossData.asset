@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Boss
   hp: 10
-  moveSpeed: 8
+  moveSpeed: 1

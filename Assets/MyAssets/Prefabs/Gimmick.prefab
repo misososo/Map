@@ -936,7 +936,7 @@ GameObject:
   - component: {fileID: 2268479934559517048}
   - component: {fileID: 4750284296338746447}
   - component: {fileID: 310421279921152458}
-  - component: {fileID: 1020177095897275796}
+  - component: {fileID: 2906118190835738227}
   m_Layer: 13
   m_Name: Triangle (4)
   m_TagString: Gimmick
@@ -1044,8 +1044,8 @@ MonoBehaviour:
   moveSpeedY: 0.25
   firstAngleX: 90
   firstAngleY: 90
---- !u!60 &1020177095897275796
-PolygonCollider2D:
+--- !u!58 &2906118190835738227
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1054,45 +1054,12 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.28866667}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0.38992417, y: -0.105624214}
-      - {x: 0.57592726, y: 0.0021089464}
-      - {x: 0.3907312, y: 0.10388405}
-      - {x: 0.49790886, y: 0.28765956}
-      - {x: 0.28928006, y: 0.29112273}
-      - {x: 0.2907336, y: 0.5023534}
-      - {x: 0.10551122, y: 0.39460796}
-      - {x: 0, y: 0.5773587}
-      - {x: -0.10667069, y: 0.39226165}
-      - {x: -0.28773272, y: 0.4983582}
-      - {x: -0.29267997, y: 0.28650925}
-      - {x: -0.49658546, y: 0.28741723}
-      - {x: -0.3951933, y: 0.10592076}
-      - {x: -0.57609516, y: 0.00074868277}
-      - {x: -0.39516538, y: -0.10708779}
-      - {x: -0.5, y: -0.28866667}
-      - {x: -0.2836816, y: -0.28910786}
-      - {x: -0.28774595, y: -0.49942744}
-      - {x: -0.104383886, y: -0.39482692}
-      - {x: 0.001849845, y: -0.5746974}
-      - {x: 0.10748061, y: -0.3941612}
-      - {x: 0.28904897, y: -0.49912003}
-      - {x: 0.28904903, y: -0.28866667}
-      - {x: 0.5, y: -0.28866667}
+  serializedVersion: 2
+  m_Radius: 0.4
 --- !u!1 &1219344361181409289
 GameObject:
   m_ObjectHideFlags: 0
@@ -1609,7 +1576,7 @@ GameObject:
   - component: {fileID: 1199983960384572556}
   - component: {fileID: 7993009341258418071}
   - component: {fileID: 72117806313065859}
-  - component: {fileID: 6926173840926768107}
+  - component: {fileID: 8151148413373736990}
   m_Layer: 13
   m_Name: Triangle (3)
   m_TagString: Gimmick
@@ -1717,8 +1684,8 @@ MonoBehaviour:
   moveSpeedY: 0.25
   firstAngleX: 180
   firstAngleY: 180
---- !u!60 &6926173840926768107
-PolygonCollider2D:
+--- !u!58 &8151148413373736990
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1727,45 +1694,12 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.28866667}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0.38992417, y: -0.105624214}
-      - {x: 0.57592726, y: 0.0021089464}
-      - {x: 0.3907312, y: 0.10388405}
-      - {x: 0.49790886, y: 0.28765956}
-      - {x: 0.28928006, y: 0.29112273}
-      - {x: 0.2907336, y: 0.5023534}
-      - {x: 0.10551122, y: 0.39460796}
-      - {x: 0, y: 0.5773587}
-      - {x: -0.10667069, y: 0.39226165}
-      - {x: -0.28773272, y: 0.4983582}
-      - {x: -0.29267997, y: 0.28650925}
-      - {x: -0.49658546, y: 0.28741723}
-      - {x: -0.3951933, y: 0.10592076}
-      - {x: -0.57609516, y: 0.00074868277}
-      - {x: -0.39516538, y: -0.10708779}
-      - {x: -0.5, y: -0.28866667}
-      - {x: -0.2836816, y: -0.28910786}
-      - {x: -0.28774595, y: -0.49942744}
-      - {x: -0.104383886, y: -0.39482692}
-      - {x: 0.001849845, y: -0.5746974}
-      - {x: 0.10748061, y: -0.3941612}
-      - {x: 0.28904897, y: -0.49912003}
-      - {x: 0.28904903, y: -0.28866667}
-      - {x: 0.5, y: -0.28866667}
+  serializedVersion: 2
+  m_Radius: 0.4
 --- !u!1 &1844550630472899549
 GameObject:
   m_ObjectHideFlags: 0
@@ -2030,7 +1964,7 @@ GameObject:
   - component: {fileID: 3343916739116048691}
   - component: {fileID: 6050109507046215048}
   - component: {fileID: 2492217902655432866}
-  - component: {fileID: 524380056526351823}
+  - component: {fileID: 7790564413805590161}
   m_Layer: 13
   m_Name: Triangle (12)
   m_TagString: Gimmick
@@ -2138,8 +2072,8 @@ MonoBehaviour:
   moveSpeedY: 0.25
   firstAngleX: 135
   firstAngleY: 135
---- !u!60 &524380056526351823
-PolygonCollider2D:
+--- !u!58 &7790564413805590161
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -2148,45 +2082,12 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.28866667}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0.38992417, y: -0.105624214}
-      - {x: 0.57592726, y: 0.0021089464}
-      - {x: 0.3907312, y: 0.10388405}
-      - {x: 0.49790886, y: 0.28765956}
-      - {x: 0.28928006, y: 0.29112273}
-      - {x: 0.2907336, y: 0.5023534}
-      - {x: 0.10551122, y: 0.39460796}
-      - {x: 0, y: 0.5773587}
-      - {x: -0.10667069, y: 0.39226165}
-      - {x: -0.28773272, y: 0.4983582}
-      - {x: -0.29267997, y: 0.28650925}
-      - {x: -0.49658546, y: 0.28741723}
-      - {x: -0.3951933, y: 0.10592076}
-      - {x: -0.57609516, y: 0.00074868277}
-      - {x: -0.39516538, y: -0.10708779}
-      - {x: -0.5, y: -0.28866667}
-      - {x: -0.2836816, y: -0.28910786}
-      - {x: -0.28774595, y: -0.49942744}
-      - {x: -0.104383886, y: -0.39482692}
-      - {x: 0.001849845, y: -0.5746974}
-      - {x: 0.10748061, y: -0.3941612}
-      - {x: 0.28904897, y: -0.49912003}
-      - {x: 0.28904903, y: -0.28866667}
-      - {x: 0.5, y: -0.28866667}
+  serializedVersion: 2
+  m_Radius: 0.4
 --- !u!1 &2222880721276362289
 GameObject:
   m_ObjectHideFlags: 0
@@ -2394,7 +2295,7 @@ GameObject:
   - component: {fileID: 1855700042756180045}
   - component: {fileID: 2668000643277478123}
   - component: {fileID: 1505520380346525374}
-  - component: {fileID: 2314702754209643276}
+  - component: {fileID: 6617334694362230265}
   m_Layer: 13
   m_Name: Triangle (10)
   m_TagString: Gimmick
@@ -2502,8 +2403,8 @@ MonoBehaviour:
   moveSpeedY: 0.25
   firstAngleX: 180
   firstAngleY: 180
---- !u!60 &2314702754209643276
-PolygonCollider2D:
+--- !u!58 &6617334694362230265
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -2512,45 +2413,12 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.28866667}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0.38992417, y: -0.105624214}
-      - {x: 0.57592726, y: 0.0021089464}
-      - {x: 0.3907312, y: 0.10388405}
-      - {x: 0.49790886, y: 0.28765956}
-      - {x: 0.28928006, y: 0.29112273}
-      - {x: 0.2907336, y: 0.5023534}
-      - {x: 0.10551122, y: 0.39460796}
-      - {x: 0, y: 0.5773587}
-      - {x: -0.10667069, y: 0.39226165}
-      - {x: -0.28773272, y: 0.4983582}
-      - {x: -0.29267997, y: 0.28650925}
-      - {x: -0.49658546, y: 0.28741723}
-      - {x: -0.3951933, y: 0.10592076}
-      - {x: -0.57609516, y: 0.00074868277}
-      - {x: -0.39516538, y: -0.10708779}
-      - {x: -0.5, y: -0.28866667}
-      - {x: -0.2836816, y: -0.28910786}
-      - {x: -0.28774595, y: -0.49942744}
-      - {x: -0.104383886, y: -0.39482692}
-      - {x: 0.001849845, y: -0.5746974}
-      - {x: 0.10748061, y: -0.3941612}
-      - {x: 0.28904897, y: -0.49912003}
-      - {x: 0.28904903, y: -0.28866667}
-      - {x: 0.5, y: -0.28866667}
+  serializedVersion: 2
+  m_Radius: 0.4
 --- !u!1 &2471056384863102962
 GameObject:
   m_ObjectHideFlags: 0
@@ -2647,7 +2515,7 @@ GameObject:
   - component: {fileID: 7480576311481637251}
   - component: {fileID: 6922495524268633262}
   - component: {fileID: 9093360507698239991}
-  - component: {fileID: 1603239890292171354}
+  - component: {fileID: 6636392071782345713}
   m_Layer: 13
   m_Name: Triangle (11)
   m_TagString: Gimmick
@@ -2755,8 +2623,8 @@ MonoBehaviour:
   moveSpeedY: 0.25
   firstAngleX: 180
   firstAngleY: 180
---- !u!60 &1603239890292171354
-PolygonCollider2D:
+--- !u!58 &6636392071782345713
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -2765,45 +2633,12 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.28866667}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0.38992417, y: -0.105624214}
-      - {x: 0.57592726, y: 0.0021089464}
-      - {x: 0.3907312, y: 0.10388405}
-      - {x: 0.49790886, y: 0.28765956}
-      - {x: 0.28928006, y: 0.29112273}
-      - {x: 0.2907336, y: 0.5023534}
-      - {x: 0.10551122, y: 0.39460796}
-      - {x: 0, y: 0.5773587}
-      - {x: -0.10667069, y: 0.39226165}
-      - {x: -0.28773272, y: 0.4983582}
-      - {x: -0.29267997, y: 0.28650925}
-      - {x: -0.49658546, y: 0.28741723}
-      - {x: -0.3951933, y: 0.10592076}
-      - {x: -0.57609516, y: 0.00074868277}
-      - {x: -0.39516538, y: -0.10708779}
-      - {x: -0.5, y: -0.28866667}
-      - {x: -0.2836816, y: -0.28910786}
-      - {x: -0.28774595, y: -0.49942744}
-      - {x: -0.104383886, y: -0.39482692}
-      - {x: 0.001849845, y: -0.5746974}
-      - {x: 0.10748061, y: -0.3941612}
-      - {x: 0.28904897, y: -0.49912003}
-      - {x: 0.28904903, y: -0.28866667}
-      - {x: 0.5, y: -0.28866667}
+  serializedVersion: 2
+  m_Radius: 0.4
 --- !u!1 &3051470307461323682
 GameObject:
   m_ObjectHideFlags: 0
@@ -2984,7 +2819,7 @@ GameObject:
   - component: {fileID: 3398546536611997248}
   - component: {fileID: 3398546536611997251}
   - component: {fileID: 3398546536611997278}
-  - component: {fileID: 2595332988877168768}
+  - component: {fileID: 6250028117472461901}
   m_Layer: 13
   m_Name: Triangle (2)
   m_TagString: Gimmick
@@ -3092,8 +2927,8 @@ MonoBehaviour:
   moveSpeedY: 0.25
   firstAngleX: 90
   firstAngleY: 90
---- !u!60 &2595332988877168768
-PolygonCollider2D:
+--- !u!58 &6250028117472461901
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -3102,45 +2937,12 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.28866667}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0.38992417, y: -0.105624214}
-      - {x: 0.57592726, y: 0.0021089464}
-      - {x: 0.3907312, y: 0.10388405}
-      - {x: 0.49790886, y: 0.28765956}
-      - {x: 0.28928006, y: 0.29112273}
-      - {x: 0.2907336, y: 0.5023534}
-      - {x: 0.10551122, y: 0.39460796}
-      - {x: 0, y: 0.5773587}
-      - {x: -0.10667069, y: 0.39226165}
-      - {x: -0.28773272, y: 0.4983582}
-      - {x: -0.29267997, y: 0.28650925}
-      - {x: -0.49658546, y: 0.28741723}
-      - {x: -0.3951933, y: 0.10592076}
-      - {x: -0.57609516, y: 0.00074868277}
-      - {x: -0.39516538, y: -0.10708779}
-      - {x: -0.5, y: -0.28866667}
-      - {x: -0.2836816, y: -0.28910786}
-      - {x: -0.28774595, y: -0.49942744}
-      - {x: -0.104383886, y: -0.39482692}
-      - {x: 0.001849845, y: -0.5746974}
-      - {x: 0.10748061, y: -0.3941612}
-      - {x: 0.28904897, y: -0.49912003}
-      - {x: 0.28904903, y: -0.28866667}
-      - {x: 0.5, y: -0.28866667}
+  serializedVersion: 2
+  m_Radius: 0.4
 --- !u!1 &3398546537061630151
 GameObject:
   m_ObjectHideFlags: 0
@@ -4131,7 +3933,7 @@ GameObject:
   - component: {fileID: 5499640836841107092}
   - component: {fileID: 9015866063500519207}
   - component: {fileID: 8090979531899956823}
-  - component: {fileID: 4079346314187074679}
+  - component: {fileID: 2157642122004302789}
   m_Layer: 13
   m_Name: Triangle (14)
   m_TagString: Gimmick
@@ -4239,8 +4041,8 @@ MonoBehaviour:
   moveSpeedY: 0.25
   firstAngleX: 90
   firstAngleY: 90
---- !u!60 &4079346314187074679
-PolygonCollider2D:
+--- !u!58 &2157642122004302789
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -4249,45 +4051,12 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.28866667}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0.38992417, y: -0.105624214}
-      - {x: 0.57592726, y: 0.0021089464}
-      - {x: 0.3907312, y: 0.10388405}
-      - {x: 0.49790886, y: 0.28765956}
-      - {x: 0.28928006, y: 0.29112273}
-      - {x: 0.2907336, y: 0.5023534}
-      - {x: 0.10551122, y: 0.39460796}
-      - {x: 0, y: 0.5773587}
-      - {x: -0.10667069, y: 0.39226165}
-      - {x: -0.28773272, y: 0.4983582}
-      - {x: -0.29267997, y: 0.28650925}
-      - {x: -0.49658546, y: 0.28741723}
-      - {x: -0.3951933, y: 0.10592076}
-      - {x: -0.57609516, y: 0.00074868277}
-      - {x: -0.39516538, y: -0.10708779}
-      - {x: -0.5, y: -0.28866667}
-      - {x: -0.2836816, y: -0.28910786}
-      - {x: -0.28774595, y: -0.49942744}
-      - {x: -0.104383886, y: -0.39482692}
-      - {x: 0.001849845, y: -0.5746974}
-      - {x: 0.10748061, y: -0.3941612}
-      - {x: 0.28904897, y: -0.49912003}
-      - {x: 0.28904903, y: -0.28866667}
-      - {x: 0.5, y: -0.28866667}
+  serializedVersion: 2
+  m_Radius: 0.4
 --- !u!1 &5922433855283021501
 GameObject:
   m_ObjectHideFlags: 0
@@ -4300,7 +4069,7 @@ GameObject:
   - component: {fileID: 4257490543575293286}
   - component: {fileID: 4483569423733696653}
   - component: {fileID: 6762174536676966361}
-  - component: {fileID: 2857304472554724478}
+  - component: {fileID: 3954171034263820199}
   m_Layer: 13
   m_Name: Triangle (15)
   m_TagString: Gimmick
@@ -4408,8 +4177,8 @@ MonoBehaviour:
   moveSpeedY: 0.25
   firstAngleX: 90
   firstAngleY: 90
---- !u!60 &2857304472554724478
-PolygonCollider2D:
+--- !u!58 &3954171034263820199
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -4418,45 +4187,12 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.28866667}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0.38992417, y: -0.105624214}
-      - {x: 0.57592726, y: 0.0021089464}
-      - {x: 0.3907312, y: 0.10388405}
-      - {x: 0.49790886, y: 0.28765956}
-      - {x: 0.28928006, y: 0.29112273}
-      - {x: 0.2907336, y: 0.5023534}
-      - {x: 0.10551122, y: 0.39460796}
-      - {x: 0, y: 0.5773587}
-      - {x: -0.10667069, y: 0.39226165}
-      - {x: -0.28773272, y: 0.4983582}
-      - {x: -0.29267997, y: 0.28650925}
-      - {x: -0.49658546, y: 0.28741723}
-      - {x: -0.3951933, y: 0.10592076}
-      - {x: -0.57609516, y: 0.00074868277}
-      - {x: -0.39516538, y: -0.10708779}
-      - {x: -0.5, y: -0.28866667}
-      - {x: -0.2836816, y: -0.28910786}
-      - {x: -0.28774595, y: -0.49942744}
-      - {x: -0.104383886, y: -0.39482692}
-      - {x: 0.001849845, y: -0.5746974}
-      - {x: 0.10748061, y: -0.3941612}
-      - {x: 0.28904897, y: -0.49912003}
-      - {x: 0.28904903, y: -0.28866667}
-      - {x: 0.5, y: -0.28866667}
+  serializedVersion: 2
+  m_Radius: 0.4
 --- !u!1 &5964871487025281237
 GameObject:
   m_ObjectHideFlags: 0
@@ -4637,7 +4373,7 @@ GameObject:
   - component: {fileID: 6661905076872116783}
   - component: {fileID: 6661905076872116780}
   - component: {fileID: 6661905076872116785}
-  - component: {fileID: 4357208928446752587}
+  - component: {fileID: 4338992321726786544}
   m_Layer: 13
   m_Name: Triangle (8)
   m_TagString: Gimmick
@@ -4745,8 +4481,8 @@ MonoBehaviour:
   moveSpeedY: 0.25
   firstAngleX: 90
   firstAngleY: 90
---- !u!60 &4357208928446752587
-PolygonCollider2D:
+--- !u!58 &4338992321726786544
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -4755,45 +4491,12 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.28866667}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0.38992417, y: -0.105624214}
-      - {x: 0.57592726, y: 0.0021089464}
-      - {x: 0.3907312, y: 0.10388405}
-      - {x: 0.49790886, y: 0.28765956}
-      - {x: 0.28928006, y: 0.29112273}
-      - {x: 0.2907336, y: 0.5023534}
-      - {x: 0.10551122, y: 0.39460796}
-      - {x: 0, y: 0.5773587}
-      - {x: -0.10667069, y: 0.39226165}
-      - {x: -0.28773272, y: 0.4983582}
-      - {x: -0.29267997, y: 0.28650925}
-      - {x: -0.49658546, y: 0.28741723}
-      - {x: -0.3951933, y: 0.10592076}
-      - {x: -0.57609516, y: 0.00074868277}
-      - {x: -0.39516538, y: -0.10708779}
-      - {x: -0.5, y: -0.28866667}
-      - {x: -0.2836816, y: -0.28910786}
-      - {x: -0.28774595, y: -0.49942744}
-      - {x: -0.104383886, y: -0.39482692}
-      - {x: 0.001849845, y: -0.5746974}
-      - {x: 0.10748061, y: -0.3941612}
-      - {x: 0.28904897, y: -0.49912003}
-      - {x: 0.28904903, y: -0.28866667}
-      - {x: 0.5, y: -0.28866667}
+  serializedVersion: 2
+  m_Radius: 0.4
 --- !u!1 &6661905077261928481
 GameObject:
   m_ObjectHideFlags: 0
@@ -4806,7 +4509,7 @@ GameObject:
   - component: {fileID: 6661905077261928483}
   - component: {fileID: 6661905077261928480}
   - component: {fileID: 6661905077261928509}
-  - component: {fileID: 8734073232197218581}
+  - component: {fileID: 7825248240091576773}
   m_Layer: 13
   m_Name: Triangle (5)
   m_TagString: Gimmick
@@ -4914,8 +4617,8 @@ MonoBehaviour:
   moveSpeedY: 0.25
   firstAngleX: 180
   firstAngleY: 180
---- !u!60 &8734073232197218581
-PolygonCollider2D:
+--- !u!58 &7825248240091576773
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -4924,45 +4627,12 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.28866667}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0.38992417, y: -0.105624214}
-      - {x: 0.57592726, y: 0.0021089464}
-      - {x: 0.3907312, y: 0.10388405}
-      - {x: 0.49790886, y: 0.28765956}
-      - {x: 0.28928006, y: 0.29112273}
-      - {x: 0.2907336, y: 0.5023534}
-      - {x: 0.10551122, y: 0.39460796}
-      - {x: 0, y: 0.5773587}
-      - {x: -0.10667069, y: 0.39226165}
-      - {x: -0.28773272, y: 0.4983582}
-      - {x: -0.29267997, y: 0.28650925}
-      - {x: -0.49658546, y: 0.28741723}
-      - {x: -0.3951933, y: 0.10592076}
-      - {x: -0.57609516, y: 0.00074868277}
-      - {x: -0.39516538, y: -0.10708779}
-      - {x: -0.5, y: -0.28866667}
-      - {x: -0.2836816, y: -0.28910786}
-      - {x: -0.28774595, y: -0.49942744}
-      - {x: -0.104383886, y: -0.39482692}
-      - {x: 0.001849845, y: -0.5746974}
-      - {x: 0.10748061, y: -0.3941612}
-      - {x: 0.28904897, y: -0.49912003}
-      - {x: 0.28904903, y: -0.28866667}
-      - {x: 0.5, y: -0.28866667}
+  serializedVersion: 2
+  m_Radius: 0.4
 --- !u!1 &6661905077831852544
 GameObject:
   m_ObjectHideFlags: 0
@@ -4975,7 +4645,7 @@ GameObject:
   - component: {fileID: 6661905077831852546}
   - component: {fileID: 6661905077831852545}
   - component: {fileID: 6661905077831852572}
-  - component: {fileID: 7604500424446655321}
+  - component: {fileID: 8171888430367011419}
   m_Layer: 13
   m_Name: Triangle (6)
   m_TagString: Gimmick
@@ -5083,8 +4753,8 @@ MonoBehaviour:
   moveSpeedY: 0.25
   firstAngleX: 90
   firstAngleY: 90
---- !u!60 &7604500424446655321
-PolygonCollider2D:
+--- !u!58 &8171888430367011419
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -5093,45 +4763,12 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.28866667}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0.38992417, y: -0.105624214}
-      - {x: 0.57592726, y: 0.0021089464}
-      - {x: 0.3907312, y: 0.10388405}
-      - {x: 0.49790886, y: 0.28765956}
-      - {x: 0.28928006, y: 0.29112273}
-      - {x: 0.2907336, y: 0.5023534}
-      - {x: 0.10551122, y: 0.39460796}
-      - {x: 0, y: 0.5773587}
-      - {x: -0.10667069, y: 0.39226165}
-      - {x: -0.28773272, y: 0.4983582}
-      - {x: -0.29267997, y: 0.28650925}
-      - {x: -0.49658546, y: 0.28741723}
-      - {x: -0.3951933, y: 0.10592076}
-      - {x: -0.57609516, y: 0.00074868277}
-      - {x: -0.39516538, y: -0.10708779}
-      - {x: -0.5, y: -0.28866667}
-      - {x: -0.2836816, y: -0.28910786}
-      - {x: -0.28774595, y: -0.49942744}
-      - {x: -0.104383886, y: -0.39482692}
-      - {x: 0.001849845, y: -0.5746974}
-      - {x: 0.10748061, y: -0.3941612}
-      - {x: 0.28904897, y: -0.49912003}
-      - {x: 0.28904903, y: -0.28866667}
-      - {x: 0.5, y: -0.28866667}
+  serializedVersion: 2
+  m_Radius: 0.4
 --- !u!1 &6661905077936375783
 GameObject:
   m_ObjectHideFlags: 0
@@ -5144,7 +4781,7 @@ GameObject:
   - component: {fileID: 6661905077936375781}
   - component: {fileID: 6661905077936375782}
   - component: {fileID: 6661905077936375803}
-  - component: {fileID: 3719115623826531816}
+  - component: {fileID: 8637986676963265675}
   m_Layer: 13
   m_Name: Triangle (9)
   m_TagString: Gimmick
@@ -5252,8 +4889,8 @@ MonoBehaviour:
   moveSpeedY: 0.25
   firstAngleX: 180
   firstAngleY: 180
---- !u!60 &3719115623826531816
-PolygonCollider2D:
+--- !u!58 &8637986676963265675
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -5262,45 +4899,12 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.28866667}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0.38992417, y: -0.105624214}
-      - {x: 0.57592726, y: 0.0021089464}
-      - {x: 0.3907312, y: 0.10388405}
-      - {x: 0.49790886, y: 0.28765956}
-      - {x: 0.28928006, y: 0.29112273}
-      - {x: 0.2907336, y: 0.5023534}
-      - {x: 0.10551122, y: 0.39460796}
-      - {x: 0, y: 0.5773587}
-      - {x: -0.10667069, y: 0.39226165}
-      - {x: -0.28773272, y: 0.4983582}
-      - {x: -0.29267997, y: 0.28650925}
-      - {x: -0.49658546, y: 0.28741723}
-      - {x: -0.3951933, y: 0.10592076}
-      - {x: -0.57609516, y: 0.00074868277}
-      - {x: -0.39516538, y: -0.10708779}
-      - {x: -0.5, y: -0.28866667}
-      - {x: -0.2836816, y: -0.28910786}
-      - {x: -0.28774595, y: -0.49942744}
-      - {x: -0.104383886, y: -0.39482692}
-      - {x: 0.001849845, y: -0.5746974}
-      - {x: 0.10748061, y: -0.3941612}
-      - {x: 0.28904897, y: -0.49912003}
-      - {x: 0.28904903, y: -0.28866667}
-      - {x: 0.5, y: -0.28866667}
+  serializedVersion: 2
+  m_Radius: 0.4
 --- !u!1 &6661905078455723089
 GameObject:
   m_ObjectHideFlags: 0
@@ -5313,7 +4917,7 @@ GameObject:
   - component: {fileID: 6661905078455723091}
   - component: {fileID: 6661905078455723088}
   - component: {fileID: 6661905078455723085}
-  - component: {fileID: 2979204453853612749}
+  - component: {fileID: 3925549333682121673}
   m_Layer: 13
   m_Name: Triangle (7)
   m_TagString: Gimmick
@@ -5421,8 +5025,8 @@ MonoBehaviour:
   moveSpeedY: 0.25
   firstAngleX: 180
   firstAngleY: 180
---- !u!60 &2979204453853612749
-PolygonCollider2D:
+--- !u!58 &3925549333682121673
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -5431,45 +5035,12 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.28866667}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0.38992417, y: -0.105624214}
-      - {x: 0.57592726, y: 0.0021089464}
-      - {x: 0.3907312, y: 0.10388405}
-      - {x: 0.49790886, y: 0.28765956}
-      - {x: 0.28928006, y: 0.29112273}
-      - {x: 0.2907336, y: 0.5023534}
-      - {x: 0.10551122, y: 0.39460796}
-      - {x: 0, y: 0.5773587}
-      - {x: -0.10667069, y: 0.39226165}
-      - {x: -0.28773272, y: 0.4983582}
-      - {x: -0.29267997, y: 0.28650925}
-      - {x: -0.49658546, y: 0.28741723}
-      - {x: -0.3951933, y: 0.10592076}
-      - {x: -0.57609516, y: 0.00074868277}
-      - {x: -0.39516538, y: -0.10708779}
-      - {x: -0.5, y: -0.28866667}
-      - {x: -0.2836816, y: -0.28910786}
-      - {x: -0.28774595, y: -0.49942744}
-      - {x: -0.104383886, y: -0.39482692}
-      - {x: 0.001849845, y: -0.5746974}
-      - {x: 0.10748061, y: -0.3941612}
-      - {x: 0.28904897, y: -0.49912003}
-      - {x: 0.28904903, y: -0.28866667}
-      - {x: 0.5, y: -0.28866667}
+  serializedVersion: 2
+  m_Radius: 0.4
 --- !u!1 &6688754957635417664
 GameObject:
   m_ObjectHideFlags: 0
@@ -5929,7 +5500,7 @@ GameObject:
   - component: {fileID: 768644176981388562}
   - component: {fileID: 3927489810613210092}
   - component: {fileID: 5785202499105096035}
-  - component: {fileID: 3970968755199087727}
+  - component: {fileID: 8158749227762425671}
   m_Layer: 13
   m_Name: Triangle (13)
   m_TagString: Gimmick
@@ -6037,8 +5608,8 @@ MonoBehaviour:
   moveSpeedY: 0.25
   firstAngleX: 135
   firstAngleY: 135
---- !u!60 &3970968755199087727
-PolygonCollider2D:
+--- !u!58 &8158749227762425671
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -6047,45 +5618,12 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.28866667}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0.38992417, y: -0.105624214}
-      - {x: 0.57592726, y: 0.0021089464}
-      - {x: 0.3907312, y: 0.10388405}
-      - {x: 0.49790886, y: 0.28765956}
-      - {x: 0.28928006, y: 0.29112273}
-      - {x: 0.2907336, y: 0.5023534}
-      - {x: 0.10551122, y: 0.39460796}
-      - {x: 0, y: 0.5773587}
-      - {x: -0.10667069, y: 0.39226165}
-      - {x: -0.28773272, y: 0.4983582}
-      - {x: -0.29267997, y: 0.28650925}
-      - {x: -0.49658546, y: 0.28741723}
-      - {x: -0.3951933, y: 0.10592076}
-      - {x: -0.57609516, y: 0.00074868277}
-      - {x: -0.39516538, y: -0.10708779}
-      - {x: -0.5, y: -0.28866667}
-      - {x: -0.2836816, y: -0.28910786}
-      - {x: -0.28774595, y: -0.49942744}
-      - {x: -0.104383886, y: -0.39482692}
-      - {x: 0.001849845, y: -0.5746974}
-      - {x: 0.10748061, y: -0.3941612}
-      - {x: 0.28904897, y: -0.49912003}
-      - {x: 0.28904903, y: -0.28866667}
-      - {x: 0.5, y: -0.28866667}
+  serializedVersion: 2
+  m_Radius: 0.4
 --- !u!1 &8156517709297100304
 GameObject:
   m_ObjectHideFlags: 0

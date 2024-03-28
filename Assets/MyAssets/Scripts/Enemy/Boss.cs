@@ -23,12 +23,38 @@ public class Boss : Enemy
     [SerializeField] int shotBeamNum;
     [SerializeField] float shotBeamSpan;
 
+    [SerializeField] Laser laserPrefab;
+    Laser laser;
+    [SerializeField] GameObject preLaserPrefab;
+    GameObject preLaser;
+    [SerializeField] float preTime;
+    [SerializeField] float laserLifeTime;
+
+
     bool isAwaken = false;
     [SerializeField] int awakenHp;
 
     Vector3 firstPos;
 
-    [SerializeField] Collider2D enemyCollider;
+    [SerializeField] float goCenterTime;
+
+    [SerializeField] Collider2D[] attackCollider;
+
+    Vector3 rushDir;
+    [SerializeField] float rushSpeed;
+
+    [SerializeField] GameObject leftArm;
+    [SerializeField] GameObject rightArm;
+    [SerializeField] Transform lArmAtkPos;
+    [SerializeField] Transform rArmAtkPos;
+    [SerializeField] float armMoveSpeed;
+    [SerializeField] float armRotSpeed;
+    Vector3 lArmMoveDir;
+    Vector3 rArmMoveDir;
+    Vector3 lArmAngle;
+    Vector3 rArmAngle;
+
+    [SerializeField] GameObject hitEffectPrefab;
 
     // Start is called before the first frame update
     void Start()
@@ -40,6 +66,8 @@ public class Boss : Enemy
         attackSpan = firstAttackSpan;
 
         firstPos = transform.position;
+
+        EnableAttackCollider(false);
     }
 
     // Update is called once per frame
@@ -62,11 +90,9 @@ public class Boss : Enemy
                 return;
             }
 
-            attackRandom = Random.Range(0, 2);
-
             if(attackRandom == 0)
             {
-                Rush();
+                StartCoroutine(Rush());
             }
             else if(attackRandom == 1)
             {
@@ -74,15 +100,22 @@ public class Boss : Enemy
             } 
             else
             {
-                
+                StartCoroutine(ShotLaser());
             }
+
+            attackRandom = Random.Range(0, 3);
         }
     }
 
-    void Rush()
+    IEnumerator Rush()
     {
-        move = (player.transform.position - transform.position).normalized * moveSpeed;
-        rb.velocity = move;       
+        rushDir = (player.transform.position - transform.position).normalized;
+
+        yield return ArmAttackMode(armMoveSpeed);
+
+        EnableAttackCollider(true);
+        move = rushDir * rushSpeed;
+        rb.velocity = move;
     }
 
     IEnumerator ShotBullet()
@@ -121,24 +154,105 @@ public class Boss : Enemy
         isAttackNow = false;
     }
 
+    IEnumerator ShotLaser()
+    {
+        preLaser = Instantiate(preLaserPrefab, transform.position, Quaternion.identity);
+
+        yield return new WaitForSeconds(preTime);
+
+        Destroy(preLaser.gameObject);
+        preLaser = null;
+
+        laser = Instantiate(laserPrefab, transform.position, Quaternion.identity);
+
+        yield return new WaitForSeconds(laserLifeTime);
+
+        Destroy(laser.gameObject);
+        laser = null;
+
+        attackSpan = Random.Range(minAttackSpan, maxAttackSpan);
+        isAttackNow = false;
+    }
+
+    IEnumerator GoCenter()
+    {
+        move = (firstPos - transform.position).normalized;
+        rb.velocity = move;
+
+        yield return new WaitForSeconds(goCenterTime);
+
+        rb.velocity = Vector2.zero;
+        attackSpan = Random.Range(minAttackSpan, maxAttackSpan);
+        isAttackNow = false;
+    }
+
     protected override void OnTriggerEnter2D(Collider2D collision)
     {
         base.OnTriggerEnter2D(collision);
 
-        if(collision.gameObject.CompareTag("Wall"))
+        if(collision.gameObject.CompareTag("Wall") && isAttackNow)
         {
+            Debug.Log("AAA");
             rb.velocity = Vector2.zero;
-            attackSpan = Random.Range(minAttackSpan, maxAttackSpan);
-            isAttackNow = false;
+            EnableAttackCollider(false);
+
+            StartCoroutine(ArmNormalMode(armMoveSpeed));
         }
     }
 
-    IEnumerator EnableCollider()
+    void EnableAttackCollider(bool b)
     {
-        enemyCollider.enabled = false;
+        for(int i = 0; i < attackCollider.Length; ++i)
+        {
+            attackCollider[i].enabled = b;
+        }
+    }
 
-        yield return null;
+    IEnumerator ArmAttackMode(float time)
+    {
+        lArmMoveDir = ((lArmAtkPos.position - leftArm.transform.position) / time);
+        rArmMoveDir = ((rArmAtkPos.position - rightArm.transform.position) / time);
 
-        enemyCollider.enabled = true;
+        lArmAngle = lArmAtkPos.eulerAngles / time;
+        rArmAngle = lArmAtkPos.eulerAngles / time;
+
+        for (int i = 0; i < time; ++i)
+        {           
+            leftArm.transform.position += lArmMoveDir;
+            rightArm.transform.position += rArmMoveDir;
+
+            leftArm.transform.Rotate(lArmAngle);
+            rightArm.transform.Rotate(-rArmAngle);
+
+            yield return null;
+        }
+    }
+
+    IEnumerator ArmNormalMode(float time)
+    {
+        move = (firstPos - transform.position).normalized;
+        rb.velocity = move;
+
+        for (int i = 0; i < time; ++i)
+        {
+            leftArm.transform.position -= lArmMoveDir;
+            rightArm.transform.position -= rArmMoveDir;
+
+            leftArm.transform.Rotate(-lArmAngle);
+            rightArm.transform.Rotate(rArmAngle);
+
+            yield return null;
+        }
+
+        rb.velocity = Vector2.zero;
+        attackSpan = Random.Range(minAttackSpan, maxAttackSpan);
+        isAttackNow = false;
+    }
+
+    protected override void OnDestroy()
+    {
+        base.OnDestroy();
+
+        Instantiate(hitEffectPrefab, transform.position, Quaternion.identity);
     }
 }
