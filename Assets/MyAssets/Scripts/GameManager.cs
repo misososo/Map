@@ -18,6 +18,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] Image gameCrearScreen;
     [SerializeField] float displayTime;
 
+    [SerializeField] string stageName;
+    [SerializeField] Text stageText;
+
     bool isGameCrear = false;
 
     int nowRoomId = -1;//Œ»İƒvƒŒƒCƒ„[‚ª‚¢‚é•”‰®‚ÌID
@@ -37,6 +40,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         StartCoroutine(FadeIn());
+        stageText.text = stageName;
     }
 
     // Update is called once per frame

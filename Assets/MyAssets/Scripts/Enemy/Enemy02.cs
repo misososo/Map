@@ -12,6 +12,11 @@ public class Enemy02 : Enemy
     [SerializeField] Collider2D enemyCollider;
     Vector3 warpPos;
 
+    [SerializeField] GameObject fakePrefab;
+    GameObject fake;
+
+    [SerializeField] GameObject hitEffectPrefab;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -42,7 +47,12 @@ public class Enemy02 : Enemy
 
         warpPos = player.transform.position;
 
+        Instantiate(hitEffectPrefab, transform.position, Quaternion.identity);
+        fake = Instantiate(fakePrefab, warpPos, Quaternion.identity);
+
         yield return new WaitForSeconds(stealthTime);
+
+        Destroy(fake);
 
         enemyCollider.enabled = true;
         sr.enabled = true;

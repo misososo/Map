@@ -85,6 +85,8 @@ public class Player : MonoBehaviour
     {
         if (GameManager.I.GetIsGameCrear())
         {
+            playerCollider.enabled = false;
+            rb.velocity = Vector2.zero;
             StartCoroutine(GameManager.I.GameCrear());
             return;
         }
