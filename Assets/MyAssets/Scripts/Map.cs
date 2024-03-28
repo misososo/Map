@@ -232,7 +232,9 @@ public class Map : MonoBehaviour
             room.SetRoomPos(posX[random], posY[random]);
             room.SetId(roomId);
             roomId++;
-            
+
+            miniMapTileMap.SetTile(new Vector3Int(posX[random], posY[random], 0), miniMapSkillRoom);
+
             posX.RemoveAt(random);
             posY.RemoveAt(random);
         }

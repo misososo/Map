@@ -4029,14 +4029,14 @@ MonoBehaviour:
   miniMapSkillRoom: {fileID: 11400000, guid: 6a5d1cd4da9a059449f49046d3485d1a, type: 2}
   mapHoriLength: 10
   mapVerLength: 10
-  roomNum: 30
+  roomNum: 2
   startRoomNum: 1
-  goalRoomNum: 1
-  enemyRoomNum: 15
-  skillRoomNum: 3
-  gimmickRoomNum: 3
-  emptyRoomNum: 7
-  bossRoomNum: 0
+  goalRoomNum: 0
+  enemyRoomNum: 0
+  skillRoomNum: 0
+  gimmickRoomNum: 0
+  emptyRoomNum: 0
+  bossRoomNum: 1
   startRoom: {fileID: -977859095670625238, guid: f1dbcccbfbaa6bf4bbe9b107a53f269a, type: 3}
   goalRoom: {fileID: -5101518868103409251, guid: d2c361fd9893a0d47b4f8af93eff4f64, type: 3}
   enemyRoom: {fileID: 1701291514622770542, guid: 163af53962ac28b4d9e27b28a7c4703d, type: 3}
@@ -4207,7 +4207,7 @@ MonoBehaviour:
   - {fileID: -2194930329721954568, guid: c222158c5b39b4649b48016d1928831d, type: 3}
   - {fileID: -287195110074461191, guid: af6f83e36dd51204db365981deafa831, type: 3}
   - {fileID: 3649270845309556667, guid: 891cbf1d3c38d54438d1995ecf9b401f, type: 3}
-  nextScene: Boss
+  nextScene: Title
   blackScreen: {fileID: 1748916822}
   gameOverScreen: {fileID: 1521428580}
   displayTime: 2
