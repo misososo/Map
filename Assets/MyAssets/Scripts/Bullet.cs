@@ -111,6 +111,8 @@ public class Bullet : MonoBehaviour
     {
         if (collision.gameObject.CompareTag(target))
         {
+            hitEffect = Instantiate(hitEffectPrefab, transform.position, Quaternion.identity);
+
             if (penetrationNum <= 0)
             {
                 Destroy(gameObject);
@@ -122,7 +124,7 @@ public class Bullet : MonoBehaviour
 
     private void OnDestroy()
     {
-        hitEffect = Instantiate(hitEffectPrefab, transform.position, Quaternion.identity);
+        
     }
 
     IEnumerator EnableCollider()

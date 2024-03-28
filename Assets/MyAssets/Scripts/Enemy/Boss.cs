@@ -11,14 +11,24 @@ public class Boss : Enemy
     [SerializeField] float firstAttackSpan;
     float attackSpan;
     bool isAttackNow = false;
+    int attackRandom;
 
     [SerializeField] Bullet bulletPrefab;
     Bullet bullet;
-    [SerializeField] int shotNum;
-    [SerializeField] float shotSpan;
+    [SerializeField] int shotBulletNum;
+    [SerializeField] float shotBulletSpan;
+
+    [SerializeField] Bullet beamPrefab;
+    Bullet beam;
+    [SerializeField] int shotBeamNum;
+    [SerializeField] float shotBeamSpan;
 
     bool isAwaken = false;
     [SerializeField] int awakenHp;
+
+    Vector3 firstPos;
+
+    [SerializeField] Collider2D enemyCollider;
 
     // Start is called before the first frame update
     void Start()
@@ -28,6 +38,8 @@ public class Boss : Enemy
         rb = GetComponent<Rigidbody2D>();
 
         attackSpan = firstAttackSpan;
+
+        firstPos = transform.position;
     }
 
     // Update is called once per frame
@@ -50,7 +62,20 @@ public class Boss : Enemy
                 return;
             }
 
-            Rush();
+            attackRandom = Random.Range(0, 2);
+
+            if(attackRandom == 0)
+            {
+                Rush();
+            }
+            else if(attackRandom == 1)
+            {
+                StartCoroutine(ShotBeam());
+            } 
+            else
+            {
+                
+            }
         }
     }
 
@@ -62,7 +87,7 @@ public class Boss : Enemy
 
     IEnumerator ShotBullet()
     {
-        for(int i = 0; i < shotNum; ++i)
+        for(int i = 0; i < shotBulletNum; ++i)
         {
             bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
 
@@ -71,7 +96,25 @@ public class Boss : Enemy
 
             bullet.SetDir(dir.normalized);
 
-            yield return new WaitForSeconds(shotSpan);
+            yield return new WaitForSeconds(shotBulletSpan);
+        }
+
+        attackSpan = Random.Range(minAttackSpan, maxAttackSpan);
+        isAttackNow = false;
+    }
+
+    IEnumerator ShotBeam()
+    {
+        for(int i = 0; i < shotBeamNum; ++i)
+        {
+            beam = Instantiate(beamPrefab, transform.position, Quaternion.identity);
+
+            dir = (player.transform.position - transform.position).normalized;
+
+
+            beam.SetDir(dir);
+
+            yield return new WaitForSeconds(shotBeamSpan);
         }
 
         attackSpan = Random.Range(minAttackSpan, maxAttackSpan);
@@ -88,5 +131,14 @@ public class Boss : Enemy
             attackSpan = Random.Range(minAttackSpan, maxAttackSpan);
             isAttackNow = false;
         }
+    }
+
+    IEnumerator EnableCollider()
+    {
+        enemyCollider.enabled = false;
+
+        yield return null;
+
+        enemyCollider.enabled = true;
     }
 }
