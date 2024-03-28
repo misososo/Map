@@ -18,8 +18,7 @@ public class Enemy04 : Enemy
         SetStatus();
         player = GameObject.Find("Player").GetComponent<Player>();
         rb = GetComponent<Rigidbody2D>();
-        Debug.Log("WWW");
-
+        
         dir.x = Random.Range(-1.0f, 1.0f);
         dir.y = Random.Range(-1.0f, 1.0f);
 

@@ -5,6 +5,7 @@ using UnityEngine;
 public class Enemy01 : Enemy
 {
     GameObject player;
+    SpriteRenderer sr;
 
     // Start is called before the first frame update
     void Start()
@@ -12,6 +13,7 @@ public class Enemy01 : Enemy
         SetStatus();
         player = GameObject.Find("Player");
         rb = GetComponent<Rigidbody2D>();
+        sr = GetComponent<SpriteRenderer>();
     }
 
     private void FixedUpdate()
@@ -31,6 +33,14 @@ public class Enemy01 : Enemy
         move = transform.position;
         move = (player.transform.position - transform.position).normalized * moveSpeed;
         //transform.position = move;
+        if(move.x > 0)
+        {
+            sr.flipX = true;
+        }
+        else if(move.x < 0)
+        {
+            sr.flipX = false;
+        }
     }
 
 

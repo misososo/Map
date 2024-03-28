@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 
@@ -29,6 +30,9 @@ public class Bullet : MonoBehaviour
     int oldRoomId;
 
     [SerializeField] Collider2D bulletCollider;
+
+    [SerializeField] GameObject hitEffectPrefab;
+    GameObject hitEffect;
 
     // Start is called before the first frame update
     void Start()
@@ -114,6 +118,11 @@ public class Bullet : MonoBehaviour
 
             penetrationNum--;
         }
+    }
+
+    private void OnDestroy()
+    {
+        hitEffect = Instantiate(hitEffectPrefab, transform.position, Quaternion.identity);
     }
 
     IEnumerator EnableCollider()

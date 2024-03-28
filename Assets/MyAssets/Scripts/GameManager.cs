@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] Image gameOverScreen;
     [SerializeField] float displayTime;
 
-    int nowRoomId;//現在プレイヤーがいる部屋のID
+    int nowRoomId = -1;//現在プレイヤーがいる部屋のID
 
     private void Awake()
     {

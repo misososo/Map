@@ -146,3 +146,4 @@ MonoBehaviour:
   isDivision: 0
   target: Player
   bulletCollider: {fileID: 0}
+  hitEffectPrefab: {fileID: 1967835574231978638, guid: 55e9b156fca4bcc49a6f242d39520218, type: 3}

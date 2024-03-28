@@ -225,3 +225,5 @@ MonoBehaviour:
   colliderSizeInPlayer: {x: 1, y: 1, z: 0}
   colliderSizeOutPlayer: {x: 0.8, y: 0.8, z: 0}
   wall: {fileID: 11400000, guid: d3eba0123b5e3c848912ab71ae2a2308, type: 2}
+  stone: {fileID: 2216443661262200719, guid: 05f413689f8965446945558eeb9caf07, type: 3}
+  isStone: 1

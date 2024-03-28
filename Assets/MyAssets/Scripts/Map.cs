@@ -26,6 +26,7 @@ public class Map : MonoBehaviour
     [SerializeField] int skillRoomNum;
     [SerializeField] int gimmickRoomNum;
     [SerializeField] int emptyRoomNum;
+    //[SerializeField] int bossRoomNum;
 
     [SerializeField] Room startRoom;
     [SerializeField] Room goalRoom;
@@ -33,6 +34,7 @@ public class Map : MonoBehaviour
     [SerializeField] Room skillRoom;
     [SerializeField] Room gimmickRoom;
     [SerializeField] Room emptyRoom;
+    [SerializeField] Room bossRoom;
 
     [SerializeField] GameObject player;
     Vector3 playerStartPos;
@@ -238,5 +240,15 @@ public class Map : MonoBehaviour
             posX.RemoveAt(random);
             posY.RemoveAt(random);
         }
+
+        random = Random.Range(0, posX.Count);
+
+        room = Instantiate(bossRoom, roomTileMap.GetCellCenterWorld(new Vector3Int(posX[random], posY[random], 0)), Quaternion.identity);
+        room.SetRoomPos(posX[random], posY[random]);
+        room.SetId(roomId);
+        roomId++;
+
+        posX.RemoveAt(random);
+        posY.RemoveAt(random);
     }
 }

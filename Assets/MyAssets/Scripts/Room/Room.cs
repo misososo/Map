@@ -6,7 +6,7 @@ using UnityEngine.Tilemaps;
 public class Room : MonoBehaviour
 {
     [SerializeField] SpriteRenderer sr;
-    protected bool isArrangement = false;
+    bool isArrangement = false;
 
     protected List<Skill> dropSkills = new List<Skill>();
     int dropSkillsId = 0;
@@ -111,23 +111,26 @@ public class Room : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Player"))
         {
-            isEnable = true;
-            roomCollider.size = colliderSizeInPlayer;
-
-            CheckNextRoom();
-
-            if (isArrangement)
-            {            
-                EnebleObject();
-            }
-            else
+            if(id != GameManager.I.GetNowRoomId())
             {
+                GameManager.I.SetRoomId(id);
+
+                isEnable = true;
+                roomCollider.size = colliderSizeInPlayer;
                 
-                
-                
-                ArrangementObject();
-                isArrangement = true;
+                CheckNextRoom();
+
+                if(isArrangement)
+                {
+                    EnebleObject();
+                }
+                else
+                {
+                    ArrangementObject();
+                    isArrangement = true;
+                }
             }
+            
 
             
         }

@@ -130,7 +130,7 @@ public class Player : MonoBehaviour
                 return;
        
             room.RemoveSprite();
-            GameManager.I.SetRoomId(room.GetId());
+            //GameManager.I.SetRoomId(room.GetId());
             
         }
 

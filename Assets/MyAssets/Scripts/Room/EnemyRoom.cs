@@ -87,6 +87,8 @@ public class EnemyRoom : Room
         {
             CheckNextRoom();
 
+            Debug.Log("ZZZZZ");
+
             float appearReward = Random.value;
 
             if(appearReward <= skillRewardProb)
