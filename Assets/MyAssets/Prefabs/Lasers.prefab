@@ -216,7 +216,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e67fa96c89cb24242919010320a98d68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationAmount: {x: 0, y: 0, z: 0.2}
+  rotationAmount: {x: 0, y: 0, z: 0.3}
   turnTime: 3
   hitEffectPrefab: {fileID: 1967835574231978638, guid: 55e9b156fca4bcc49a6f242d39520218, type: 3}
 --- !u!1 &8902568438946392300

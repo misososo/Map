@@ -38,22 +38,43 @@ public class SendData : MonoBehaviour
 
     public void SendDataForNextScene(Scene next, LoadSceneMode mode)
     {
+        
+
         SendData bulletStatus = GameObject.Find("BulletData").GetComponent<SendData>();
         Bullet newBullet = bulletStatus.GetBullet();
         SkillSlot newSkillSlot = bulletStatus.GetSkillSlot();
         Player newPlayer = bulletStatus.GetPlayer();
 
-        newBullet.SetReflectNum(bullet.GetReflectNum());
-        newBullet.SetPenetrationNum(bullet.GetPenetrationNum());
-        newBullet.SetProductScale(bullet.GetProductScale());
-        newBullet.SetDivisionNum(bullet.GetDivisionNum());
-        newBullet.SetIsDivision(bullet.GetIsDivision());
+        if(SceneManager.GetActiveScene().name == "Title")
+        {
+            newBullet.SetReflectNum(0);
+            newBullet.SetPenetrationNum(0);
+            newBullet.SetProductScale(1);
+            newBullet.SetDivisionNum(0);
+            newBullet.SetIsDivision(false);
 
-        newSkillSlot.SetHaveSkills(skillSlot.GetHaveSkills());
+            newSkillSlot.SetHaveSkills(new Skill[8]);
 
-        newPlayer.SetMaxHp(player.GetMaxHp());
-        newPlayer.SetHp(player.GetHp());
-        newPlayer.SetBomNum(player.GetBomNum());
+            newPlayer.SetMaxHp(3);
+            newPlayer.SetHp(3);
+            newPlayer.SetBomNum(1);
+        }
+        else
+        {
+            newBullet.SetReflectNum(bullet.GetReflectNum());
+            newBullet.SetPenetrationNum(bullet.GetPenetrationNum());
+            newBullet.SetProductScale(bullet.GetProductScale());
+            newBullet.SetDivisionNum(bullet.GetDivisionNum());
+            newBullet.SetIsDivision(bullet.GetIsDivision());
+
+            newSkillSlot.SetHaveSkills(skillSlot.GetHaveSkills());
+
+            newPlayer.SetMaxHp(player.GetMaxHp());
+            newPlayer.SetHp(player.GetHp());
+            newPlayer.SetBomNum(player.GetBomNum());
+        }
+
+        
         
         SceneManager.sceneLoaded -= SendDataForNextScene;
     }
