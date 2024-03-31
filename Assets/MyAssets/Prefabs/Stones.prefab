@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2216443660194108951}
   - component: {fileID: 2216443660194108944}
   - component: {fileID: 5234423053996761612}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Stone (5)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 2216443660554787542}
   - component: {fileID: 2216443660554787543}
   - component: {fileID: 1627488824202184554}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Stone (7)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -260,7 +260,7 @@ GameObject:
   - component: {fileID: 2216443660617520605}
   - component: {fileID: 2216443660617520606}
   - component: {fileID: 208520284223427557}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Stone (6)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -384,7 +384,7 @@ GameObject:
   - component: {fileID: 2216443660672310488}
   - component: {fileID: 2216443660672310489}
   - component: {fileID: 628863683686989311}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Stone (2)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -508,7 +508,7 @@ GameObject:
   - component: {fileID: 2216443660800916132}
   - component: {fileID: 2216443660800916133}
   - component: {fileID: 6599570245959397865}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Stone (3)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -671,7 +671,7 @@ GameObject:
   - component: {fileID: 2216443661309577570}
   - component: {fileID: 2216443661309577571}
   - component: {fileID: 4887774758922947747}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Stone (1)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -795,7 +795,7 @@ GameObject:
   - component: {fileID: 2216443661532074739}
   - component: {fileID: 2216443661532074748}
   - component: {fileID: 7901496146534332719}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Stone (4)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -919,7 +919,7 @@ GameObject:
   - component: {fileID: 2216443661992841809}
   - component: {fileID: 2216443661992841810}
   - component: {fileID: 6084196437633057354}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Stone
   m_TagString: Wall
   m_Icon: {fileID: 0}

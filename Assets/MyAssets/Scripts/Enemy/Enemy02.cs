@@ -9,7 +9,7 @@ public class Enemy02 : Enemy
     [SerializeField] float minWarpSpan;
     float warpSpan;
     [SerializeField] float stealthTime;
-    [SerializeField] Collider2D enemyCollider;
+    [SerializeField] Collider2D[] enemyCollider;
     Vector3 warpPos;
 
     [SerializeField] GameObject fakePrefab;
@@ -42,7 +42,11 @@ public class Enemy02 : Enemy
 
     IEnumerator Warp()
     {
-        enemyCollider.enabled = false;
+        for(int i = 0; i < enemyCollider.Length; ++i)
+        {
+            enemyCollider[i].enabled = false;
+        }
+        
         sr.enabled = false;
 
         warpPos = player.transform.position;
@@ -54,7 +58,11 @@ public class Enemy02 : Enemy
 
         Destroy(fake);
 
-        enemyCollider.enabled = true;
+        for (int i = 0; i < enemyCollider.Length; ++i)
+        {
+            enemyCollider[i].enabled = true;
+        }
+
         sr.enabled = true;
 
         transform.position = warpPos;

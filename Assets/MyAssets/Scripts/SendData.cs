@@ -12,7 +12,26 @@ public class SendData : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SceneManager.sceneLoaded += SendDataForNextScene;
+        if (SceneManager.GetActiveScene().name != "Title")
+        {
+            SceneManager.sceneLoaded += SendDataForNextScene;
+        }
+            
+
+        if (SceneManager.GetActiveScene().name == "Stage1")
+        {
+            bullet.SetReflectNum(0);
+            bullet.SetPenetrationNum(0);
+            bullet.SetProductScale(1);
+            bullet.SetDivisionNum(0);
+            bullet.SetIsDivision(false);
+
+            skillSlot.SetHaveSkills(new Skill[8]);
+
+            player.SetMaxHp(3);
+            player.SetHp(3);
+            player.SetBomNum(1);
+        }
     }
 
     // Update is called once per frame
@@ -45,22 +64,8 @@ public class SendData : MonoBehaviour
         SkillSlot newSkillSlot = bulletStatus.GetSkillSlot();
         Player newPlayer = bulletStatus.GetPlayer();
 
-        if(SceneManager.GetActiveScene().name == "Title")
-        {
-            newBullet.SetReflectNum(0);
-            newBullet.SetPenetrationNum(0);
-            newBullet.SetProductScale(1);
-            newBullet.SetDivisionNum(0);
-            newBullet.SetIsDivision(false);
-
-            newSkillSlot.SetHaveSkills(new Skill[8]);
-
-            newPlayer.SetMaxHp(3);
-            newPlayer.SetHp(3);
-            newPlayer.SetBomNum(1);
-        }
-        else
-        {
+        
+        
             newBullet.SetReflectNum(bullet.GetReflectNum());
             newBullet.SetPenetrationNum(bullet.GetPenetrationNum());
             newBullet.SetProductScale(bullet.GetProductScale());
@@ -72,7 +77,7 @@ public class SendData : MonoBehaviour
             newPlayer.SetMaxHp(player.GetMaxHp());
             newPlayer.SetHp(player.GetHp());
             newPlayer.SetBomNum(player.GetBomNum());
-        }
+        
 
         
         

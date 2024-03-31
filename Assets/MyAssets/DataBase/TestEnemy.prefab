@@ -187,7 +187,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6594612564035627494}
   - component: {fileID: 3463518968355163543}
-  m_Layer: 8
+  m_Layer: 15
   m_Name: Attack
   m_TagString: EnemyAttack
   m_Icon: {fileID: 0}

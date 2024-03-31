@@ -630,13 +630,21 @@ PrefabInstance:
       value: GameManager
       objectReference: {fileID: 0}
     - target: {fileID: 8691996599474579055, guid: f7be355c22090754c80ddfba898fd65e, type: 3}
+      propertyPath: nextScene
+      value: Stage1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8691996599474579055, guid: f7be355c22090754c80ddfba898fd65e, type: 3}
       propertyPath: stageName
-      value: 
+      value: ' '
       objectReference: {fileID: 0}
     - target: {fileID: 8691996599474579055, guid: f7be355c22090754c80ddfba898fd65e, type: 3}
       propertyPath: blackScreen
       value: 
       objectReference: {fileID: 1667083090}
+    - target: {fileID: 8691996599474579055, guid: f7be355c22090754c80ddfba898fd65e, type: 3}
+      propertyPath: allEnemy.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f7be355c22090754c80ddfba898fd65e, type: 3}
 --- !u!1 &845531643

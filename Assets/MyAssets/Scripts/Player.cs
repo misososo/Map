@@ -35,17 +35,13 @@ public class Player : MonoBehaviour
 
     [SerializeField] SkillSlot SkillSlot;
 
-    bool isGet = false;
-    bool isTouthObj = false;
-
+    GameObject hitObj;
+    
     [SerializeField] Text touchObjName;
     [SerializeField] Text touchObjInfo;
     [SerializeField] Text bomNumText;
 
     bool isDie = false;
-
-    [SerializeField] AudioPlayer shotAp;
-    [SerializeField] AudioPlayer damageAp;
 
     // Start is called before the first frame update
     void Start()
@@ -114,7 +110,7 @@ public class Player : MonoBehaviour
                 bullet = Instantiate(bulletPrefab, bulletShot.transform.position, Quaternion.identity);
                 bullet.SetDir(gun.transform.up);
                 bullet = null;
-                Instantiate(shotAp);
+                GameManager.I.PlaySE((int)GameManager.SE.shot, transform.position);
             }
             
         }
@@ -130,14 +126,29 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        isTouthObj = true;
-        GameObject hitObj = collision.gameObject;
-
-        if(hitObj.CompareTag("CameraPoint"))
+        if (collision.CompareTag("Skill"))
         {
-            pc.SetTarget(hitObj);
+            hitObj = collision.gameObject;
+            Debug.Log(hitObj);
 
-            Room room = hitObj.GetComponent<Room>();
+            Skill skill = hitObj.GetComponent<Skill>();
+
+            if (!skill) return;
+
+            touchObjName.text = skill.GetName();
+            touchObjInfo.text = skill.GetInfo();
+        }
+        else if (collision.CompareTag("Goal"))
+        {
+            hitObj = collision.gameObject;
+            Debug.Log(hitObj);
+        }
+
+        if (collision.CompareTag("CameraPoint"))
+        {
+            pc.SetTarget(collision.gameObject);
+
+            Room room = collision.GetComponent<Room>();
 
             if(!room)
                 return;
@@ -147,25 +158,17 @@ public class Player : MonoBehaviour
             
         }
 
-        if (hitObj.CompareTag("Skill"))
-        {
-            Skill skill = hitObj.GetComponent<Skill>();
+        
 
-            if (!skill) return;
-
-            touchObjName.text = skill.GetName();
-            touchObjInfo.text = skill.GetInfo();
-        }
-
-        if(hitObj.CompareTag("EnemyBullet") || hitObj.CompareTag("EnemyAttack") || hitObj.CompareTag("Explosion") || hitObj.CompareTag("Gimmick"))
+        if (collision.CompareTag("EnemyBullet") || collision.CompareTag("EnemyAttack") || collision.CompareTag("Explosion") || collision.CompareTag("Gimmick"))
         {
             if (hp <= 0) return;
             
             hp--;
             lifes[hp].SetActive(false);
-            Instantiate(damageAp);
+            GameManager.I.PlaySE((int)GameManager.SE.damage, transform.position);
 
-            if(hp == 0)
+            if (hp == 0)
             {
                 Die();
             }
@@ -173,7 +176,7 @@ public class Player : MonoBehaviour
             StartCoroutine(EnableCollider(invincibleTime));
         }
 
-        if(hitObj.CompareTag("Life"))
+        if(collision.CompareTag("Life"))
         {
             if(hp == maxHp)return;
 
@@ -181,47 +184,28 @@ public class Player : MonoBehaviour
 
             hp++;
 
-            Destroy(hitObj);
+            GameManager.I.PlaySE((int)GameManager.SE.heal, transform.position);
+
+            Destroy(collision.gameObject);
         }
 
-        if(hitObj.CompareTag("Bom"))
+        if(collision.CompareTag("Bom"))
         {
             bomNum++;
             bomNumText.text = "x" + bomNum;
 
-            Destroy(hitObj);
+            GameManager.I.PlaySE((int)GameManager.SE.heal, transform.position);
+
+            Destroy(collision.gameObject);
         }
-    }
 
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        GameObject hitObj = collision.gameObject;
-       
-        if (hitObj.CompareTag("Skill") && isGet)
-        {
-            Skill skill = hitObj.GetComponent<Skill>();
-
-            if (!skill) return;
-
-            isGet = false;
-
-            if (SkillSlot.GetHaveSkill()) return;
-
-            skill.SetId(-1);
-            EquipmentSkill(skill);
-        }
-        else if(hitObj.CompareTag("Goal") && isGet)
-        {
-            Debug.Log("Goal");
-            isGet = false;
-            StartCoroutine(GameManager.I.ChangeScene(GameManager.I.GetNextScene()));
-        }
+        
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        isTouthObj = false;
-
+        hitObj = null;
+        
         touchObjName.text = "";
         touchObjInfo.text = "";
     }
@@ -240,10 +224,23 @@ public class Player : MonoBehaviour
 
     public void CheckInputSouthButton(InputAction.CallbackContext context)
     {
-        if(context.performed && isTouthObj)
+        if (!hitObj) return;
+
+        if (context.performed && hitObj.CompareTag("Skill"))
         {
-            rb.WakeUp();
-            isGet = true;
+            Skill skill = hitObj.GetComponent<Skill>();
+
+            if (!skill) return;
+            if (SkillSlot.GetHaveSkill()) return;
+
+            skill.SetId(-1);
+            EquipmentSkill(skill);
+
+            StartCoroutine(EnableCollider(Time.deltaTime));
+        }
+        else if (context.performed && hitObj.CompareTag("Goal"))
+        {
+            StartCoroutine(GameManager.I.ChangeScene(GameManager.I.GetNextScene()));
         }
     }
 
@@ -272,6 +269,7 @@ public class Player : MonoBehaviour
                 SkillSlot.EntryHaveSkill(GameManager.I.GetSkill(i));
                 SkillSlot.GetHaveSkill().EnableSkill(ref bulletPrefab);
                 //Debug.Log(bulletPrefab.GetReflect());
+                GameManager.I.PlaySE((int)GameManager.SE.heal, transform.position);
 
                 Destroy(skill.gameObject);
 
@@ -319,7 +317,7 @@ public class Player : MonoBehaviour
     {
         isDie = true;
         rb.velocity = Vector2.zero;
-        Instantiate(shotAp);
+        //Instantiate(apPrefab);
         StartCoroutine(GameManager.I.GameOver());
         //StartCoroutine(GameManager.I.ChangeScene("Title"));
     }

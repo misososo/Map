@@ -173,7 +173,7 @@ public class Map : MonoBehaviour
             room.SetId(roomId);
             roomId++;
 
-            miniMapTileMap.SetTile(new Vector3Int(posX[random], posY[random], 0), miniMapStartRoom);
+            //miniMapTileMap.SetTile(new Vector3Int(posX[random], posY[random], 0), miniMapStartRoom);
             playerStartPos = roomTileMap.GetCellCenterWorld(new Vector3Int(posX[random], posY[random], 0));
 
             posX.RemoveAt(random);

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2749994682906993892}
   - component: {fileID: 2749994682906993895}
   - component: {fileID: 7448742686257429945}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Square
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -122,7 +122,7 @@ GameObject:
   - component: {fileID: 4794823211507100393}
   - component: {fileID: 4794823211507100399}
   - component: {fileID: 4794823211507100398}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Square (7)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -233,7 +233,7 @@ GameObject:
   - component: {fileID: 4794823211736772070}
   - component: {fileID: 4794823211736772068}
   - component: {fileID: 4794823211736772071}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Square (5)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -677,7 +677,7 @@ GameObject:
   - component: {fileID: 4794823212368463683}
   - component: {fileID: 4794823212368463681}
   - component: {fileID: 4794823212368463680}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Square (4)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -1010,7 +1010,7 @@ GameObject:
   - component: {fileID: 4794823213318589094}
   - component: {fileID: 4794823213318589092}
   - component: {fileID: 4794823213318589095}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Square (6)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -1787,7 +1787,7 @@ GameObject:
   - component: {fileID: 7251732006070710147}
   - component: {fileID: 7251732006070710146}
   - component: {fileID: 4323370767034192712}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Square (2)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -1898,7 +1898,7 @@ GameObject:
   - component: {fileID: 7251732006798369385}
   - component: {fileID: 7251732006798369384}
   - component: {fileID: 5246100247053267254}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Square (1)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -2171,7 +2171,7 @@ GameObject:
   - component: {fileID: 7251732007133570992}
   - component: {fileID: 7251732007133570999}
   - component: {fileID: 6208387911297400667}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Square (3)
   m_TagString: Wall
   m_Icon: {fileID: 0}

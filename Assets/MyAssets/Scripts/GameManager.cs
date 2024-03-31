@@ -23,13 +23,23 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] AudioSource audioSource;
     [SerializeField] AudioClip[] clips;
-    public enum Audio
+    public enum Music
     {
         normal,
         battle,
         boss
     }
-    
+
+    [SerializeField] AudioPlayer apPrefab;
+    AudioPlayer ap;
+    public enum SE
+    {
+        shot = 0,
+        bom,
+        damage,
+        heal
+    }
+
     bool isGameCrear = false;
 
     int nowRoomId = -1;//åªç›ÉvÉåÉCÉÑÅ[Ç™Ç¢ÇÈïîâÆÇÃID
@@ -49,6 +59,9 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         StartCoroutine(FadeIn());
+
+        if (!stageText) return;
+
         stageText.text = stageName;
     }
 
@@ -133,15 +146,21 @@ public class GameManager : MonoBehaviour
         StartCoroutine(ChangeScene("Title"));
     }
 
-    public void AudioChange(int index)
+    public void MusicChange(int index)
     {
         audioSource.clip = clips[index];
         audioSource.Play();
     }
 
-    public void AudioStop()
+    public void MusicStop()
     {
         audioSource.Stop();
+    }
+
+    public void PlaySE(int playNum, Vector3 pos)
+    {
+        ap = Instantiate(apPrefab, pos, Quaternion.identity);
+        ap.PlayAudio(playNum);
     }
 
     public string GetNextScene()

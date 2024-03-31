@@ -1,0 +1,73 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1337544685393084545
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1337544685393084559}
+  - component: {fileID: 1337544685393084558}
+  m_Layer: 0
+  m_Name: MapMaker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1337544685393084559
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1337544685393084545}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1337544685393084558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1337544685393084545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e055967f97b9d624d825b830e66025ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wallTileMap: {fileID: 0}
+  wall: {fileID: 11400000, guid: be4d8442b35dd2d42affb362afa970b6, type: 2}
+  roomTileMap: {fileID: 0}
+  room: {fileID: 11400000, guid: 69619c761736b1f4eaf5915bafb5bce7, type: 2}
+  miniMapTileMap: {fileID: 0}
+  miniMapRoom: {fileID: 11400000, guid: fae87cb93b45660449ac0df6dfb3e935, type: 2}
+  miniMapStartRoom: {fileID: 11400000, guid: ddc31d1f5e35d14448a2accdfef410b6, type: 2}
+  miniMapGoalRoom: {fileID: 11400000, guid: b4fb821fd7bc47447bb49898ea32dec4, type: 2}
+  miniMapSkillRoom: {fileID: 11400000, guid: 6a5d1cd4da9a059449f49046d3485d1a, type: 2}
+  mapHoriLength: 10
+  mapVerLength: 10
+  roomNum: 10
+  startRoomNum: 1
+  goalRoomNum: 1
+  enemyRoomNum: 5
+  skillRoomNum: 1
+  gimmickRoomNum: 0
+  emptyRoomNum: 2
+  bossRoomNum: 0
+  startRoom: {fileID: -977859095670625238, guid: f1dbcccbfbaa6bf4bbe9b107a53f269a, type: 3}
+  goalRoom: {fileID: -5101518868103409251, guid: d2c361fd9893a0d47b4f8af93eff4f64, type: 3}
+  enemyRoom: {fileID: 1701291514622770542, guid: 163af53962ac28b4d9e27b28a7c4703d, type: 3}
+  skillRoom: {fileID: -9157262961680191949, guid: e8e1740909738464b9d8e4cac09c0648, type: 3}
+  gimmickRoom: {fileID: 5678429667937776969, guid: 297653f608c05d34196f29d4a927fe5d, type: 3}
+  emptyRoom: {fileID: 4264939006747378329, guid: 5345a74782ef59e4f8af785dde0dc164, type: 3}
+  bossRoom: {fileID: 1656582586179004286, guid: 8c95f3d6686406b4ba4adca129be8a6b, type: 3}
+  player: {fileID: 0}

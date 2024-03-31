@@ -358,7 +358,7 @@ SpriteRenderer:
   m_SortingLayer: 2
   m_SortingOrder: 4
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.2735849, g: 0.2735849, b: 0.2735849, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -396,10 +396,5 @@ MonoBehaviour:
   - {fileID: 1701291513717704753}
   minAppearNum: 2
   maxAppearNum: 7
-  enemys:
-  - {fileID: -977440009405069298, guid: 338342570b07f2d4896051b76dc55d55, type: 3}
-  - {fileID: -287195110074461191, guid: af6f83e36dd51204db365981deafa831, type: 3}
-  - {fileID: 3649270845309556667, guid: 891cbf1d3c38d54438d1995ecf9b401f, type: 3}
-  - {fileID: -2194930329721954568, guid: c222158c5b39b4649b48016d1928831d, type: 3}
-  skillRewardProb: 0.05
-  itemRewardProb: 0.25
+  skillRewardProb: 0
+  itemRewardProb: 0.2

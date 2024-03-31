@@ -18,7 +18,7 @@ public class EnemyRoom : Room
     
     public override void ArrangementObject()
     {
-        GameManager.I.AudioChange((int)GameManager.Audio.battle);
+        GameManager.I.MusicChange((int)GameManager.Music.battle);
 
         //ìGèoåªêî
         int appearNum = Random.Range(minAppearNum, maxAppearNum + 1);
@@ -89,7 +89,7 @@ public class EnemyRoom : Room
         {
             CheckNextRoom();
 
-            GameManager.I.AudioChange((int)GameManager.Audio.normal);
+            GameManager.I.MusicChange((int)GameManager.Music.normal);
 
             float appearReward = Random.value;
 

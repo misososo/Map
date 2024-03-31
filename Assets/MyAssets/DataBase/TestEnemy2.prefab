@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1853959465415117876}
   - component: {fileID: 360277100792808881}
-  m_Layer: 8
+  m_Layer: 15
   m_Name: Attack
   m_TagString: EnemyAttack
   m_Icon: {fileID: 0}
@@ -151,8 +151,10 @@ MonoBehaviour:
   enemyData: {fileID: 11400000, guid: 0e9c801f750859b46a12fe99cae34387, type: 2}
   maxWarpSpan: 2
   minWarpSpan: 3
-  stealthTime: 0.5
-  enemyCollider: {fileID: 477582960390808077}
+  stealthTime: 1
+  enemyCollider:
+  - {fileID: 477582960390808077}
+  - {fileID: 360277100792808881}
   fakePrefab: {fileID: 6841474599314863390, guid: 73aa774c51c2dc541b59a216d4c19497, type: 3}
   hitEffectPrefab: {fileID: 6445666186361868711, guid: 9deea548c44c9ac4e94d6932a0d85eaf, type: 3}
 --- !u!50 &-8030342636259712010

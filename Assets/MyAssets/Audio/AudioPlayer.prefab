@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3851059933577651136}
   - component: {fileID: 8607915693743860149}
   m_Layer: 0
-  m_Name: damage
+  m_Name: AudioPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -43,7 +43,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 9381f4c996e968e49a9688a896d7579b, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -142,3 +142,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSource: {fileID: 3851059933577651136}
+  clips:
+  - {fileID: 8300000, guid: c0bde0ea90740b448aec79ff356514ed, type: 3}
+  - {fileID: 8300000, guid: 807742c3c92b74c49898d1212a97f725, type: 3}
+  - {fileID: 8300000, guid: 9381f4c996e968e49a9688a896d7579b, type: 3}
+  - {fileID: 8300000, guid: 6e1761ad4081b1d47ac8014fe1dc1917, type: 3}

@@ -45,7 +45,7 @@ public class Enemy : MonoBehaviour
 
         if(collision.gameObject.CompareTag("Explosion"))
         {
-            hp -= collision.GetComponent<Bom>().GetAtk();
+            hp -= collision.transform.root.GetComponent<Bom>().GetAtk();
         }
     }
 

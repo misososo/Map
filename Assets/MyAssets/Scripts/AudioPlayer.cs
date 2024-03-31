@@ -5,16 +5,28 @@ using UnityEngine;
 public class AudioPlayer : MonoBehaviour
 {
     [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioClip[] clips;
+    float lifeTime;
+
+    
 
     // Start is called before the first frame update
     void Start()
     {
-        Destroy(gameObject, audioSource.clip.length);
+        
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public void PlayAudio(int index)
+    {
+        lifeTime = clips[index].length;
+        audioSource.clip = clips[index];
+        audioSource.Play();
+        Destroy(gameObject, lifeTime);
     }
 }
