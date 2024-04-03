@@ -57,7 +57,7 @@ public class SendData : MonoBehaviour
 
     public void SendDataForNextScene(Scene next, LoadSceneMode mode)
     {
-        
+        if (!GameObject.Find("BulletData")) return;
 
         SendData bulletStatus = GameObject.Find("BulletData").GetComponent<SendData>();
         Bullet newBullet = bulletStatus.GetBullet();

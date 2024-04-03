@@ -35,9 +35,12 @@ public class GameManager : MonoBehaviour
     public enum SE
     {
         shot = 0,
+        fire,
         bom,
         damage,
-        heal
+        heal,
+        beam,
+        laser
     }
 
     bool isGameCrear = false;
@@ -161,6 +164,12 @@ public class GameManager : MonoBehaviour
     {
         ap = Instantiate(apPrefab, pos, Quaternion.identity);
         ap.PlayAudio(playNum);
+    }
+
+    public void PlaySE(int playNum, float lifeTime, Vector3 pos)
+    {
+        ap = Instantiate(apPrefab, pos, Quaternion.identity);
+        ap.PlayAudio(playNum, lifeTime);
     }
 
     public string GetNextScene()

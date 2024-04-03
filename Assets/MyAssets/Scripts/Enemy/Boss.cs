@@ -12,6 +12,9 @@ public class Boss : Enemy
     float attackSpan;
     bool isAttackNow = false;
     int attackRandom;
+    List<int> attackPattern = new List<int>();
+
+    int attackNum = 3;
 
     [SerializeField] Bullet bulletPrefab;
     Bullet bullet;
@@ -54,6 +57,8 @@ public class Boss : Enemy
     Vector3 lArmAngle;
     Vector3 rArmAngle;
 
+
+
     [SerializeField] GameObject hitEffectPrefab;
 
     // Start is called before the first frame update
@@ -67,6 +72,11 @@ public class Boss : Enemy
 
         firstPos = transform.position;
 
+        for(int i = 0; i < attackNum; ++i)
+        {
+            attackPattern.Add(i);
+        }
+
         EnableAttackCollider(false);
     }
 
@@ -74,6 +84,11 @@ public class Boss : Enemy
     protected override void Update()
     {
         base.Update();
+
+        if (hp <= 0)
+        {
+            GameManager.I.PlaySE((int)GameManager.SE.bom, transform.position);
+        }
 
         attackSpan -= Time.deltaTime;
 
@@ -90,11 +105,11 @@ public class Boss : Enemy
                 return;
             }
 
-            if(attackRandom == 0)
+            if(attackPattern[attackRandom] == 0)
             {
                 StartCoroutine(Rush());
             }
-            else if(attackRandom == 1)
+            else if(attackPattern[attackRandom] == 1)
             {
                 StartCoroutine(ShotBeam());
             } 
@@ -103,7 +118,12 @@ public class Boss : Enemy
                 StartCoroutine(ShotLaser());
             }
 
-            attackRandom = Random.Range(0, 3);
+            int keep = attackPattern[attackRandom];
+            attackPattern.RemoveAt(attackRandom);
+            attackPattern.Add(keep);
+            attackRandom = Random.Range(0, attackPattern.Count - 1);
+
+            Debug.Log(attackPattern[attackRandom]);
         }
     }
 
@@ -141,6 +161,7 @@ public class Boss : Enemy
         for(int i = 0; i < shotBeamNum; ++i)
         {
             beam = Instantiate(beamPrefab, transform.position, Quaternion.identity);
+            GameManager.I.PlaySE((int)GameManager.SE.beam, transform.position);
 
             dir = (player.transform.position - transform.position).normalized;
 
@@ -164,6 +185,7 @@ public class Boss : Enemy
         preLaser = null;
 
         laser = Instantiate(laserPrefab, transform.position, Quaternion.identity);
+        GameManager.I.PlaySE((int)GameManager.SE.laser, laserLifeTime, transform.position);
 
         yield return new WaitForSeconds(laserLifeTime);
 
@@ -253,5 +275,6 @@ public class Boss : Enemy
         base.OnDestroy();
         GameManager.I.SetIsGameCrear(true);
         Instantiate(hitEffectPrefab, transform.position, Quaternion.identity);
+        
     }
 }

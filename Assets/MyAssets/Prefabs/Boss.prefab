@@ -400,7 +400,7 @@ MonoBehaviour:
   preLaserPrefab: {fileID: 3900529688919295555, guid: aa3526bf866dec942bb2e0293c3c963b, type: 3}
   preTime: 1
   laserLifeTime: 6
-  awakenHp: 1500
+  awakenHp: 2000
   goCenterTime: 1
   attackCollider:
   - {fileID: 3837645253188590496}

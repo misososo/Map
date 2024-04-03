@@ -43,9 +43,12 @@ public class Player : MonoBehaviour
 
     bool isDie = false;
 
+    bool isHitEnemy = false;
+
     // Start is called before the first frame update
     void Start()
     {
+        
         rb = GetComponent<Rigidbody2D>();
         firstShotSpan = shotSpan;
 
@@ -83,6 +86,22 @@ public class Player : MonoBehaviour
             rb.velocity = Vector2.zero;
             StartCoroutine(GameManager.I.GameCrear());
             return;
+        }
+
+        if(isHitEnemy)
+        {
+            isHitEnemy = false;
+
+            hp--;
+            lifes[hp].SetActive(false);
+            GameManager.I.PlaySE((int)GameManager.SE.damage, transform.position);
+           
+            if (hp == 0)
+            {
+                Die();
+            }
+
+            StartCoroutine(EnableCollider(invincibleTime));
         }
        
         if (isDie) return;
@@ -163,17 +182,8 @@ public class Player : MonoBehaviour
         if (collision.CompareTag("EnemyBullet") || collision.CompareTag("EnemyAttack") || collision.CompareTag("Explosion") || collision.CompareTag("Gimmick"))
         {
             if (hp <= 0) return;
+            isHitEnemy = true;
             
-            hp--;
-            lifes[hp].SetActive(false);
-            GameManager.I.PlaySE((int)GameManager.SE.damage, transform.position);
-
-            if (hp == 0)
-            {
-                Die();
-            }
-
-            StartCoroutine(EnableCollider(invincibleTime));
         }
 
         if(collision.CompareTag("Life"))

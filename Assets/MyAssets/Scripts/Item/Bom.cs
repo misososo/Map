@@ -23,6 +23,8 @@ public class Bom : MonoBehaviour
 
     IEnumerator Explosion()
     {
+        GameManager.I.PlaySE((int)GameManager.SE.fire, lifeTime, transform.position);
+
         yield return new WaitForSeconds(lifeTime);
 
         exCollider.enabled = true;

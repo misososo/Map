@@ -22,6 +22,13 @@ public class AudioPlayer : MonoBehaviour
         
     }
 
+    public void PlayAudio(int index, float lifeTime)
+    {
+        audioSource.clip = clips[index];
+        audioSource.Play();
+        Destroy(gameObject, lifeTime);
+    }
+
     public void PlayAudio(int index)
     {
         lifeTime = clips[index].length;

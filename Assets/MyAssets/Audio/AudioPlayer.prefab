@@ -144,6 +144,9 @@ MonoBehaviour:
   audioSource: {fileID: 3851059933577651136}
   clips:
   - {fileID: 8300000, guid: c0bde0ea90740b448aec79ff356514ed, type: 3}
+  - {fileID: 8300000, guid: 76100e9306d50ee4ea7a89f1ebc99d13, type: 3}
   - {fileID: 8300000, guid: 807742c3c92b74c49898d1212a97f725, type: 3}
   - {fileID: 8300000, guid: 9381f4c996e968e49a9688a896d7579b, type: 3}
   - {fileID: 8300000, guid: 6e1761ad4081b1d47ac8014fe1dc1917, type: 3}
+  - {fileID: 8300000, guid: f32bc29f8f5f1b54f94e137801950371, type: 3}
+  - {fileID: 8300000, guid: 4568726650119ab4cb20b1e76fbadbfa, type: 3}
