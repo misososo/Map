@@ -45,11 +45,16 @@ public class Player : MonoBehaviour
 
     bool isHitEnemy = false;
 
+    SpriteRenderer sr;
+
+    [SerializeField] float flushSpan = 0.1f;
+
     // Start is called before the first frame update
     void Start()
     {
         
         rb = GetComponent<Rigidbody2D>();
+        sr = GetComponent<SpriteRenderer>();
         firstShotSpan = shotSpan;
 
         touchObjName.text = "";
@@ -66,7 +71,7 @@ public class Player : MonoBehaviour
             lifes[i].SetActive(true);
         }
 
-        StartCoroutine(EnableCollider(Time.deltaTime));
+        StartCoroutine(DisableCollider());
     }
 
     private void FixedUpdate()
@@ -101,7 +106,7 @@ public class Player : MonoBehaviour
                 Die();
             }
 
-            StartCoroutine(EnableCollider(invincibleTime));
+            StartCoroutine(InvincibleMode(invincibleTime));
         }
        
         if (isDie) return;
@@ -246,7 +251,7 @@ public class Player : MonoBehaviour
             skill.SetId(-1);
             EquipmentSkill(skill);
 
-            StartCoroutine(EnableCollider(Time.deltaTime));
+            StartCoroutine(DisableCollider());
         }
         else if (context.performed && hitObj.CompareTag("Goal"))
         {
@@ -314,11 +319,38 @@ public class Player : MonoBehaviour
 
 
 
-    IEnumerator EnableCollider(float time)
+    IEnumerator InvincibleMode(float time)
     {
         playerCollider.enabled = false;
 
-        yield return new WaitForSeconds(time);
+        yield return Flush(time, flushSpan);
+
+        playerCollider.enabled = true;
+    }
+
+    IEnumerator Flush(float time, float span)
+    {
+        while (time > 0)
+        {
+            yield return new WaitForSeconds(span);
+            time -= span;
+
+            sr.enabled = false;
+            gun.SetActive(false);
+
+            yield return new WaitForSeconds(span);
+            time -= span;
+
+            sr.enabled = true;
+            gun.SetActive(true);
+        }
+    }
+
+    IEnumerator DisableCollider()
+    {
+        playerCollider.enabled = false;
+
+        yield return null;
 
         playerCollider.enabled = true;
     }

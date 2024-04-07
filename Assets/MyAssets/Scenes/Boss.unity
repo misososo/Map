@@ -731,6 +731,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BlackScreenCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 4189507964810880691, guid: 83ab7938d00677c418879b1663478f04, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4189507964810880695, guid: 83ab7938d00677c418879b1663478f04, type: 3}
       propertyPath: m_Pivot.x
       value: 0
