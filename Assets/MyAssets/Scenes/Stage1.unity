@@ -923,6 +923,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3246030707474160867, guid: 8e24fdeac4e919c44be9c7ce4eb19b46, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 240
+      objectReference: {fileID: 0}
     - target: {fileID: 4832123617356076026, guid: 8e24fdeac4e919c44be9c7ce4eb19b46, type: 3}
       propertyPath: m_Name
       value: UICanvas
