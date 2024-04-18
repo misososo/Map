@@ -5,61 +5,81 @@ using UnityEngine;
 public class Boss : Enemy
 {
     Player player;
-    Vector3 dir;
-    [SerializeField] float maxAttackSpan;
-    [SerializeField] float minAttackSpan;
-    [SerializeField] float firstAttackSpan;
-    float attackSpan;
-    bool isAttackNow = false;
+      
+    [SerializeField] 
+    float maxAttackSpan;      //攻撃頻度の最大値
+    [SerializeField] 
+    float minAttackSpan;      //攻撃頻度の最小値
+    [SerializeField] 
+    float firstAttackSpan;    //初回攻撃までの待機時間
+    float attackSpan;         //攻撃頻度
+    bool isAttackNow = false; //攻撃中かどうかの判定
     int attackRandom;
-    List<int> attackPattern = new List<int>();
+    List<int> attackPattern = new List<int>(); //攻撃パターン一覧
+    enum Attack
+    {
+        rush,//突進
+        beam,//ビーム
+        laser//レーザー
+    }
+    int attackNum = 3; //攻撃パターン数
 
-    int attackNum = 3;
-
-    [SerializeField] Bullet bulletPrefab;
+    [SerializeField] 
+    Bullet bulletPrefab;
     Bullet bullet;
-    [SerializeField] int shotBulletNum;
-    [SerializeField] float shotBulletSpan;
+    [SerializeField] 
+    int shotBulletNum;   //弾丸連射数
+    [SerializeField] 
+    float shotBulletSpan;//弾丸連射速度
 
-    [SerializeField] Bullet beamPrefab;
+    [SerializeField] 
+    Bullet beamPrefab;
     Bullet beam;
-    [SerializeField] int shotBeamNum;
-    [SerializeField] float shotBeamSpan;
+    [SerializeField] 
+    int shotBeamNum;   //ビーム連射数
+    [SerializeField] 
+    float shotBeamSpan;//ビーム連射数
 
-    [SerializeField] Laser laserPrefab;
+    [SerializeField] 
+    Laser laserPrefab; 
     Laser laser;
-    [SerializeField] GameObject preLaserPrefab;
-    GameObject preLaser;
-    [SerializeField] float preTime;
-    [SerializeField] float laserLifeTime;
+    [SerializeField] 
+    GameObject preLaserPrefab;//発射準備中レーザーのプレハブ
+    GameObject preLaser;　　　//発射準備中レーザー
+    [SerializeField] 
+    float preTime;            //レーザー発射準備時間
+    [SerializeField] 
+    float laserLifeTime;      //レーザー発射時間
 
 
-    bool isAwaken = false;
-    [SerializeField] int awakenHp;
+    bool isAwaken = false;        //覚醒したかどうか
+    [SerializeField] int awakenHp;//覚醒状態になる残りhp量
 
-    Vector3 firstPos;
+    Vector3 firstPos; //初期地点
 
-    [SerializeField] float goCenterTime;
+    [SerializeField] 
+    float goCenterTime;//マップの中心に向かって動く時間
 
-    [SerializeField] Collider2D[] attackCollider;
+    [SerializeField] 
+    Collider2D[] attackCollider;//攻撃用コライダー
 
-    Vector3 rushDir;
-    [SerializeField] float rushSpeed;
+    Vector3 rushDir;//突進方向
+    [SerializeField] 
+    float rushSpeed;//突進スピード
 
-    [SerializeField] GameObject leftArm;
-    [SerializeField] GameObject rightArm;
-    [SerializeField] Transform lArmAtkPos;
-    [SerializeField] Transform rArmAtkPos;
-    [SerializeField] float armMoveSpeed;
-    [SerializeField] float armRotSpeed;
-    Vector3 lArmMoveDir;
-    Vector3 rArmMoveDir;
-    Vector3 lArmAngle;
-    Vector3 rArmAngle;
+    [SerializeField] GameObject leftArm;  
+    [SerializeField] GameObject rightArm; 
+    [SerializeField] Transform lArmAtkPos;//攻撃時の左腕のポジション
+    [SerializeField] Transform rArmAtkPos;//攻撃時の右腕のポジション
+    [SerializeField] float armMoveSpeed;  //腕の移動スピード
+    [SerializeField] float armRotSpeed;   //腕の回転スピード
+    Vector3 lArmMoveDir; //左腕の移動方向
+    Vector3 rArmMoveDir; //右腕の移動方向
+    Vector3 lArmAngle;   //左腕の角度
+    Vector3 rArmAngle;   //右腕の角度
 
-
-
-    [SerializeField] GameObject hitEffectPrefab;
+    [SerializeField] 
+    GameObject hitEffectPrefab;//死亡時のエフェクト
 
     // Start is called before the first frame update
     void Start()
@@ -105,15 +125,15 @@ public class Boss : Enemy
                 return;
             }
 
-            if(attackPattern[attackRandom] == 0)
+            if(attackPattern[attackRandom] == (int)Attack.rush)
             {
                 StartCoroutine(Rush());
             }
-            else if(attackPattern[attackRandom] == 1)
+            else if(attackPattern[attackRandom] == (int)Attack.beam)
             {
                 StartCoroutine(ShotBeam());
-            } 
-            else
+            }
+            else if (attackPattern[attackRandom] == (int)Attack.laser)
             {
                 StartCoroutine(ShotLaser());
             }
@@ -140,7 +160,9 @@ public class Boss : Enemy
 
     IEnumerator ShotBullet()
     {
-        for(int i = 0; i < shotBulletNum; ++i)
+        Vector2 dir;
+
+        for (int i = 0; i < shotBulletNum; ++i)
         {
             bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
 
@@ -158,7 +180,9 @@ public class Boss : Enemy
 
     IEnumerator ShotBeam()
     {
-        for(int i = 0; i < shotBeamNum; ++i)
+        Vector2 dir;
+
+        for (int i = 0; i < shotBeamNum; ++i)
         {
             beam = Instantiate(beamPrefab, transform.position, Quaternion.identity);
             GameManager.I.PlaySE((int)GameManager.SE.beam, transform.position);
